@@ -4,7 +4,7 @@ package exchange;
 
 import "Req.proto";
 
-option go_package="github.com/DEEBBLUE/GoProtos/api/Exchange";
+option go_package="github.com/DEEBBLUE/ExProtos/api/Exchange";
 
 service Exchange{
   rpc CreateNewExchange(req.CreateExchangeReq) 

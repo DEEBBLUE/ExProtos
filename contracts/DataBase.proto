@@ -5,7 +5,7 @@ package database;
 import "Types.proto";
 import "Req.proto";
 
-option go_package = "github.com/DEEBBLUE/GoProtos/api/Database";
+option go_package = "github.com/DEEBBLUE/ExProtos/api/Database";
 
 service Database{
 //User

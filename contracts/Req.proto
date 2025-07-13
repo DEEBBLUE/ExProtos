@@ -4,7 +4,7 @@ package req;
 
 import "Types.proto";
 
-option go_package="github.com/DEEBBLUE/GoProtos/api/Req";
+option go_package="github.com/DEEBBLUE/ExProtos/api/Req";
 
 message DefaultRes{
   string status = 1;

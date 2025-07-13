@@ -2,7 +2,7 @@ syntax="proto3";
 
 package types;
 
-option go_package="github.com/DEEBBLUE/GoProtos/api/Types";
+option go_package="github.com/DEEBBLUE/ExProtos/api/Types";
 
 enum Role{
   ROLE_CLIENT = 0;
