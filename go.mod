@@ -1,4 +1,4 @@
-module github.com/DEEBBLUE/GoProtos
+module github.com/DEEBBLUE/ExProtos
 
 go 1.24.4
 
