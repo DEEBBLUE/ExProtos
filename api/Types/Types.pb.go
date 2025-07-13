@@ -510,7 +510,7 @@ const file_Types_proto_rawDesc = "" +
 	"\x10ExchangeCurrency\x12\b\n" +
 	"\x04FIAT\x10\x00\x12\b\n" +
 	"\x04USDT\x10\x01\x12\a\n" +
-	"\x03BTC\x10\x02B(Z&github.com/DEEBBLUE/GoProtos/api/Typesb\x06proto3"
+	"\x03BTC\x10\x02B(Z&github.com/DEEBBLUE/ExProtos/api/Typesb\x06proto3"
 
 var (
 	file_Types_proto_rawDescOnce sync.Once

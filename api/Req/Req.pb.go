@@ -7,7 +7,7 @@
 package Req
 
 import (
-	Types "github.com/DEEBBLUE/GoProtos/api/Types"
+	Types "github.com/DEEBBLUE/ExProtos/api/Types"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -559,7 +559,7 @@ const file_Req_proto_rawDesc = "" +
 	"\x04full\x18\x03 \x01(\tH\x00R\x04fullB\x10\n" +
 	"\x0eamount_changes\"J\n" +
 	"\x14RepeatUserHistoryRes\x122\n" +
-	"\fhistory_list\x18\x01 \x03(\v2\x0f.types.ExchangeR\vhistoryListB&Z$github.com/DEEBBLUE/GoProtos/api/Reqb\x06proto3"
+	"\fhistory_list\x18\x01 \x03(\v2\x0f.types.ExchangeR\vhistoryListB&Z$github.com/DEEBBLUE/ExProtos/api/Reqb\x06proto3"
 
 var (
 	file_Req_proto_rawDescOnce sync.Once

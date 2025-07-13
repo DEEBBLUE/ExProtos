@@ -7,7 +7,7 @@
 package Exchange
 
 import (
-	Req "github.com/DEEBBLUE/GoProtos/api/Req"
+	Req "github.com/DEEBBLUE/ExProtos/api/Req"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -135,7 +135,7 @@ const file_Exchange_proto_rawDesc = "" +
 	"\x0eTakeNewExhange\x12\x16.req.RepeatExchangeReq\x1a\x16.req.RepeatExchangeRes\x12>\n" +
 	"\vGiveDetails\x12\x1e.req.InitBankDetailExchangeReq\x1a\x0f.req.DefaultRes\x12<\n" +
 	"\rClientConfirm\x12\x1a.exchange.ClientConfirmReq\x1a\x0f.req.DefaultRes\x128\n" +
-	"\vOperConfirm\x12\x18.exchange.OperConfirmReq\x1a\x0f.req.DefaultResB+Z)github.com/DEEBBLUE/GoProtos/api/Exchangeb\x06proto3"
+	"\vOperConfirm\x12\x18.exchange.OperConfirmReq\x1a\x0f.req.DefaultResB+Z)github.com/DEEBBLUE/ExProtos/api/Exchangeb\x06proto3"
 
 var (
 	file_Exchange_proto_rawDescOnce sync.Once

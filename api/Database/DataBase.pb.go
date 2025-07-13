@@ -7,8 +7,8 @@
 package Database
 
 import (
-	Req "github.com/DEEBBLUE/GoProtos/api/Req"
-	Types "github.com/DEEBBLUE/GoProtos/api/Types"
+	Req "github.com/DEEBBLUE/ExProtos/api/Req"
+	Types "github.com/DEEBBLUE/ExProtos/api/Types"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -531,7 +531,7 @@ const file_DataBase_proto_rawDesc = "" +
 	"\x10InitOperExchange\x12\x18.req.InitOperExchangeReq\x1a\x0f.req.DefaultRes\x12I\n" +
 	"\x16InitBankDetailExchange\x12\x1e.req.InitBankDetailExchangeReq\x1a\x0f.req.DefaultRes\x12E\n" +
 	"\x14ChangeStatusExchange\x12\x1c.req.ChangeStatusExchangeReq\x1a\x0f.req.DefaultRes\x12S\n" +
-	"\x11RepeatUserHistory\x12\x1e.database.RepeatUserHistoryReq\x1a\x1e.database.RepeatUserHistoryResB+Z)github.com/DEEBBLUE/GoProtos/api/Databaseb\x06proto3"
+	"\x11RepeatUserHistory\x12\x1e.database.RepeatUserHistoryReq\x1a\x1e.database.RepeatUserHistoryResB+Z)github.com/DEEBBLUE/ExProtos/api/Databaseb\x06proto3"
 
 var (
 	file_DataBase_proto_rawDescOnce sync.Once
