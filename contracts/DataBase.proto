@@ -2,22 +2,21 @@ syntax = "proto3";
 
 package database;
 
-import "Types.proto";
 import "Req.proto";
 
 option go_package = "github.com/DEEBBLUE/ExProtos/api/Database";
 
 service Database{
 //User
-  rpc CreateUser(CreateUserReq)
+  rpc CreateUser(req.CreateUserReq)
     returns (req.DefaultRes);
-  rpc RepeatUser(RepeatUserReq)
-    returns (RepeatUserRes);
-  rpc ChangeRoleUser(ChangeRoleUserReq)
+  rpc RepeatUser(req.RepeatUserReq)
+    returns (req.RepeatUserRes);
+  rpc ChangeRoleUser(req.ChangeRoleUserReq)
     returns (req.DefaultRes);
-  rpc ChangeVerifeStatusUser(ChangeVerifeStatusUserReq)
+  rpc ChangeVerifeStatusUser(req.ChangeVerifeStatusUserReq)
     returns (req.DefaultRes);
-  rpc ChangeBalanceUser(ChangeBalanceUserReq)
+  rpc ChangeBalanceUser(req.ChangeBalanceUserReq)
     returns (req.DefaultRes);
 
 //Change
@@ -33,74 +32,7 @@ service Database{
     returns (req.DefaultRes);
 
 //Searching 
-  rpc RepeatUserHistory(RepeatUserHistoryReq)
-    returns (RepeatUserHistoryRes);
+  rpc RepeatUserHistory(req.RepeatUserHistoryReq)
+    returns (req.RepeatUserHistoryRes);
 }
 
-
-// USER
-// User: hanlders type
-message CreateUserReq{
-  int32 tg_id = 1;
-  int32 owner = 2;
-}
-message RepeatUserReq{
-  int32 tg_id = 1;
-}
-message RepeatUserRes{
-  string status = 1;
-  types.User user = 2;
-}
-message ChangeRoleUserReq{
-  int32 tg_id = 1;
-  types.Role new_role = 2; 
-}
-message ChangeVerifeStatusUserReq{
-  int32 tg_id = 1;
-  types.Verif new_verif = 2; 
-}
-message ChangeBalanceUserReq{
-  int32 tg_id = 1;
-  int32 new_balance = 2; 
-}
-
-//EXCHANGE
-//Exchange: Message
-/*
-message CreateExchangeReq{
-  int32 client_id = 1;
-  types.ExchangeData data_in = 2;
-  types.ExchangeData data_out = 3;
-  float rate = 4;
-}
-message RepeatExchangeReq{
-  int32 exchange_id = 1;
-}
-message RepeatExchangeRes{
-  string status = 1;
-  types.Exchange exchange = 2;
-}
-message InitOperExchangeReq{
-  int32 exchange_id = 1;
-  int32 oper_id = 2;
-}
-message InitBankDetailExchangeReq{
-  int32 exchange_id = 1;
-  string bank_detail = 2;
-}
-message ChangeStatusExchangeReq{
-  int32 exchange_id = 1;
-  types.ExchangeStatus new_status = 2;
-}
-*/
-message RepeatUserHistoryReq{
-  int32 user_id = 1;
-  oneof amount_changes{
-    int32 count = 2;
-    string full = 3;
-  }
-}
-
-message RepeatUserHistoryRes{
-  repeated types.Exchange history_list = 1;
-}

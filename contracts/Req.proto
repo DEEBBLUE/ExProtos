@@ -10,18 +10,44 @@ message DefaultRes{
   string status = 1;
 }
 
-message CreateExchangeReq{
-  int32 client_id = 1;
-  types.ExchangeData data_in = 2;
-  types.ExchangeData data_out = 3;
-  float rate = 4;
+//User
+message CreateUserReq{
+  int32 tg_id = 1;
+  int32 owner = 2;
 }
+message RepeatUserReq{
+  int32 tg_id = 1;
+}
+message RepeatUserRes{
+  types.User user = 2;
+}
+
+message ChangeRoleUserReq{
+  int32 tg_id = 1;
+  types.Role new_role = 2; 
+}
+
+message ChangeVerifeStatusUserReq{
+  int32 tg_id = 1;
+  types.Verif new_verif = 2; 
+}
+
+message ChangeBalanceUserReq{
+  int32 tg_id = 1;
+  int32 new_balance = 2; 
+}
+
+
+//Exchange
+message CreateExchangeReq{
+  types.Exchange exchange = 1;
+}
+
 message RepeatExchangeReq{
   int32 exchange_id = 1;
 }
 
 message RepeatExchangeRes{
-  string status = 1;
   types.Exchange exchange = 2;
 }
 
@@ -37,12 +63,10 @@ message ChangeStatusExchangeReq{
   int32 exchange_id = 1;
   types.ExchangeStatus new_status = 2;
 }
+//User History
 message RepeatUserHistoryReq{
   int32 user_id = 1;
-  oneof amount_changes{
-    int32 count = 2;
-    string full = 3;
-  }
+  int32 page = 2;
 }
 
 message RepeatUserHistoryRes{
