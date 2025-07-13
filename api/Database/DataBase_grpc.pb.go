@@ -38,11 +38,11 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DatabaseClient interface {
 	// User
-	CreateUser(ctx context.Context, in *CreateUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
-	RepeatUser(ctx context.Context, in *RepeatUserReq, opts ...grpc.CallOption) (*RepeatUserRes, error)
-	ChangeRoleUser(ctx context.Context, in *ChangeRoleUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
-	ChangeVerifeStatusUser(ctx context.Context, in *ChangeVerifeStatusUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
-	ChangeBalanceUser(ctx context.Context, in *ChangeBalanceUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	CreateUser(ctx context.Context, in *Req.CreateUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	RepeatUser(ctx context.Context, in *Req.RepeatUserReq, opts ...grpc.CallOption) (*Req.RepeatUserRes, error)
+	ChangeRoleUser(ctx context.Context, in *Req.ChangeRoleUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	ChangeVerifeStatusUser(ctx context.Context, in *Req.ChangeVerifeStatusUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	ChangeBalanceUser(ctx context.Context, in *Req.ChangeBalanceUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	// Change
 	CreateExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	RepeatExchange(ctx context.Context, in *Req.RepeatExchangeReq, opts ...grpc.CallOption) (*Req.RepeatExchangeRes, error)
@@ -50,7 +50,7 @@ type DatabaseClient interface {
 	InitBankDetailExchange(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	ChangeStatusExchange(ctx context.Context, in *Req.ChangeStatusExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	// Searching
-	RepeatUserHistory(ctx context.Context, in *RepeatUserHistoryReq, opts ...grpc.CallOption) (*RepeatUserHistoryRes, error)
+	RepeatUserHistory(ctx context.Context, in *Req.RepeatUserHistoryReq, opts ...grpc.CallOption) (*Req.RepeatUserHistoryRes, error)
 }
 
 type databaseClient struct {
@@ -61,7 +61,7 @@ func NewDatabaseClient(cc grpc.ClientConnInterface) DatabaseClient {
 	return &databaseClient{cc}
 }
 
-func (c *databaseClient) CreateUser(ctx context.Context, in *CreateUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+func (c *databaseClient) CreateUser(ctx context.Context, in *Req.CreateUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Req.DefaultRes)
 	err := c.cc.Invoke(ctx, Database_CreateUser_FullMethodName, in, out, cOpts...)
@@ -71,9 +71,9 @@ func (c *databaseClient) CreateUser(ctx context.Context, in *CreateUserReq, opts
 	return out, nil
 }
 
-func (c *databaseClient) RepeatUser(ctx context.Context, in *RepeatUserReq, opts ...grpc.CallOption) (*RepeatUserRes, error) {
+func (c *databaseClient) RepeatUser(ctx context.Context, in *Req.RepeatUserReq, opts ...grpc.CallOption) (*Req.RepeatUserRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RepeatUserRes)
+	out := new(Req.RepeatUserRes)
 	err := c.cc.Invoke(ctx, Database_RepeatUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -81,7 +81,7 @@ func (c *databaseClient) RepeatUser(ctx context.Context, in *RepeatUserReq, opts
 	return out, nil
 }
 
-func (c *databaseClient) ChangeRoleUser(ctx context.Context, in *ChangeRoleUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+func (c *databaseClient) ChangeRoleUser(ctx context.Context, in *Req.ChangeRoleUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Req.DefaultRes)
 	err := c.cc.Invoke(ctx, Database_ChangeRoleUser_FullMethodName, in, out, cOpts...)
@@ -91,7 +91,7 @@ func (c *databaseClient) ChangeRoleUser(ctx context.Context, in *ChangeRoleUserR
 	return out, nil
 }
 
-func (c *databaseClient) ChangeVerifeStatusUser(ctx context.Context, in *ChangeVerifeStatusUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+func (c *databaseClient) ChangeVerifeStatusUser(ctx context.Context, in *Req.ChangeVerifeStatusUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Req.DefaultRes)
 	err := c.cc.Invoke(ctx, Database_ChangeVerifeStatusUser_FullMethodName, in, out, cOpts...)
@@ -101,7 +101,7 @@ func (c *databaseClient) ChangeVerifeStatusUser(ctx context.Context, in *ChangeV
 	return out, nil
 }
 
-func (c *databaseClient) ChangeBalanceUser(ctx context.Context, in *ChangeBalanceUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+func (c *databaseClient) ChangeBalanceUser(ctx context.Context, in *Req.ChangeBalanceUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Req.DefaultRes)
 	err := c.cc.Invoke(ctx, Database_ChangeBalanceUser_FullMethodName, in, out, cOpts...)
@@ -161,9 +161,9 @@ func (c *databaseClient) ChangeStatusExchange(ctx context.Context, in *Req.Chang
 	return out, nil
 }
 
-func (c *databaseClient) RepeatUserHistory(ctx context.Context, in *RepeatUserHistoryReq, opts ...grpc.CallOption) (*RepeatUserHistoryRes, error) {
+func (c *databaseClient) RepeatUserHistory(ctx context.Context, in *Req.RepeatUserHistoryReq, opts ...grpc.CallOption) (*Req.RepeatUserHistoryRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RepeatUserHistoryRes)
+	out := new(Req.RepeatUserHistoryRes)
 	err := c.cc.Invoke(ctx, Database_RepeatUserHistory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -176,11 +176,11 @@ func (c *databaseClient) RepeatUserHistory(ctx context.Context, in *RepeatUserHi
 // for forward compatibility.
 type DatabaseServer interface {
 	// User
-	CreateUser(context.Context, *CreateUserReq) (*Req.DefaultRes, error)
-	RepeatUser(context.Context, *RepeatUserReq) (*RepeatUserRes, error)
-	ChangeRoleUser(context.Context, *ChangeRoleUserReq) (*Req.DefaultRes, error)
-	ChangeVerifeStatusUser(context.Context, *ChangeVerifeStatusUserReq) (*Req.DefaultRes, error)
-	ChangeBalanceUser(context.Context, *ChangeBalanceUserReq) (*Req.DefaultRes, error)
+	CreateUser(context.Context, *Req.CreateUserReq) (*Req.DefaultRes, error)
+	RepeatUser(context.Context, *Req.RepeatUserReq) (*Req.RepeatUserRes, error)
+	ChangeRoleUser(context.Context, *Req.ChangeRoleUserReq) (*Req.DefaultRes, error)
+	ChangeVerifeStatusUser(context.Context, *Req.ChangeVerifeStatusUserReq) (*Req.DefaultRes, error)
+	ChangeBalanceUser(context.Context, *Req.ChangeBalanceUserReq) (*Req.DefaultRes, error)
 	// Change
 	CreateExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error)
 	RepeatExchange(context.Context, *Req.RepeatExchangeReq) (*Req.RepeatExchangeRes, error)
@@ -188,7 +188,7 @@ type DatabaseServer interface {
 	InitBankDetailExchange(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error)
 	ChangeStatusExchange(context.Context, *Req.ChangeStatusExchangeReq) (*Req.DefaultRes, error)
 	// Searching
-	RepeatUserHistory(context.Context, *RepeatUserHistoryReq) (*RepeatUserHistoryRes, error)
+	RepeatUserHistory(context.Context, *Req.RepeatUserHistoryReq) (*Req.RepeatUserHistoryRes, error)
 	mustEmbedUnimplementedDatabaseServer()
 }
 
@@ -199,19 +199,19 @@ type DatabaseServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDatabaseServer struct{}
 
-func (UnimplementedDatabaseServer) CreateUser(context.Context, *CreateUserReq) (*Req.DefaultRes, error) {
+func (UnimplementedDatabaseServer) CreateUser(context.Context, *Req.CreateUserReq) (*Req.DefaultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
 }
-func (UnimplementedDatabaseServer) RepeatUser(context.Context, *RepeatUserReq) (*RepeatUserRes, error) {
+func (UnimplementedDatabaseServer) RepeatUser(context.Context, *Req.RepeatUserReq) (*Req.RepeatUserRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RepeatUser not implemented")
 }
-func (UnimplementedDatabaseServer) ChangeRoleUser(context.Context, *ChangeRoleUserReq) (*Req.DefaultRes, error) {
+func (UnimplementedDatabaseServer) ChangeRoleUser(context.Context, *Req.ChangeRoleUserReq) (*Req.DefaultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeRoleUser not implemented")
 }
-func (UnimplementedDatabaseServer) ChangeVerifeStatusUser(context.Context, *ChangeVerifeStatusUserReq) (*Req.DefaultRes, error) {
+func (UnimplementedDatabaseServer) ChangeVerifeStatusUser(context.Context, *Req.ChangeVerifeStatusUserReq) (*Req.DefaultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeVerifeStatusUser not implemented")
 }
-func (UnimplementedDatabaseServer) ChangeBalanceUser(context.Context, *ChangeBalanceUserReq) (*Req.DefaultRes, error) {
+func (UnimplementedDatabaseServer) ChangeBalanceUser(context.Context, *Req.ChangeBalanceUserReq) (*Req.DefaultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeBalanceUser not implemented")
 }
 func (UnimplementedDatabaseServer) CreateExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error) {
@@ -229,7 +229,7 @@ func (UnimplementedDatabaseServer) InitBankDetailExchange(context.Context, *Req.
 func (UnimplementedDatabaseServer) ChangeStatusExchange(context.Context, *Req.ChangeStatusExchangeReq) (*Req.DefaultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeStatusExchange not implemented")
 }
-func (UnimplementedDatabaseServer) RepeatUserHistory(context.Context, *RepeatUserHistoryReq) (*RepeatUserHistoryRes, error) {
+func (UnimplementedDatabaseServer) RepeatUserHistory(context.Context, *Req.RepeatUserHistoryReq) (*Req.RepeatUserHistoryRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RepeatUserHistory not implemented")
 }
 func (UnimplementedDatabaseServer) mustEmbedUnimplementedDatabaseServer() {}
@@ -254,7 +254,7 @@ func RegisterDatabaseServer(s grpc.ServiceRegistrar, srv DatabaseServer) {
 }
 
 func _Database_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateUserReq)
+	in := new(Req.CreateUserReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -266,13 +266,13 @@ func _Database_CreateUser_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Database_CreateUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DatabaseServer).CreateUser(ctx, req.(*CreateUserReq))
+		return srv.(DatabaseServer).CreateUser(ctx, req.(*Req.CreateUserReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Database_RepeatUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RepeatUserReq)
+	in := new(Req.RepeatUserReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -284,13 +284,13 @@ func _Database_RepeatUser_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Database_RepeatUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DatabaseServer).RepeatUser(ctx, req.(*RepeatUserReq))
+		return srv.(DatabaseServer).RepeatUser(ctx, req.(*Req.RepeatUserReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Database_ChangeRoleUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ChangeRoleUserReq)
+	in := new(Req.ChangeRoleUserReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -302,13 +302,13 @@ func _Database_ChangeRoleUser_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: Database_ChangeRoleUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DatabaseServer).ChangeRoleUser(ctx, req.(*ChangeRoleUserReq))
+		return srv.(DatabaseServer).ChangeRoleUser(ctx, req.(*Req.ChangeRoleUserReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Database_ChangeVerifeStatusUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ChangeVerifeStatusUserReq)
+	in := new(Req.ChangeVerifeStatusUserReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -320,13 +320,13 @@ func _Database_ChangeVerifeStatusUser_Handler(srv interface{}, ctx context.Conte
 		FullMethod: Database_ChangeVerifeStatusUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DatabaseServer).ChangeVerifeStatusUser(ctx, req.(*ChangeVerifeStatusUserReq))
+		return srv.(DatabaseServer).ChangeVerifeStatusUser(ctx, req.(*Req.ChangeVerifeStatusUserReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Database_ChangeBalanceUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ChangeBalanceUserReq)
+	in := new(Req.ChangeBalanceUserReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -338,7 +338,7 @@ func _Database_ChangeBalanceUser_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: Database_ChangeBalanceUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DatabaseServer).ChangeBalanceUser(ctx, req.(*ChangeBalanceUserReq))
+		return srv.(DatabaseServer).ChangeBalanceUser(ctx, req.(*Req.ChangeBalanceUserReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -434,7 +434,7 @@ func _Database_ChangeStatusExchange_Handler(srv interface{}, ctx context.Context
 }
 
 func _Database_RepeatUserHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RepeatUserHistoryReq)
+	in := new(Req.RepeatUserHistoryReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -446,7 +446,7 @@ func _Database_RepeatUserHistory_Handler(srv interface{}, ctx context.Context, d
 		FullMethod: Database_RepeatUserHistory_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DatabaseServer).RepeatUserHistory(ctx, req.(*RepeatUserHistoryReq))
+		return srv.(DatabaseServer).RepeatUserHistory(ctx, req.(*Req.RepeatUserHistoryReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }

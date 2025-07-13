@@ -8,11 +8,9 @@ package Database
 
 import (
 	Req "github.com/DEEBBLUE/ExProtos/api/Req"
-	Types "github.com/DEEBBLUE/ExProtos/api/Types"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
-	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -23,582 +21,71 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// USER
-// User: hanlders type
-type CreateUserReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TgId          int32                  `protobuf:"varint,1,opt,name=tg_id,json=tgId,proto3" json:"tg_id,omitempty"`
-	Owner         int32                  `protobuf:"varint,2,opt,name=owner,proto3" json:"owner,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateUserReq) Reset() {
-	*x = CreateUserReq{}
-	mi := &file_DataBase_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateUserReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateUserReq) ProtoMessage() {}
-
-func (x *CreateUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_DataBase_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateUserReq.ProtoReflect.Descriptor instead.
-func (*CreateUserReq) Descriptor() ([]byte, []int) {
-	return file_DataBase_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *CreateUserReq) GetTgId() int32 {
-	if x != nil {
-		return x.TgId
-	}
-	return 0
-}
-
-func (x *CreateUserReq) GetOwner() int32 {
-	if x != nil {
-		return x.Owner
-	}
-	return 0
-}
-
-type RepeatUserReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TgId          int32                  `protobuf:"varint,1,opt,name=tg_id,json=tgId,proto3" json:"tg_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RepeatUserReq) Reset() {
-	*x = RepeatUserReq{}
-	mi := &file_DataBase_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RepeatUserReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RepeatUserReq) ProtoMessage() {}
-
-func (x *RepeatUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_DataBase_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RepeatUserReq.ProtoReflect.Descriptor instead.
-func (*RepeatUserReq) Descriptor() ([]byte, []int) {
-	return file_DataBase_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *RepeatUserReq) GetTgId() int32 {
-	if x != nil {
-		return x.TgId
-	}
-	return 0
-}
-
-type RepeatUserRes struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-	User          *Types.User            `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RepeatUserRes) Reset() {
-	*x = RepeatUserRes{}
-	mi := &file_DataBase_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RepeatUserRes) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RepeatUserRes) ProtoMessage() {}
-
-func (x *RepeatUserRes) ProtoReflect() protoreflect.Message {
-	mi := &file_DataBase_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RepeatUserRes.ProtoReflect.Descriptor instead.
-func (*RepeatUserRes) Descriptor() ([]byte, []int) {
-	return file_DataBase_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *RepeatUserRes) GetStatus() string {
-	if x != nil {
-		return x.Status
-	}
-	return ""
-}
-
-func (x *RepeatUserRes) GetUser() *Types.User {
-	if x != nil {
-		return x.User
-	}
-	return nil
-}
-
-type ChangeRoleUserReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TgId          int32                  `protobuf:"varint,1,opt,name=tg_id,json=tgId,proto3" json:"tg_id,omitempty"`
-	NewRole       Types.Role             `protobuf:"varint,2,opt,name=new_role,json=newRole,proto3,enum=types.Role" json:"new_role,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ChangeRoleUserReq) Reset() {
-	*x = ChangeRoleUserReq{}
-	mi := &file_DataBase_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ChangeRoleUserReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ChangeRoleUserReq) ProtoMessage() {}
-
-func (x *ChangeRoleUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_DataBase_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ChangeRoleUserReq.ProtoReflect.Descriptor instead.
-func (*ChangeRoleUserReq) Descriptor() ([]byte, []int) {
-	return file_DataBase_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *ChangeRoleUserReq) GetTgId() int32 {
-	if x != nil {
-		return x.TgId
-	}
-	return 0
-}
-
-func (x *ChangeRoleUserReq) GetNewRole() Types.Role {
-	if x != nil {
-		return x.NewRole
-	}
-	return Types.Role(0)
-}
-
-type ChangeVerifeStatusUserReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TgId          int32                  `protobuf:"varint,1,opt,name=tg_id,json=tgId,proto3" json:"tg_id,omitempty"`
-	NewVerif      Types.Verif            `protobuf:"varint,2,opt,name=new_verif,json=newVerif,proto3,enum=types.Verif" json:"new_verif,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ChangeVerifeStatusUserReq) Reset() {
-	*x = ChangeVerifeStatusUserReq{}
-	mi := &file_DataBase_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ChangeVerifeStatusUserReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ChangeVerifeStatusUserReq) ProtoMessage() {}
-
-func (x *ChangeVerifeStatusUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_DataBase_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ChangeVerifeStatusUserReq.ProtoReflect.Descriptor instead.
-func (*ChangeVerifeStatusUserReq) Descriptor() ([]byte, []int) {
-	return file_DataBase_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *ChangeVerifeStatusUserReq) GetTgId() int32 {
-	if x != nil {
-		return x.TgId
-	}
-	return 0
-}
-
-func (x *ChangeVerifeStatusUserReq) GetNewVerif() Types.Verif {
-	if x != nil {
-		return x.NewVerif
-	}
-	return Types.Verif(0)
-}
-
-type ChangeBalanceUserReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TgId          int32                  `protobuf:"varint,1,opt,name=tg_id,json=tgId,proto3" json:"tg_id,omitempty"`
-	NewBalance    int32                  `protobuf:"varint,2,opt,name=new_balance,json=newBalance,proto3" json:"new_balance,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ChangeBalanceUserReq) Reset() {
-	*x = ChangeBalanceUserReq{}
-	mi := &file_DataBase_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ChangeBalanceUserReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ChangeBalanceUserReq) ProtoMessage() {}
-
-func (x *ChangeBalanceUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_DataBase_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ChangeBalanceUserReq.ProtoReflect.Descriptor instead.
-func (*ChangeBalanceUserReq) Descriptor() ([]byte, []int) {
-	return file_DataBase_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *ChangeBalanceUserReq) GetTgId() int32 {
-	if x != nil {
-		return x.TgId
-	}
-	return 0
-}
-
-func (x *ChangeBalanceUserReq) GetNewBalance() int32 {
-	if x != nil {
-		return x.NewBalance
-	}
-	return 0
-}
-
-// message CreateExchangeReq{
-// int32 client_id = 1;
-// types.ExchangeData data_in = 2;
-// types.ExchangeData data_out = 3;
-// float rate = 4;
-// }
-// message RepeatExchangeReq{
-// int32 exchange_id = 1;
-// }
-// message RepeatExchangeRes{
-// string status = 1;
-// types.Exchange exchange = 2;
-// }
-// message InitOperExchangeReq{
-// int32 exchange_id = 1;
-// int32 oper_id = 2;
-// }
-// message InitBankDetailExchangeReq{
-// int32 exchange_id = 1;
-// string bank_detail = 2;
-// }
-// message ChangeStatusExchangeReq{
-// int32 exchange_id = 1;
-// types.ExchangeStatus new_status = 2;
-// }
-type RepeatUserHistoryReq struct {
-	state  protoimpl.MessageState `protogen:"open.v1"`
-	UserId int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	// Types that are valid to be assigned to AmountChanges:
-	//
-	//	*RepeatUserHistoryReq_Count
-	//	*RepeatUserHistoryReq_Full
-	AmountChanges isRepeatUserHistoryReq_AmountChanges `protobuf_oneof:"amount_changes"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RepeatUserHistoryReq) Reset() {
-	*x = RepeatUserHistoryReq{}
-	mi := &file_DataBase_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RepeatUserHistoryReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RepeatUserHistoryReq) ProtoMessage() {}
-
-func (x *RepeatUserHistoryReq) ProtoReflect() protoreflect.Message {
-	mi := &file_DataBase_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RepeatUserHistoryReq.ProtoReflect.Descriptor instead.
-func (*RepeatUserHistoryReq) Descriptor() ([]byte, []int) {
-	return file_DataBase_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *RepeatUserHistoryReq) GetUserId() int32 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
-}
-
-func (x *RepeatUserHistoryReq) GetAmountChanges() isRepeatUserHistoryReq_AmountChanges {
-	if x != nil {
-		return x.AmountChanges
-	}
-	return nil
-}
-
-func (x *RepeatUserHistoryReq) GetCount() int32 {
-	if x != nil {
-		if x, ok := x.AmountChanges.(*RepeatUserHistoryReq_Count); ok {
-			return x.Count
-		}
-	}
-	return 0
-}
-
-func (x *RepeatUserHistoryReq) GetFull() string {
-	if x != nil {
-		if x, ok := x.AmountChanges.(*RepeatUserHistoryReq_Full); ok {
-			return x.Full
-		}
-	}
-	return ""
-}
-
-type isRepeatUserHistoryReq_AmountChanges interface {
-	isRepeatUserHistoryReq_AmountChanges()
-}
-
-type RepeatUserHistoryReq_Count struct {
-	Count int32 `protobuf:"varint,2,opt,name=count,proto3,oneof"`
-}
-
-type RepeatUserHistoryReq_Full struct {
-	Full string `protobuf:"bytes,3,opt,name=full,proto3,oneof"`
-}
-
-func (*RepeatUserHistoryReq_Count) isRepeatUserHistoryReq_AmountChanges() {}
-
-func (*RepeatUserHistoryReq_Full) isRepeatUserHistoryReq_AmountChanges() {}
-
-type RepeatUserHistoryRes struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	HistoryList   []*Types.Exchange      `protobuf:"bytes,1,rep,name=history_list,json=historyList,proto3" json:"history_list,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RepeatUserHistoryRes) Reset() {
-	*x = RepeatUserHistoryRes{}
-	mi := &file_DataBase_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RepeatUserHistoryRes) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RepeatUserHistoryRes) ProtoMessage() {}
-
-func (x *RepeatUserHistoryRes) ProtoReflect() protoreflect.Message {
-	mi := &file_DataBase_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RepeatUserHistoryRes.ProtoReflect.Descriptor instead.
-func (*RepeatUserHistoryRes) Descriptor() ([]byte, []int) {
-	return file_DataBase_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *RepeatUserHistoryRes) GetHistoryList() []*Types.Exchange {
-	if x != nil {
-		return x.HistoryList
-	}
-	return nil
-}
-
 var File_DataBase_proto protoreflect.FileDescriptor
 
 const file_DataBase_proto_rawDesc = "" +
 	"\n" +
-	"\x0eDataBase.proto\x12\bdatabase\x1a\vTypes.proto\x1a\tReq.proto\":\n" +
-	"\rCreateUserReq\x12\x13\n" +
-	"\x05tg_id\x18\x01 \x01(\x05R\x04tgId\x12\x14\n" +
-	"\x05owner\x18\x02 \x01(\x05R\x05owner\"$\n" +
-	"\rRepeatUserReq\x12\x13\n" +
-	"\x05tg_id\x18\x01 \x01(\x05R\x04tgId\"H\n" +
-	"\rRepeatUserRes\x12\x16\n" +
-	"\x06status\x18\x01 \x01(\tR\x06status\x12\x1f\n" +
-	"\x04user\x18\x02 \x01(\v2\v.types.UserR\x04user\"P\n" +
-	"\x11ChangeRoleUserReq\x12\x13\n" +
-	"\x05tg_id\x18\x01 \x01(\x05R\x04tgId\x12&\n" +
-	"\bnew_role\x18\x02 \x01(\x0e2\v.types.RoleR\anewRole\"[\n" +
-	"\x19ChangeVerifeStatusUserReq\x12\x13\n" +
-	"\x05tg_id\x18\x01 \x01(\x05R\x04tgId\x12)\n" +
-	"\tnew_verif\x18\x02 \x01(\x0e2\f.types.VerifR\bnewVerif\"L\n" +
-	"\x14ChangeBalanceUserReq\x12\x13\n" +
-	"\x05tg_id\x18\x01 \x01(\x05R\x04tgId\x12\x1f\n" +
-	"\vnew_balance\x18\x02 \x01(\x05R\n" +
-	"newBalance\"o\n" +
-	"\x14RepeatUserHistoryReq\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x16\n" +
-	"\x05count\x18\x02 \x01(\x05H\x00R\x05count\x12\x14\n" +
-	"\x04full\x18\x03 \x01(\tH\x00R\x04fullB\x10\n" +
-	"\x0eamount_changes\"J\n" +
-	"\x14RepeatUserHistoryRes\x122\n" +
-	"\fhistory_list\x18\x01 \x03(\v2\x0f.types.ExchangeR\vhistoryList2\xfb\x05\n" +
-	"\bDatabase\x126\n" +
+	"\x0eDataBase.proto\x12\bdatabase\x1a\tReq.proto2\xd3\x05\n" +
+	"\bDatabase\x121\n" +
 	"\n" +
-	"CreateUser\x12\x17.database.CreateUserReq\x1a\x0f.req.DefaultRes\x12>\n" +
+	"CreateUser\x12\x12.req.CreateUserReq\x1a\x0f.req.DefaultRes\x124\n" +
 	"\n" +
-	"RepeatUser\x12\x17.database.RepeatUserReq\x1a\x17.database.RepeatUserRes\x12>\n" +
-	"\x0eChangeRoleUser\x12\x1b.database.ChangeRoleUserReq\x1a\x0f.req.DefaultRes\x12N\n" +
-	"\x16ChangeVerifeStatusUser\x12#.database.ChangeVerifeStatusUserReq\x1a\x0f.req.DefaultRes\x12D\n" +
-	"\x11ChangeBalanceUser\x12\x1e.database.ChangeBalanceUserReq\x1a\x0f.req.DefaultRes\x129\n" +
+	"RepeatUser\x12\x12.req.RepeatUserReq\x1a\x12.req.RepeatUserRes\x129\n" +
+	"\x0eChangeRoleUser\x12\x16.req.ChangeRoleUserReq\x1a\x0f.req.DefaultRes\x12I\n" +
+	"\x16ChangeVerifeStatusUser\x12\x1e.req.ChangeVerifeStatusUserReq\x1a\x0f.req.DefaultRes\x12?\n" +
+	"\x11ChangeBalanceUser\x12\x19.req.ChangeBalanceUserReq\x1a\x0f.req.DefaultRes\x129\n" +
 	"\x0eCreateExchange\x12\x16.req.CreateExchangeReq\x1a\x0f.req.DefaultRes\x12@\n" +
 	"\x0eRepeatExchange\x12\x16.req.RepeatExchangeReq\x1a\x16.req.RepeatExchangeRes\x12=\n" +
 	"\x10InitOperExchange\x12\x18.req.InitOperExchangeReq\x1a\x0f.req.DefaultRes\x12I\n" +
 	"\x16InitBankDetailExchange\x12\x1e.req.InitBankDetailExchangeReq\x1a\x0f.req.DefaultRes\x12E\n" +
-	"\x14ChangeStatusExchange\x12\x1c.req.ChangeStatusExchangeReq\x1a\x0f.req.DefaultRes\x12S\n" +
-	"\x11RepeatUserHistory\x12\x1e.database.RepeatUserHistoryReq\x1a\x1e.database.RepeatUserHistoryResB+Z)github.com/DEEBBLUE/ExProtos/api/Databaseb\x06proto3"
+	"\x14ChangeStatusExchange\x12\x1c.req.ChangeStatusExchangeReq\x1a\x0f.req.DefaultRes\x12I\n" +
+	"\x11RepeatUserHistory\x12\x19.req.RepeatUserHistoryReq\x1a\x19.req.RepeatUserHistoryResB+Z)github.com/DEEBBLUE/ExProtos/api/Databaseb\x06proto3"
 
-var (
-	file_DataBase_proto_rawDescOnce sync.Once
-	file_DataBase_proto_rawDescData []byte
-)
-
-func file_DataBase_proto_rawDescGZIP() []byte {
-	file_DataBase_proto_rawDescOnce.Do(func() {
-		file_DataBase_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_DataBase_proto_rawDesc), len(file_DataBase_proto_rawDesc)))
-	})
-	return file_DataBase_proto_rawDescData
-}
-
-var file_DataBase_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_DataBase_proto_goTypes = []any{
-	(*CreateUserReq)(nil),                 // 0: database.CreateUserReq
-	(*RepeatUserReq)(nil),                 // 1: database.RepeatUserReq
-	(*RepeatUserRes)(nil),                 // 2: database.RepeatUserRes
-	(*ChangeRoleUserReq)(nil),             // 3: database.ChangeRoleUserReq
-	(*ChangeVerifeStatusUserReq)(nil),     // 4: database.ChangeVerifeStatusUserReq
-	(*ChangeBalanceUserReq)(nil),          // 5: database.ChangeBalanceUserReq
-	(*RepeatUserHistoryReq)(nil),          // 6: database.RepeatUserHistoryReq
-	(*RepeatUserHistoryRes)(nil),          // 7: database.RepeatUserHistoryRes
-	(*Types.User)(nil),                    // 8: types.User
-	(Types.Role)(0),                       // 9: types.Role
-	(Types.Verif)(0),                      // 10: types.Verif
-	(*Types.Exchange)(nil),                // 11: types.Exchange
-	(*Req.CreateExchangeReq)(nil),         // 12: req.CreateExchangeReq
-	(*Req.RepeatExchangeReq)(nil),         // 13: req.RepeatExchangeReq
-	(*Req.InitOperExchangeReq)(nil),       // 14: req.InitOperExchangeReq
-	(*Req.InitBankDetailExchangeReq)(nil), // 15: req.InitBankDetailExchangeReq
-	(*Req.ChangeStatusExchangeReq)(nil),   // 16: req.ChangeStatusExchangeReq
-	(*Req.DefaultRes)(nil),                // 17: req.DefaultRes
-	(*Req.RepeatExchangeRes)(nil),         // 18: req.RepeatExchangeRes
+	(*Req.CreateUserReq)(nil),             // 0: req.CreateUserReq
+	(*Req.RepeatUserReq)(nil),             // 1: req.RepeatUserReq
+	(*Req.ChangeRoleUserReq)(nil),         // 2: req.ChangeRoleUserReq
+	(*Req.ChangeVerifeStatusUserReq)(nil), // 3: req.ChangeVerifeStatusUserReq
+	(*Req.ChangeBalanceUserReq)(nil),      // 4: req.ChangeBalanceUserReq
+	(*Req.CreateExchangeReq)(nil),         // 5: req.CreateExchangeReq
+	(*Req.RepeatExchangeReq)(nil),         // 6: req.RepeatExchangeReq
+	(*Req.InitOperExchangeReq)(nil),       // 7: req.InitOperExchangeReq
+	(*Req.InitBankDetailExchangeReq)(nil), // 8: req.InitBankDetailExchangeReq
+	(*Req.ChangeStatusExchangeReq)(nil),   // 9: req.ChangeStatusExchangeReq
+	(*Req.RepeatUserHistoryReq)(nil),      // 10: req.RepeatUserHistoryReq
+	(*Req.DefaultRes)(nil),                // 11: req.DefaultRes
+	(*Req.RepeatUserRes)(nil),             // 12: req.RepeatUserRes
+	(*Req.RepeatExchangeRes)(nil),         // 13: req.RepeatExchangeRes
+	(*Req.RepeatUserHistoryRes)(nil),      // 14: req.RepeatUserHistoryRes
 }
 var file_DataBase_proto_depIdxs = []int32{
-	8,  // 0: database.RepeatUserRes.user:type_name -> types.User
-	9,  // 1: database.ChangeRoleUserReq.new_role:type_name -> types.Role
-	10, // 2: database.ChangeVerifeStatusUserReq.new_verif:type_name -> types.Verif
-	11, // 3: database.RepeatUserHistoryRes.history_list:type_name -> types.Exchange
-	0,  // 4: database.Database.CreateUser:input_type -> database.CreateUserReq
-	1,  // 5: database.Database.RepeatUser:input_type -> database.RepeatUserReq
-	3,  // 6: database.Database.ChangeRoleUser:input_type -> database.ChangeRoleUserReq
-	4,  // 7: database.Database.ChangeVerifeStatusUser:input_type -> database.ChangeVerifeStatusUserReq
-	5,  // 8: database.Database.ChangeBalanceUser:input_type -> database.ChangeBalanceUserReq
-	12, // 9: database.Database.CreateExchange:input_type -> req.CreateExchangeReq
-	13, // 10: database.Database.RepeatExchange:input_type -> req.RepeatExchangeReq
-	14, // 11: database.Database.InitOperExchange:input_type -> req.InitOperExchangeReq
-	15, // 12: database.Database.InitBankDetailExchange:input_type -> req.InitBankDetailExchangeReq
-	16, // 13: database.Database.ChangeStatusExchange:input_type -> req.ChangeStatusExchangeReq
-	6,  // 14: database.Database.RepeatUserHistory:input_type -> database.RepeatUserHistoryReq
-	17, // 15: database.Database.CreateUser:output_type -> req.DefaultRes
-	2,  // 16: database.Database.RepeatUser:output_type -> database.RepeatUserRes
-	17, // 17: database.Database.ChangeRoleUser:output_type -> req.DefaultRes
-	17, // 18: database.Database.ChangeVerifeStatusUser:output_type -> req.DefaultRes
-	17, // 19: database.Database.ChangeBalanceUser:output_type -> req.DefaultRes
-	17, // 20: database.Database.CreateExchange:output_type -> req.DefaultRes
-	18, // 21: database.Database.RepeatExchange:output_type -> req.RepeatExchangeRes
-	17, // 22: database.Database.InitOperExchange:output_type -> req.DefaultRes
-	17, // 23: database.Database.InitBankDetailExchange:output_type -> req.DefaultRes
-	17, // 24: database.Database.ChangeStatusExchange:output_type -> req.DefaultRes
-	7,  // 25: database.Database.RepeatUserHistory:output_type -> database.RepeatUserHistoryRes
-	15, // [15:26] is the sub-list for method output_type
-	4,  // [4:15] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	0,  // 0: database.Database.CreateUser:input_type -> req.CreateUserReq
+	1,  // 1: database.Database.RepeatUser:input_type -> req.RepeatUserReq
+	2,  // 2: database.Database.ChangeRoleUser:input_type -> req.ChangeRoleUserReq
+	3,  // 3: database.Database.ChangeVerifeStatusUser:input_type -> req.ChangeVerifeStatusUserReq
+	4,  // 4: database.Database.ChangeBalanceUser:input_type -> req.ChangeBalanceUserReq
+	5,  // 5: database.Database.CreateExchange:input_type -> req.CreateExchangeReq
+	6,  // 6: database.Database.RepeatExchange:input_type -> req.RepeatExchangeReq
+	7,  // 7: database.Database.InitOperExchange:input_type -> req.InitOperExchangeReq
+	8,  // 8: database.Database.InitBankDetailExchange:input_type -> req.InitBankDetailExchangeReq
+	9,  // 9: database.Database.ChangeStatusExchange:input_type -> req.ChangeStatusExchangeReq
+	10, // 10: database.Database.RepeatUserHistory:input_type -> req.RepeatUserHistoryReq
+	11, // 11: database.Database.CreateUser:output_type -> req.DefaultRes
+	12, // 12: database.Database.RepeatUser:output_type -> req.RepeatUserRes
+	11, // 13: database.Database.ChangeRoleUser:output_type -> req.DefaultRes
+	11, // 14: database.Database.ChangeVerifeStatusUser:output_type -> req.DefaultRes
+	11, // 15: database.Database.ChangeBalanceUser:output_type -> req.DefaultRes
+	11, // 16: database.Database.CreateExchange:output_type -> req.DefaultRes
+	13, // 17: database.Database.RepeatExchange:output_type -> req.RepeatExchangeRes
+	11, // 18: database.Database.InitOperExchange:output_type -> req.DefaultRes
+	11, // 19: database.Database.InitBankDetailExchange:output_type -> req.DefaultRes
+	11, // 20: database.Database.ChangeStatusExchange:output_type -> req.DefaultRes
+	14, // 21: database.Database.RepeatUserHistory:output_type -> req.RepeatUserHistoryRes
+	11, // [11:22] is the sub-list for method output_type
+	0,  // [0:11] is the sub-list for method input_type
+	0,  // [0:0] is the sub-list for extension type_name
+	0,  // [0:0] is the sub-list for extension extendee
+	0,  // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_DataBase_proto_init() }
@@ -606,23 +93,18 @@ func file_DataBase_proto_init() {
 	if File_DataBase_proto != nil {
 		return
 	}
-	file_DataBase_proto_msgTypes[6].OneofWrappers = []any{
-		(*RepeatUserHistoryReq_Count)(nil),
-		(*RepeatUserHistoryReq_Full)(nil),
-	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_DataBase_proto_rawDesc), len(file_DataBase_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_DataBase_proto_goTypes,
 		DependencyIndexes: file_DataBase_proto_depIdxs,
-		MessageInfos:      file_DataBase_proto_msgTypes,
 	}.Build()
 	File_DataBase_proto = out.File
 	file_DataBase_proto_goTypes = nil
