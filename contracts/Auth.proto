@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "auth/";
+
+service Auth{
+  rpc Refresh(RefsreshReq)
+    returns (RefsreshRes);
+  rpc Access(AccessReq)
+    returns (AccessRes);
+}
+
+message RefsreshReq{
+  string token = 1;
+  int32 tgId = 2;
+}
+message RefsreshRes{
+  string accessToken = 1;
+}
+
+message AccessReq{
+  string accessToken = 1;
+}
+message AccessRes{
+  int32 status = 1;
+}
+
+

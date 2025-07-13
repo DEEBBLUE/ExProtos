@@ -1,0 +1,50 @@
+syntax="proto3";
+
+package req;
+
+import "Types.proto";
+
+option go_package="github.com/DEEBBLUE/GoProtos/api/Req";
+
+message DefaultRes{
+  string status = 1;
+}
+
+message CreateExchangeReq{
+  int32 client_id = 1;
+  types.ExchangeData data_in = 2;
+  types.ExchangeData data_out = 3;
+  float rate = 4;
+}
+message RepeatExchangeReq{
+  int32 exchange_id = 1;
+}
+
+message RepeatExchangeRes{
+  string status = 1;
+  types.Exchange exchange = 2;
+}
+
+message InitOperExchangeReq{
+  int32 exchange_id = 1;
+  int32 oper_id = 2;
+}
+message InitBankDetailExchangeReq{
+  int32 exchange_id = 1;
+  string bank_detail = 2;
+}
+message ChangeStatusExchangeReq{
+  int32 exchange_id = 1;
+  types.ExchangeStatus new_status = 2;
+}
+message RepeatUserHistoryReq{
+  int32 user_id = 1;
+  oneof amount_changes{
+    int32 count = 2;
+    string full = 3;
+  }
+}
+
+message RepeatUserHistoryRes{
+  repeated types.Exchange history_list = 1;
+}

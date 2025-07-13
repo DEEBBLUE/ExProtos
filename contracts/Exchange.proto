@@ -1,0 +1,30 @@
+syntax="proto3";
+
+package exchange;
+
+import "Req.proto";
+
+option go_package="github.com/DEEBBLUE/GoProtos/api/Exchange";
+
+service Exchange{
+  rpc CreateNewExchange(req.CreateExchangeReq) 
+    returns (req.DefaultRes);
+  rpc TakeNewExhange(req.RepeatExchangeReq)
+    returns (req.RepeatExchangeRes);
+  rpc GiveDetails(req.InitBankDetailExchangeReq)
+    returns (req.DefaultRes);
+  rpc ClientConfirm(ClientConfirmReq)
+    returns (req.DefaultRes);
+  rpc OperConfirm(OperConfirmReq)
+    returns (req.DefaultRes);
+}
+
+message ClientConfirmReq{
+  int32 exchange_id = 1;
+}
+
+message OperConfirmReq{
+  int32 exchange_id = 1;
+  int32 oper_id = 2;
+}
+
