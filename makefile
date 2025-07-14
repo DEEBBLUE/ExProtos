@@ -10,7 +10,10 @@ Database:
 	$(COM) DataBase.proto 
 
 Exchange:
-	$(CC) $(CONF) Exchange.proto 
+	$(COM) Exchange.proto 
+
+Sso:
+	$(COM) Sso.proto 
 
 Types: 
 	$(COM) Types.proto 
@@ -20,5 +23,5 @@ Req:
 
 Utils: Req Types
 
-Service: Exchange Database
+Service: Exchange Database Sso
 
