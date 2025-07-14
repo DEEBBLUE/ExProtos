@@ -25,7 +25,7 @@ var File_DataBase_proto protoreflect.FileDescriptor
 
 const file_DataBase_proto_rawDesc = "" +
 	"\n" +
-	"\x0eDataBase.proto\x12\bdatabase\x1a\tReq.proto2\xd3\x05\n" +
+	"\x0eDataBase.proto\x12\bdatabase\x1a\tReq.proto2\xda\x05\n" +
 	"\bDatabase\x121\n" +
 	"\n" +
 	"CreateUser\x12\x12.req.CreateUserReq\x1a\x0f.req.DefaultRes\x124\n" +
@@ -33,8 +33,8 @@ const file_DataBase_proto_rawDesc = "" +
 	"RepeatUser\x12\x12.req.RepeatUserReq\x1a\x12.req.RepeatUserRes\x129\n" +
 	"\x0eChangeRoleUser\x12\x16.req.ChangeRoleUserReq\x1a\x0f.req.DefaultRes\x12I\n" +
 	"\x16ChangeVerifeStatusUser\x12\x1e.req.ChangeVerifeStatusUserReq\x1a\x0f.req.DefaultRes\x12?\n" +
-	"\x11ChangeBalanceUser\x12\x19.req.ChangeBalanceUserReq\x1a\x0f.req.DefaultRes\x129\n" +
-	"\x0eCreateExchange\x12\x16.req.CreateExchangeReq\x1a\x0f.req.DefaultRes\x12@\n" +
+	"\x11ChangeBalanceUser\x12\x19.req.ChangeBalanceUserReq\x1a\x0f.req.DefaultRes\x12@\n" +
+	"\x0eCreateExchange\x12\x16.req.CreateExchangeReq\x1a\x16.req.CreateExchangeRes\x12@\n" +
 	"\x0eRepeatExchange\x12\x16.req.RepeatExchangeReq\x1a\x16.req.RepeatExchangeRes\x12=\n" +
 	"\x10InitOperExchange\x12\x18.req.InitOperExchangeReq\x1a\x0f.req.DefaultRes\x12I\n" +
 	"\x16InitBankDetailExchange\x12\x1e.req.InitBankDetailExchangeReq\x1a\x0f.req.DefaultRes\x12E\n" +
@@ -55,8 +55,9 @@ var file_DataBase_proto_goTypes = []any{
 	(*Req.RepeatUserHistoryReq)(nil),      // 10: req.RepeatUserHistoryReq
 	(*Req.DefaultRes)(nil),                // 11: req.DefaultRes
 	(*Req.RepeatUserRes)(nil),             // 12: req.RepeatUserRes
-	(*Req.RepeatExchangeRes)(nil),         // 13: req.RepeatExchangeRes
-	(*Req.RepeatUserHistoryRes)(nil),      // 14: req.RepeatUserHistoryRes
+	(*Req.CreateExchangeRes)(nil),         // 13: req.CreateExchangeRes
+	(*Req.RepeatExchangeRes)(nil),         // 14: req.RepeatExchangeRes
+	(*Req.RepeatUserHistoryRes)(nil),      // 15: req.RepeatUserHistoryRes
 }
 var file_DataBase_proto_depIdxs = []int32{
 	0,  // 0: database.Database.CreateUser:input_type -> req.CreateUserReq
@@ -75,12 +76,12 @@ var file_DataBase_proto_depIdxs = []int32{
 	11, // 13: database.Database.ChangeRoleUser:output_type -> req.DefaultRes
 	11, // 14: database.Database.ChangeVerifeStatusUser:output_type -> req.DefaultRes
 	11, // 15: database.Database.ChangeBalanceUser:output_type -> req.DefaultRes
-	11, // 16: database.Database.CreateExchange:output_type -> req.DefaultRes
-	13, // 17: database.Database.RepeatExchange:output_type -> req.RepeatExchangeRes
+	13, // 16: database.Database.CreateExchange:output_type -> req.CreateExchangeRes
+	14, // 17: database.Database.RepeatExchange:output_type -> req.RepeatExchangeRes
 	11, // 18: database.Database.InitOperExchange:output_type -> req.DefaultRes
 	11, // 19: database.Database.InitBankDetailExchange:output_type -> req.DefaultRes
 	11, // 20: database.Database.ChangeStatusExchange:output_type -> req.DefaultRes
-	14, // 21: database.Database.RepeatUserHistory:output_type -> req.RepeatUserHistoryRes
+	15, // 21: database.Database.RepeatUserHistory:output_type -> req.RepeatUserHistoryRes
 	11, // [11:22] is the sub-list for method output_type
 	0,  // [0:11] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name

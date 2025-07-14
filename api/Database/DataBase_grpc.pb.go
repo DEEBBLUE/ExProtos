@@ -44,7 +44,7 @@ type DatabaseClient interface {
 	ChangeVerifeStatusUser(ctx context.Context, in *Req.ChangeVerifeStatusUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	ChangeBalanceUser(ctx context.Context, in *Req.ChangeBalanceUserReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	// Change
-	CreateExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	CreateExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.CreateExchangeRes, error)
 	RepeatExchange(ctx context.Context, in *Req.RepeatExchangeReq, opts ...grpc.CallOption) (*Req.RepeatExchangeRes, error)
 	InitOperExchange(ctx context.Context, in *Req.InitOperExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	InitBankDetailExchange(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
@@ -111,9 +111,9 @@ func (c *databaseClient) ChangeBalanceUser(ctx context.Context, in *Req.ChangeBa
 	return out, nil
 }
 
-func (c *databaseClient) CreateExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+func (c *databaseClient) CreateExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.CreateExchangeRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Req.DefaultRes)
+	out := new(Req.CreateExchangeRes)
 	err := c.cc.Invoke(ctx, Database_CreateExchange_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -182,7 +182,7 @@ type DatabaseServer interface {
 	ChangeVerifeStatusUser(context.Context, *Req.ChangeVerifeStatusUserReq) (*Req.DefaultRes, error)
 	ChangeBalanceUser(context.Context, *Req.ChangeBalanceUserReq) (*Req.DefaultRes, error)
 	// Change
-	CreateExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error)
+	CreateExchange(context.Context, *Req.CreateExchangeReq) (*Req.CreateExchangeRes, error)
 	RepeatExchange(context.Context, *Req.RepeatExchangeReq) (*Req.RepeatExchangeRes, error)
 	InitOperExchange(context.Context, *Req.InitOperExchangeReq) (*Req.DefaultRes, error)
 	InitBankDetailExchange(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error)
@@ -214,7 +214,7 @@ func (UnimplementedDatabaseServer) ChangeVerifeStatusUser(context.Context, *Req.
 func (UnimplementedDatabaseServer) ChangeBalanceUser(context.Context, *Req.ChangeBalanceUserReq) (*Req.DefaultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeBalanceUser not implemented")
 }
-func (UnimplementedDatabaseServer) CreateExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error) {
+func (UnimplementedDatabaseServer) CreateExchange(context.Context, *Req.CreateExchangeReq) (*Req.CreateExchangeRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateExchange not implemented")
 }
 func (UnimplementedDatabaseServer) RepeatExchange(context.Context, *Req.RepeatExchangeReq) (*Req.RepeatExchangeRes, error) {
