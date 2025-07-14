@@ -9,7 +9,6 @@ package Types
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -365,8 +364,8 @@ type Exchange struct {
 	ClientId      int32                  `protobuf:"varint,4,opt,name=client_id,json=clientId,proto3" json:"client_id,omitempty"`
 	OperId        int32                  `protobuf:"varint,5,opt,name=oper_id,json=operId,proto3" json:"oper_id,omitempty"`
 	Status        ExchangeStatus         `protobuf:"varint,6,opt,name=status,proto3,enum=types.ExchangeStatus" json:"status,omitempty"`
-	TimeStart     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=time_start,json=timeStart,proto3" json:"time_start,omitempty"`
-	TimeEnd       *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=time_end,json=timeEnd,proto3" json:"time_end,omitempty"`
+	TimeStart     string                 `protobuf:"bytes,7,opt,name=time_start,json=timeStart,proto3" json:"time_start,omitempty"`
+	TimeEnd       string                 `protobuf:"bytes,8,opt,name=time_end,json=timeEnd,proto3" json:"time_end,omitempty"`
 	Rate          float32                `protobuf:"fixed32,9,opt,name=rate,proto3" json:"rate,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -444,18 +443,18 @@ func (x *Exchange) GetStatus() ExchangeStatus {
 	return ExchangeStatus_CREATED
 }
 
-func (x *Exchange) GetTimeStart() *timestamppb.Timestamp {
+func (x *Exchange) GetTimeStart() string {
 	if x != nil {
 		return x.TimeStart
 	}
-	return nil
+	return ""
 }
 
-func (x *Exchange) GetTimeEnd() *timestamppb.Timestamp {
+func (x *Exchange) GetTimeEnd() string {
 	if x != nil {
 		return x.TimeEnd
 	}
-	return nil
+	return ""
 }
 
 func (x *Exchange) GetRate() float32 {
@@ -469,7 +468,7 @@ var File_Types_proto protoreflect.FileDescriptor
 
 const file_Types_proto_rawDesc = "" +
 	"\n" +
-	"\vTypes.proto\x12\x05types\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa2\x01\n" +
+	"\vTypes.proto\x12\x05types\"\xa2\x01\n" +
 	"\x04User\x12\x13\n" +
 	"\x05tg_id\x18\x01 \x01(\x05R\x04tgId\x12\x19\n" +
 	"\bowner_id\x18\x02 \x01(\x05R\aownerId\x12/\n" +
@@ -479,7 +478,7 @@ const file_Types_proto_rawDesc = "" +
 	"\fExchangeData\x123\n" +
 	"\bcurrency\x18\x01 \x01(\x0e2\x17.types.ExchangeCurrencyR\bcurrency\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\x02R\x06amount\x12\x18\n" +
-	"\adetails\x18\x03 \x01(\tR\adetails\"\xf4\x02\n" +
+	"\adetails\x18\x03 \x01(\tR\adetails\"\xbc\x02\n" +
 	"\bExchange\x12\x1f\n" +
 	"\vexchange_id\x18\x01 \x01(\x05R\n" +
 	"exchangeId\x12,\n" +
@@ -487,10 +486,10 @@ const file_Types_proto_rawDesc = "" +
 	"\bdata_out\x18\x03 \x01(\v2\x13.types.ExchangeDataR\adataOut\x12\x1b\n" +
 	"\tclient_id\x18\x04 \x01(\x05R\bclientId\x12\x17\n" +
 	"\aoper_id\x18\x05 \x01(\x05R\x06operId\x12-\n" +
-	"\x06status\x18\x06 \x01(\x0e2\x15.types.ExchangeStatusR\x06status\x129\n" +
+	"\x06status\x18\x06 \x01(\x0e2\x15.types.ExchangeStatusR\x06status\x12\x1d\n" +
 	"\n" +
-	"time_start\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\ttimeStart\x125\n" +
-	"\btime_end\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\atimeEnd\x12\x12\n" +
+	"time_start\x18\a \x01(\tR\ttimeStart\x12\x19\n" +
+	"\btime_end\x18\b \x01(\tR\atimeEnd\x12\x12\n" +
 	"\x04rate\x18\t \x01(\x02R\x04rate*6\n" +
 	"\x04Role\x12\x0f\n" +
 	"\vROLE_CLIENT\x10\x00\x12\r\n" +
@@ -528,14 +527,13 @@ func file_Types_proto_rawDescGZIP() []byte {
 var file_Types_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
 var file_Types_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_Types_proto_goTypes = []any{
-	(Role)(0),                     // 0: types.Role
-	(Verif)(0),                    // 1: types.Verif
-	(ExchangeStatus)(0),           // 2: types.ExchangeStatus
-	(ExchangeCurrency)(0),         // 3: types.ExchangeCurrency
-	(*User)(nil),                  // 4: types.User
-	(*ExchangeData)(nil),          // 5: types.ExchangeData
-	(*Exchange)(nil),              // 6: types.Exchange
-	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
+	(Role)(0),             // 0: types.Role
+	(Verif)(0),            // 1: types.Verif
+	(ExchangeStatus)(0),   // 2: types.ExchangeStatus
+	(ExchangeCurrency)(0), // 3: types.ExchangeCurrency
+	(*User)(nil),          // 4: types.User
+	(*ExchangeData)(nil),  // 5: types.ExchangeData
+	(*Exchange)(nil),      // 6: types.Exchange
 }
 var file_Types_proto_depIdxs = []int32{
 	1, // 0: types.User.verif_status:type_name -> types.Verif
@@ -544,13 +542,11 @@ var file_Types_proto_depIdxs = []int32{
 	5, // 3: types.Exchange.data_in:type_name -> types.ExchangeData
 	5, // 4: types.Exchange.data_out:type_name -> types.ExchangeData
 	2, // 5: types.Exchange.status:type_name -> types.ExchangeStatus
-	7, // 6: types.Exchange.time_start:type_name -> google.protobuf.Timestamp
-	7, // 7: types.Exchange.time_end:type_name -> google.protobuf.Timestamp
-	8, // [8:8] is the sub-list for method output_type
-	8, // [8:8] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	6, // [6:6] is the sub-list for method output_type
+	6, // [6:6] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_Types_proto_init() }
