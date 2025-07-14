@@ -21,7 +21,7 @@ service Database{
 
 //Change
   rpc CreateExchange(req.CreateExchangeReq)
-    returns (req.DefaultRes);
+    returns (req.CreateExchangeRes);
   rpc RepeatExchange(req.RepeatExchangeReq)
     returns (req.RepeatExchangeRes);
   rpc InitOperExchange(req.InitOperExchangeReq)
