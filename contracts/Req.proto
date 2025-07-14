@@ -42,6 +42,9 @@ message ChangeBalanceUserReq{
 message CreateExchangeReq{
   types.Exchange exchange = 1;
 }
+message CreateExchangeRes{
+  int32 ExId = 1;
+}
 
 message RepeatExchangeReq{
   int32 exchange_id = 1;
