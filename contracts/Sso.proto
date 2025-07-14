@@ -1,0 +1,18 @@
+syntax="proto3";
+
+package sso;
+
+import "Req.proto";
+
+option go_package="github.com/DEEBBLUE/ExProtos/api/Sso";
+
+service Sso{
+  rpc Access(req.AccessReq)
+    returns (req.DefaultRes);
+  rpc Refresh(req.RefreshReq)
+    returns (req.RefreshRes);
+  rpc IsOper(req.RoleReq)
+    returns (req.DefaultRes);
+  rpc IsAdmin(req.RoleReq)
+    returns (req.DefaultRes);
+}
