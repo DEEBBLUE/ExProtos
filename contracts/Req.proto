@@ -9,7 +9,7 @@ option go_package="github.com/DEEBBLUE/ExProtos/api/Req";
 message DefaultRes{
   string status = 1;
 }
-
+message EmptyReq{}
 //User
 message CreateUserReq{
   int32 tg_id = 1;
