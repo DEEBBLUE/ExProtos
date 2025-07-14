@@ -90,5 +90,6 @@ message RefreshRes{
   string AccessToken = 1;
 }
 message RoleReq{
-  int32 TgId = 1;
+  types.Role role = 1;
+  int32 TgId = 2;
 }

@@ -11,8 +11,6 @@ service Sso{
     returns (req.DefaultRes);
   rpc Refresh(req.RefreshReq)
     returns (req.RefreshRes);
-  rpc IsOper(req.RoleReq)
-    returns (req.DefaultRes);
-  rpc IsAdmin(req.RoleReq)
+  rpc RoleConfirm(req.RoleReq)
     returns (req.DefaultRes);
 }
