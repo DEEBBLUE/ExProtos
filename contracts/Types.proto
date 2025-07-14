@@ -2,6 +2,8 @@ syntax="proto3";
 
 package types;
 
+import "google/protobuf/timestamp.proto";
+
 option go_package="github.com/DEEBBLUE/ExProtos/api/Types";
 
 enum Role{
@@ -49,8 +51,10 @@ message Exchange{
   int32 client_id = 4;
   int32 oper_id = 5;
   ExchangeStatus status = 6;
-  string time_start = 7;
-  string time_end = 8;
+  
+  google.protobuf.Timestamp time_start = 7;
+  google.protobuf.Timestamp time_end = 8;
+
   float rate = 9;
 }
 
