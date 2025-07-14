@@ -20,10 +20,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Sso_Access_FullMethodName  = "/sso.Sso/Access"
-	Sso_Refresh_FullMethodName = "/sso.Sso/Refresh"
-	Sso_IsOper_FullMethodName  = "/sso.Sso/IsOper"
-	Sso_IsAdmin_FullMethodName = "/sso.Sso/IsAdmin"
+	Sso_Access_FullMethodName      = "/sso.Sso/Access"
+	Sso_Refresh_FullMethodName     = "/sso.Sso/Refresh"
+	Sso_RoleConfirm_FullMethodName = "/sso.Sso/RoleConfirm"
 )
 
 // SsoClient is the client API for Sso service.
@@ -32,8 +31,7 @@ const (
 type SsoClient interface {
 	Access(ctx context.Context, in *Req.AccessReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	Refresh(ctx context.Context, in *Req.RefreshReq, opts ...grpc.CallOption) (*Req.RefreshRes, error)
-	IsOper(ctx context.Context, in *Req.RoleReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
-	IsAdmin(ctx context.Context, in *Req.RoleReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	RoleConfirm(ctx context.Context, in *Req.RoleReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 }
 
 type ssoClient struct {
@@ -64,20 +62,10 @@ func (c *ssoClient) Refresh(ctx context.Context, in *Req.RefreshReq, opts ...grp
 	return out, nil
 }
 
-func (c *ssoClient) IsOper(ctx context.Context, in *Req.RoleReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+func (c *ssoClient) RoleConfirm(ctx context.Context, in *Req.RoleReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Req.DefaultRes)
-	err := c.cc.Invoke(ctx, Sso_IsOper_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *ssoClient) IsAdmin(ctx context.Context, in *Req.RoleReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Req.DefaultRes)
-	err := c.cc.Invoke(ctx, Sso_IsAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Sso_RoleConfirm_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,8 +78,7 @@ func (c *ssoClient) IsAdmin(ctx context.Context, in *Req.RoleReq, opts ...grpc.C
 type SsoServer interface {
 	Access(context.Context, *Req.AccessReq) (*Req.DefaultRes, error)
 	Refresh(context.Context, *Req.RefreshReq) (*Req.RefreshRes, error)
-	IsOper(context.Context, *Req.RoleReq) (*Req.DefaultRes, error)
-	IsAdmin(context.Context, *Req.RoleReq) (*Req.DefaultRes, error)
+	RoleConfirm(context.Context, *Req.RoleReq) (*Req.DefaultRes, error)
 	mustEmbedUnimplementedSsoServer()
 }
 
@@ -108,11 +95,8 @@ func (UnimplementedSsoServer) Access(context.Context, *Req.AccessReq) (*Req.Defa
 func (UnimplementedSsoServer) Refresh(context.Context, *Req.RefreshReq) (*Req.RefreshRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
-func (UnimplementedSsoServer) IsOper(context.Context, *Req.RoleReq) (*Req.DefaultRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method IsOper not implemented")
-}
-func (UnimplementedSsoServer) IsAdmin(context.Context, *Req.RoleReq) (*Req.DefaultRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method IsAdmin not implemented")
+func (UnimplementedSsoServer) RoleConfirm(context.Context, *Req.RoleReq) (*Req.DefaultRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RoleConfirm not implemented")
 }
 func (UnimplementedSsoServer) mustEmbedUnimplementedSsoServer() {}
 func (UnimplementedSsoServer) testEmbeddedByValue()             {}
@@ -171,38 +155,20 @@ func _Sso_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Sso_IsOper_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Sso_RoleConfirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Req.RoleReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SsoServer).IsOper(ctx, in)
+		return srv.(SsoServer).RoleConfirm(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Sso_IsOper_FullMethodName,
+		FullMethod: Sso_RoleConfirm_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SsoServer).IsOper(ctx, req.(*Req.RoleReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Sso_IsAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Req.RoleReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SsoServer).IsAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Sso_IsAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SsoServer).IsAdmin(ctx, req.(*Req.RoleReq))
+		return srv.(SsoServer).RoleConfirm(ctx, req.(*Req.RoleReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -223,12 +189,8 @@ var Sso_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Sso_Refresh_Handler,
 		},
 		{
-			MethodName: "IsOper",
-			Handler:    _Sso_IsOper_Handler,
-		},
-		{
-			MethodName: "IsAdmin",
-			Handler:    _Sso_IsAdmin_Handler,
+			MethodName: "RoleConfirm",
+			Handler:    _Sso_RoleConfirm_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

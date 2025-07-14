@@ -944,7 +944,8 @@ func (x *RefreshRes) GetAccessToken() string {
 
 type RoleReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TgId          int32                  `protobuf:"varint,1,opt,name=TgId,proto3" json:"TgId,omitempty"`
+	Role          Types.Role             `protobuf:"varint,1,opt,name=role,proto3,enum=types.Role" json:"role,omitempty"`
+	TgId          int32                  `protobuf:"varint,2,opt,name=TgId,proto3" json:"TgId,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -977,6 +978,13 @@ func (x *RoleReq) ProtoReflect() protoreflect.Message {
 // Deprecated: Use RoleReq.ProtoReflect.Descriptor instead.
 func (*RoleReq) Descriptor() ([]byte, []int) {
 	return file_Req_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *RoleReq) GetRole() Types.Role {
+	if x != nil {
+		return x.Role
+	}
+	return Types.Role(0)
 }
 
 func (x *RoleReq) GetTgId() int32 {
@@ -1048,9 +1056,10 @@ const file_Req_proto_rawDesc = "" +
 	"\x05Token\x18\x02 \x01(\tR\x05Token\".\n" +
 	"\n" +
 	"RefreshRes\x12 \n" +
-	"\vAccessToken\x18\x01 \x01(\tR\vAccessToken\"\x1d\n" +
-	"\aRoleReq\x12\x12\n" +
-	"\x04TgId\x18\x01 \x01(\x05R\x04TgIdB&Z$github.com/DEEBBLUE/ExProtos/api/Reqb\x06proto3"
+	"\vAccessToken\x18\x01 \x01(\tR\vAccessToken\">\n" +
+	"\aRoleReq\x12\x1f\n" +
+	"\x04role\x18\x01 \x01(\x0e2\v.types.RoleR\x04role\x12\x12\n" +
+	"\x04TgId\x18\x02 \x01(\x05R\x04TgIdB&Z$github.com/DEEBBLUE/ExProtos/api/Reqb\x06proto3"
 
 var (
 	file_Req_proto_rawDescOnce sync.Once
@@ -1100,11 +1109,12 @@ var file_Req_proto_depIdxs = []int32{
 	23, // 4: req.RepeatExchangeRes.exchange:type_name -> types.Exchange
 	24, // 5: req.ChangeStatusExchangeReq.new_status:type_name -> types.ExchangeStatus
 	23, // 6: req.RepeatUserHistoryRes.history_list:type_name -> types.Exchange
-	7,  // [7:7] is the sub-list for method output_type
-	7,  // [7:7] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	21, // 7: req.RoleReq.role:type_name -> types.Role
+	8,  // [8:8] is the sub-list for method output_type
+	8,  // [8:8] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_Req_proto_init() }

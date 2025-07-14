@@ -25,12 +25,11 @@ var File_Sso_proto protoreflect.FileDescriptor
 
 const file_Sso_proto_rawDesc = "" +
 	"\n" +
-	"\tSso.proto\x12\x03sso\x1a\tReq.proto2\xb0\x01\n" +
+	"\tSso.proto\x12\x03sso\x1a\tReq.proto2\x8b\x01\n" +
 	"\x03Sso\x12)\n" +
 	"\x06Access\x12\x0e.req.AccessReq\x1a\x0f.req.DefaultRes\x12+\n" +
-	"\aRefresh\x12\x0f.req.RefreshReq\x1a\x0f.req.RefreshRes\x12'\n" +
-	"\x06IsOper\x12\f.req.RoleReq\x1a\x0f.req.DefaultRes\x12(\n" +
-	"\aIsAdmin\x12\f.req.RoleReq\x1a\x0f.req.DefaultResB&Z$github.com/DEEBBLUE/ExProtos/api/Ssob\x06proto3"
+	"\aRefresh\x12\x0f.req.RefreshReq\x1a\x0f.req.RefreshRes\x12,\n" +
+	"\vRoleConfirm\x12\f.req.RoleReq\x1a\x0f.req.DefaultResB&Z$github.com/DEEBBLUE/ExProtos/api/Ssob\x06proto3"
 
 var file_Sso_proto_goTypes = []any{
 	(*Req.AccessReq)(nil),  // 0: req.AccessReq
@@ -42,14 +41,12 @@ var file_Sso_proto_goTypes = []any{
 var file_Sso_proto_depIdxs = []int32{
 	0, // 0: sso.Sso.Access:input_type -> req.AccessReq
 	1, // 1: sso.Sso.Refresh:input_type -> req.RefreshReq
-	2, // 2: sso.Sso.IsOper:input_type -> req.RoleReq
-	2, // 3: sso.Sso.IsAdmin:input_type -> req.RoleReq
-	3, // 4: sso.Sso.Access:output_type -> req.DefaultRes
-	4, // 5: sso.Sso.Refresh:output_type -> req.RefreshRes
-	3, // 6: sso.Sso.IsOper:output_type -> req.DefaultRes
-	3, // 7: sso.Sso.IsAdmin:output_type -> req.DefaultRes
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
+	2, // 2: sso.Sso.RoleConfirm:input_type -> req.RoleReq
+	3, // 3: sso.Sso.Access:output_type -> req.DefaultRes
+	4, // 4: sso.Sso.Refresh:output_type -> req.RefreshRes
+	3, // 5: sso.Sso.RoleConfirm:output_type -> req.DefaultRes
+	3, // [3:6] is the sub-list for method output_type
+	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
