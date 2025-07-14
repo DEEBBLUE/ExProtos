@@ -72,3 +72,20 @@ message RepeatUserHistoryReq{
 message RepeatUserHistoryRes{
   repeated types.Exchange history_list = 1;
 }
+
+//SSO
+message AccessReq{
+  int32 TgId = 1;
+  string AccessToken = 2;
+}
+
+message RefreshReq{
+  int32 TgId = 1;
+  string Token = 2;
+}
+message RefreshRes{
+  string AccessToken = 1;
+}
+message RoleReq{
+  int32 TgId = 1;
+}
