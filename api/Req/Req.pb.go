@@ -749,6 +749,199 @@ func (x *RepeatUserHistoryRes) GetHistoryList() []*Types.Exchange {
 	return nil
 }
 
+// SSO
+type AccessReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TgId          int32                  `protobuf:"varint,1,opt,name=TgId,proto3" json:"TgId,omitempty"`
+	AccessToken   string                 `protobuf:"bytes,2,opt,name=AccessToken,proto3" json:"AccessToken,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AccessReq) Reset() {
+	*x = AccessReq{}
+	mi := &file_Req_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AccessReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AccessReq) ProtoMessage() {}
+
+func (x *AccessReq) ProtoReflect() protoreflect.Message {
+	mi := &file_Req_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AccessReq.ProtoReflect.Descriptor instead.
+func (*AccessReq) Descriptor() ([]byte, []int) {
+	return file_Req_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *AccessReq) GetTgId() int32 {
+	if x != nil {
+		return x.TgId
+	}
+	return 0
+}
+
+func (x *AccessReq) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+type RefreshReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TgId          int32                  `protobuf:"varint,1,opt,name=TgId,proto3" json:"TgId,omitempty"`
+	Token         string                 `protobuf:"bytes,2,opt,name=Token,proto3" json:"Token,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RefreshReq) Reset() {
+	*x = RefreshReq{}
+	mi := &file_Req_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RefreshReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RefreshReq) ProtoMessage() {}
+
+func (x *RefreshReq) ProtoReflect() protoreflect.Message {
+	mi := &file_Req_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RefreshReq.ProtoReflect.Descriptor instead.
+func (*RefreshReq) Descriptor() ([]byte, []int) {
+	return file_Req_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *RefreshReq) GetTgId() int32 {
+	if x != nil {
+		return x.TgId
+	}
+	return 0
+}
+
+func (x *RefreshReq) GetToken() string {
+	if x != nil {
+		return x.Token
+	}
+	return ""
+}
+
+type RefreshRes struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AccessToken   string                 `protobuf:"bytes,1,opt,name=AccessToken,proto3" json:"AccessToken,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RefreshRes) Reset() {
+	*x = RefreshRes{}
+	mi := &file_Req_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RefreshRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RefreshRes) ProtoMessage() {}
+
+func (x *RefreshRes) ProtoReflect() protoreflect.Message {
+	mi := &file_Req_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RefreshRes.ProtoReflect.Descriptor instead.
+func (*RefreshRes) Descriptor() ([]byte, []int) {
+	return file_Req_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *RefreshRes) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+type RoleReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TgId          int32                  `protobuf:"varint,1,opt,name=TgId,proto3" json:"TgId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RoleReq) Reset() {
+	*x = RoleReq{}
+	mi := &file_Req_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RoleReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RoleReq) ProtoMessage() {}
+
+func (x *RoleReq) ProtoReflect() protoreflect.Message {
+	mi := &file_Req_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RoleReq.ProtoReflect.Descriptor instead.
+func (*RoleReq) Descriptor() ([]byte, []int) {
+	return file_Req_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *RoleReq) GetTgId() int32 {
+	if x != nil {
+		return x.TgId
+	}
+	return 0
+}
+
 var File_Req_proto protoreflect.FileDescriptor
 
 const file_Req_proto_rawDesc = "" +
@@ -799,7 +992,19 @@ const file_Req_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\"J\n" +
 	"\x14RepeatUserHistoryRes\x122\n" +
-	"\fhistory_list\x18\x01 \x03(\v2\x0f.types.ExchangeR\vhistoryListB&Z$github.com/DEEBBLUE/ExProtos/api/Reqb\x06proto3"
+	"\fhistory_list\x18\x01 \x03(\v2\x0f.types.ExchangeR\vhistoryList\"A\n" +
+	"\tAccessReq\x12\x12\n" +
+	"\x04TgId\x18\x01 \x01(\x05R\x04TgId\x12 \n" +
+	"\vAccessToken\x18\x02 \x01(\tR\vAccessToken\"6\n" +
+	"\n" +
+	"RefreshReq\x12\x12\n" +
+	"\x04TgId\x18\x01 \x01(\x05R\x04TgId\x12\x14\n" +
+	"\x05Token\x18\x02 \x01(\tR\x05Token\".\n" +
+	"\n" +
+	"RefreshRes\x12 \n" +
+	"\vAccessToken\x18\x01 \x01(\tR\vAccessToken\"\x1d\n" +
+	"\aRoleReq\x12\x12\n" +
+	"\x04TgId\x18\x01 \x01(\x05R\x04TgIdB&Z$github.com/DEEBBLUE/ExProtos/api/Reqb\x06proto3"
 
 var (
 	file_Req_proto_rawDescOnce sync.Once
@@ -813,7 +1018,7 @@ func file_Req_proto_rawDescGZIP() []byte {
 	return file_Req_proto_rawDescData
 }
 
-var file_Req_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_Req_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
 var file_Req_proto_goTypes = []any{
 	(*DefaultRes)(nil),                // 0: req.DefaultRes
 	(*CreateUserReq)(nil),             // 1: req.CreateUserReq
@@ -830,20 +1035,24 @@ var file_Req_proto_goTypes = []any{
 	(*ChangeStatusExchangeReq)(nil),   // 12: req.ChangeStatusExchangeReq
 	(*RepeatUserHistoryReq)(nil),      // 13: req.RepeatUserHistoryReq
 	(*RepeatUserHistoryRes)(nil),      // 14: req.RepeatUserHistoryRes
-	(*Types.User)(nil),                // 15: types.User
-	(Types.Role)(0),                   // 16: types.Role
-	(Types.Verif)(0),                  // 17: types.Verif
-	(*Types.Exchange)(nil),            // 18: types.Exchange
-	(Types.ExchangeStatus)(0),         // 19: types.ExchangeStatus
+	(*AccessReq)(nil),                 // 15: req.AccessReq
+	(*RefreshReq)(nil),                // 16: req.RefreshReq
+	(*RefreshRes)(nil),                // 17: req.RefreshRes
+	(*RoleReq)(nil),                   // 18: req.RoleReq
+	(*Types.User)(nil),                // 19: types.User
+	(Types.Role)(0),                   // 20: types.Role
+	(Types.Verif)(0),                  // 21: types.Verif
+	(*Types.Exchange)(nil),            // 22: types.Exchange
+	(Types.ExchangeStatus)(0),         // 23: types.ExchangeStatus
 }
 var file_Req_proto_depIdxs = []int32{
-	15, // 0: req.RepeatUserRes.user:type_name -> types.User
-	16, // 1: req.ChangeRoleUserReq.new_role:type_name -> types.Role
-	17, // 2: req.ChangeVerifeStatusUserReq.new_verif:type_name -> types.Verif
-	18, // 3: req.CreateExchangeReq.exchange:type_name -> types.Exchange
-	18, // 4: req.RepeatExchangeRes.exchange:type_name -> types.Exchange
-	19, // 5: req.ChangeStatusExchangeReq.new_status:type_name -> types.ExchangeStatus
-	18, // 6: req.RepeatUserHistoryRes.history_list:type_name -> types.Exchange
+	19, // 0: req.RepeatUserRes.user:type_name -> types.User
+	20, // 1: req.ChangeRoleUserReq.new_role:type_name -> types.Role
+	21, // 2: req.ChangeVerifeStatusUserReq.new_verif:type_name -> types.Verif
+	22, // 3: req.CreateExchangeReq.exchange:type_name -> types.Exchange
+	22, // 4: req.RepeatExchangeRes.exchange:type_name -> types.Exchange
+	23, // 5: req.ChangeStatusExchangeReq.new_status:type_name -> types.ExchangeStatus
+	22, // 6: req.RepeatUserHistoryRes.history_list:type_name -> types.Exchange
 	7,  // [7:7] is the sub-list for method output_type
 	7,  // [7:7] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name
@@ -862,7 +1071,7 @@ func file_Req_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_Req_proto_rawDesc), len(file_Req_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
