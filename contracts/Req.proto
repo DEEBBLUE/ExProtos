@@ -67,12 +67,12 @@ message ChangeStatusExchangeReq{
   types.ExchangeStatus new_status = 2;
 }
 //User History
-message RepeatUserHistoryReq{
+message RepeatUserListReq{
   int32 user_id = 1;
   int32 page = 2;
 }
 
-message RepeatUserHistoryRes{
+message RepeatListExRes{
   repeated types.Exchange history_list = 1;
 }
 
