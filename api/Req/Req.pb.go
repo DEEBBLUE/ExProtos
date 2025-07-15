@@ -733,7 +733,7 @@ func (x *ChangeStatusExchangeReq) GetNewStatus() Types.ExchangeStatus {
 }
 
 // User History
-type RepeatUserHistoryReq struct {
+type RepeatUserListReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        int32                  `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
@@ -741,20 +741,20 @@ type RepeatUserHistoryReq struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RepeatUserHistoryReq) Reset() {
-	*x = RepeatUserHistoryReq{}
+func (x *RepeatUserListReq) Reset() {
+	*x = RepeatUserListReq{}
 	mi := &file_Req_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RepeatUserHistoryReq) String() string {
+func (x *RepeatUserListReq) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RepeatUserHistoryReq) ProtoMessage() {}
+func (*RepeatUserListReq) ProtoMessage() {}
 
-func (x *RepeatUserHistoryReq) ProtoReflect() protoreflect.Message {
+func (x *RepeatUserListReq) ProtoReflect() protoreflect.Message {
 	mi := &file_Req_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -766,46 +766,46 @@ func (x *RepeatUserHistoryReq) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RepeatUserHistoryReq.ProtoReflect.Descriptor instead.
-func (*RepeatUserHistoryReq) Descriptor() ([]byte, []int) {
+// Deprecated: Use RepeatUserListReq.ProtoReflect.Descriptor instead.
+func (*RepeatUserListReq) Descriptor() ([]byte, []int) {
 	return file_Req_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *RepeatUserHistoryReq) GetUserId() int32 {
+func (x *RepeatUserListReq) GetUserId() int32 {
 	if x != nil {
 		return x.UserId
 	}
 	return 0
 }
 
-func (x *RepeatUserHistoryReq) GetPage() int32 {
+func (x *RepeatUserListReq) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-type RepeatUserHistoryRes struct {
+type RepeatListExRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	HistoryList   []*Types.Exchange      `protobuf:"bytes,1,rep,name=history_list,json=historyList,proto3" json:"history_list,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *RepeatUserHistoryRes) Reset() {
-	*x = RepeatUserHistoryRes{}
+func (x *RepeatListExRes) Reset() {
+	*x = RepeatListExRes{}
 	mi := &file_Req_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *RepeatUserHistoryRes) String() string {
+func (x *RepeatListExRes) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*RepeatUserHistoryRes) ProtoMessage() {}
+func (*RepeatListExRes) ProtoMessage() {}
 
-func (x *RepeatUserHistoryRes) ProtoReflect() protoreflect.Message {
+func (x *RepeatListExRes) ProtoReflect() protoreflect.Message {
 	mi := &file_Req_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -817,12 +817,12 @@ func (x *RepeatUserHistoryRes) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use RepeatUserHistoryRes.ProtoReflect.Descriptor instead.
-func (*RepeatUserHistoryRes) Descriptor() ([]byte, []int) {
+// Deprecated: Use RepeatListExRes.ProtoReflect.Descriptor instead.
+func (*RepeatListExRes) Descriptor() ([]byte, []int) {
 	return file_Req_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *RepeatUserHistoryRes) GetHistoryList() []*Types.Exchange {
+func (x *RepeatListExRes) GetHistoryList() []*Types.Exchange {
 	if x != nil {
 		return x.HistoryList
 	}
@@ -1079,11 +1079,11 @@ const file_Req_proto_rawDesc = "" +
 	"\vexchange_id\x18\x01 \x01(\x05R\n" +
 	"exchangeId\x124\n" +
 	"\n" +
-	"new_status\x18\x02 \x01(\x0e2\x15.types.ExchangeStatusR\tnewStatus\"C\n" +
-	"\x14RepeatUserHistoryReq\x12\x17\n" +
+	"new_status\x18\x02 \x01(\x0e2\x15.types.ExchangeStatusR\tnewStatus\"@\n" +
+	"\x11RepeatUserListReq\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x05R\x04page\"J\n" +
-	"\x14RepeatUserHistoryRes\x122\n" +
+	"\x04page\x18\x02 \x01(\x05R\x04page\"E\n" +
+	"\x0fRepeatListExRes\x122\n" +
 	"\fhistory_list\x18\x01 \x03(\v2\x0f.types.ExchangeR\vhistoryList\"A\n" +
 	"\tAccessReq\x12\x12\n" +
 	"\x04TgId\x18\x01 \x01(\x05R\x04TgId\x12 \n" +
@@ -1128,8 +1128,8 @@ var file_Req_proto_goTypes = []any{
 	(*InitOperExchangeReq)(nil),       // 12: req.InitOperExchangeReq
 	(*InitBankDetailExchangeReq)(nil), // 13: req.InitBankDetailExchangeReq
 	(*ChangeStatusExchangeReq)(nil),   // 14: req.ChangeStatusExchangeReq
-	(*RepeatUserHistoryReq)(nil),      // 15: req.RepeatUserHistoryReq
-	(*RepeatUserHistoryRes)(nil),      // 16: req.RepeatUserHistoryRes
+	(*RepeatUserListReq)(nil),         // 15: req.RepeatUserListReq
+	(*RepeatListExRes)(nil),           // 16: req.RepeatListExRes
 	(*AccessReq)(nil),                 // 17: req.AccessReq
 	(*RefreshReq)(nil),                // 18: req.RefreshReq
 	(*RefreshRes)(nil),                // 19: req.RefreshRes
@@ -1147,7 +1147,7 @@ var file_Req_proto_depIdxs = []int32{
 	24, // 3: req.CreateExchangeReq.exchange:type_name -> types.Exchange
 	24, // 4: req.RepeatExchangeRes.exchange:type_name -> types.Exchange
 	25, // 5: req.ChangeStatusExchangeReq.new_status:type_name -> types.ExchangeStatus
-	24, // 6: req.RepeatUserHistoryRes.history_list:type_name -> types.Exchange
+	24, // 6: req.RepeatListExRes.history_list:type_name -> types.Exchange
 	22, // 7: req.RoleReq.role:type_name -> types.Role
 	8,  // [8:8] is the sub-list for method output_type
 	8,  // [8:8] is the sub-list for method input_type

@@ -20,11 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Exchange_CreateNewExchange_FullMethodName = "/exchange.Exchange/CreateNewExchange"
-	Exchange_TakeNewExhange_FullMethodName    = "/exchange.Exchange/TakeNewExhange"
-	Exchange_GiveDetails_FullMethodName       = "/exchange.Exchange/GiveDetails"
-	Exchange_ClientConfirm_FullMethodName     = "/exchange.Exchange/ClientConfirm"
-	Exchange_OperConfirm_FullMethodName       = "/exchange.Exchange/OperConfirm"
+	Exchange_CreateNewExchange_FullMethodName  = "/exchange.Exchange/CreateNewExchange"
+	Exchange_TakeNewExhangeList_FullMethodName = "/exchange.Exchange/TakeNewExhangeList"
+	Exchange_GiveDetails_FullMethodName        = "/exchange.Exchange/GiveDetails"
+	Exchange_ClientConfirm_FullMethodName      = "/exchange.Exchange/ClientConfirm"
+	Exchange_OperConfirm_FullMethodName        = "/exchange.Exchange/OperConfirm"
 )
 
 // ExchangeClient is the client API for Exchange service.
@@ -32,7 +32,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ExchangeClient interface {
 	CreateNewExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
-	TakeNewExhange(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatExchangeRes, error)
+	TakeNewExhangeList(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error)
 	GiveDetails(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	ClientConfirm(ctx context.Context, in *ClientConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	OperConfirm(ctx context.Context, in *OperConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
@@ -56,10 +56,10 @@ func (c *exchangeClient) CreateNewExchange(ctx context.Context, in *Req.CreateEx
 	return out, nil
 }
 
-func (c *exchangeClient) TakeNewExhange(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatExchangeRes, error) {
+func (c *exchangeClient) TakeNewExhangeList(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Req.RepeatExchangeRes)
-	err := c.cc.Invoke(ctx, Exchange_TakeNewExhange_FullMethodName, in, out, cOpts...)
+	out := new(Req.RepeatListExRes)
+	err := c.cc.Invoke(ctx, Exchange_TakeNewExhangeList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func (c *exchangeClient) OperConfirm(ctx context.Context, in *OperConfirmReq, op
 // for forward compatibility.
 type ExchangeServer interface {
 	CreateNewExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error)
-	TakeNewExhange(context.Context, *Req.EmptyReq) (*Req.RepeatExchangeRes, error)
+	TakeNewExhangeList(context.Context, *Req.EmptyReq) (*Req.RepeatListExRes, error)
 	GiveDetails(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error)
 	ClientConfirm(context.Context, *ClientConfirmReq) (*Req.DefaultRes, error)
 	OperConfirm(context.Context, *OperConfirmReq) (*Req.DefaultRes, error)
@@ -118,8 +118,8 @@ type UnimplementedExchangeServer struct{}
 func (UnimplementedExchangeServer) CreateNewExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateNewExchange not implemented")
 }
-func (UnimplementedExchangeServer) TakeNewExhange(context.Context, *Req.EmptyReq) (*Req.RepeatExchangeRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TakeNewExhange not implemented")
+func (UnimplementedExchangeServer) TakeNewExhangeList(context.Context, *Req.EmptyReq) (*Req.RepeatListExRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TakeNewExhangeList not implemented")
 }
 func (UnimplementedExchangeServer) GiveDetails(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GiveDetails not implemented")
@@ -169,20 +169,20 @@ func _Exchange_CreateNewExchange_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Exchange_TakeNewExhange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Exchange_TakeNewExhangeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Req.EmptyReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ExchangeServer).TakeNewExhange(ctx, in)
+		return srv.(ExchangeServer).TakeNewExhangeList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Exchange_TakeNewExhange_FullMethodName,
+		FullMethod: Exchange_TakeNewExhangeList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ExchangeServer).TakeNewExhange(ctx, req.(*Req.EmptyReq))
+		return srv.(ExchangeServer).TakeNewExhangeList(ctx, req.(*Req.EmptyReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -253,8 +253,8 @@ var Exchange_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Exchange_CreateNewExchange_Handler,
 		},
 		{
-			MethodName: "TakeNewExhange",
-			Handler:    _Exchange_TakeNewExhange_Handler,
+			MethodName: "TakeNewExhangeList",
+			Handler:    _Exchange_TakeNewExhangeList_Handler,
 		},
 		{
 			MethodName: "GiveDetails",

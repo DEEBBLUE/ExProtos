@@ -129,10 +129,10 @@ const file_Exchange_proto_rawDesc = "" +
 	"\x0eOperConfirmReq\x12\x1f\n" +
 	"\vexchange_id\x18\x01 \x01(\x05R\n" +
 	"exchangeId\x12\x17\n" +
-	"\aoper_id\x18\x02 \x01(\x05R\x06operId2\xb9\x02\n" +
+	"\aoper_id\x18\x02 \x01(\x05R\x06operId2\xbb\x02\n" +
 	"\bExchange\x12<\n" +
-	"\x11CreateNewExchange\x12\x16.req.CreateExchangeReq\x1a\x0f.req.DefaultRes\x127\n" +
-	"\x0eTakeNewExhange\x12\r.req.EmptyReq\x1a\x16.req.RepeatExchangeRes\x12>\n" +
+	"\x11CreateNewExchange\x12\x16.req.CreateExchangeReq\x1a\x0f.req.DefaultRes\x129\n" +
+	"\x12TakeNewExhangeList\x12\r.req.EmptyReq\x1a\x14.req.RepeatListExRes\x12>\n" +
 	"\vGiveDetails\x12\x1e.req.InitBankDetailExchangeReq\x1a\x0f.req.DefaultRes\x12<\n" +
 	"\rClientConfirm\x12\x1a.exchange.ClientConfirmReq\x1a\x0f.req.DefaultRes\x128\n" +
 	"\vOperConfirm\x12\x18.exchange.OperConfirmReq\x1a\x0f.req.DefaultResB+Z)github.com/DEEBBLUE/ExProtos/api/Exchangeb\x06proto3"
@@ -157,16 +157,16 @@ var file_Exchange_proto_goTypes = []any{
 	(*Req.EmptyReq)(nil),                  // 3: req.EmptyReq
 	(*Req.InitBankDetailExchangeReq)(nil), // 4: req.InitBankDetailExchangeReq
 	(*Req.DefaultRes)(nil),                // 5: req.DefaultRes
-	(*Req.RepeatExchangeRes)(nil),         // 6: req.RepeatExchangeRes
+	(*Req.RepeatListExRes)(nil),           // 6: req.RepeatListExRes
 }
 var file_Exchange_proto_depIdxs = []int32{
 	2, // 0: exchange.Exchange.CreateNewExchange:input_type -> req.CreateExchangeReq
-	3, // 1: exchange.Exchange.TakeNewExhange:input_type -> req.EmptyReq
+	3, // 1: exchange.Exchange.TakeNewExhangeList:input_type -> req.EmptyReq
 	4, // 2: exchange.Exchange.GiveDetails:input_type -> req.InitBankDetailExchangeReq
 	0, // 3: exchange.Exchange.ClientConfirm:input_type -> exchange.ClientConfirmReq
 	1, // 4: exchange.Exchange.OperConfirm:input_type -> exchange.OperConfirmReq
 	5, // 5: exchange.Exchange.CreateNewExchange:output_type -> req.DefaultRes
-	6, // 6: exchange.Exchange.TakeNewExhange:output_type -> req.RepeatExchangeRes
+	6, // 6: exchange.Exchange.TakeNewExhangeList:output_type -> req.RepeatListExRes
 	5, // 7: exchange.Exchange.GiveDetails:output_type -> req.DefaultRes
 	5, // 8: exchange.Exchange.ClientConfirm:output_type -> req.DefaultRes
 	5, // 9: exchange.Exchange.OperConfirm:output_type -> req.DefaultRes
