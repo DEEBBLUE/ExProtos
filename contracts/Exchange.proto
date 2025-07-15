@@ -9,8 +9,8 @@ option go_package="github.com/DEEBBLUE/ExProtos/api/Exchange";
 service Exchange{
   rpc CreateNewExchange(req.CreateExchangeReq) 
     returns (req.DefaultRes);
-  rpc TakeNewExhange(req.EmptyReq)
-    returns (req.RepeatExchangeRes);
+  rpc TakeNewExhangeList(req.EmptyReq)
+    returns (req.RepeatListExRes);
   rpc GiveDetails(req.InitBankDetailExchangeReq)
     returns (req.DefaultRes);
   rpc ClientConfirm(ClientConfirmReq)

@@ -32,7 +32,7 @@ service Database{
     returns (req.DefaultRes);
 
 //Searching 
-  rpc RepeatUserHistory(req.RepeatUserHistoryReq)
-    returns (req.RepeatUserHistoryRes);
+  rpc RepeatUserHistory(req.RepeatUserListReq)
+    returns (req.RepeatListExRes);
 }
 
