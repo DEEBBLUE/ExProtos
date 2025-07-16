@@ -107,6 +107,7 @@ type CreateUserReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TgId          int32                  `protobuf:"varint,1,opt,name=tg_id,json=tgId,proto3" json:"tg_id,omitempty"`
 	Owner         int32                  `protobuf:"varint,2,opt,name=owner,proto3" json:"owner,omitempty"`
+	ChatId        int32                  `protobuf:"varint,3,opt,name=chat_id,json=chatId,proto3" json:"chat_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -151,6 +152,13 @@ func (x *CreateUserReq) GetTgId() int32 {
 func (x *CreateUserReq) GetOwner() int32 {
 	if x != nil {
 		return x.Owner
+	}
+	return 0
+}
+
+func (x *CreateUserReq) GetChatId() int32 {
+	if x != nil {
+		return x.ChatId
 	}
 	return 0
 }
@@ -1100,10 +1108,11 @@ const file_Req_proto_rawDesc = "" +
 	"DefaultRes\x12\x16\n" +
 	"\x06status\x18\x01 \x01(\tR\x06status\"\n" +
 	"\n" +
-	"\bEmptyReq\":\n" +
+	"\bEmptyReq\"S\n" +
 	"\rCreateUserReq\x12\x13\n" +
 	"\x05tg_id\x18\x01 \x01(\x05R\x04tgId\x12\x14\n" +
-	"\x05owner\x18\x02 \x01(\x05R\x05owner\"$\n" +
+	"\x05owner\x18\x02 \x01(\x05R\x05owner\x12\x17\n" +
+	"\achat_id\x18\x03 \x01(\x05R\x06chatId\"$\n" +
 	"\rRepeatUserReq\x12\x13\n" +
 	"\x05tg_id\x18\x01 \x01(\x05R\x04tgId\"0\n" +
 	"\rRepeatUserRes\x12\x1f\n" +

@@ -224,10 +224,11 @@ func (ExchangeCurrency) EnumDescriptor() ([]byte, []int) {
 type User struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TgId          int32                  `protobuf:"varint,1,opt,name=tg_id,json=tgId,proto3" json:"tg_id,omitempty"`
-	OwnerId       int32                  `protobuf:"varint,2,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
-	VerifStatus   Verif                  `protobuf:"varint,3,opt,name=verif_status,json=verifStatus,proto3,enum=types.Verif" json:"verif_status,omitempty"`
-	Role          Role                   `protobuf:"varint,4,opt,name=role,proto3,enum=types.Role" json:"role,omitempty"`
-	Balance       int32                  `protobuf:"varint,5,opt,name=balance,proto3" json:"balance,omitempty"`
+	ChatId        int32                  `protobuf:"varint,2,opt,name=chat_id,json=chatId,proto3" json:"chat_id,omitempty"`
+	OwnerId       int32                  `protobuf:"varint,3,opt,name=owner_id,json=ownerId,proto3" json:"owner_id,omitempty"`
+	VerifStatus   Verif                  `protobuf:"varint,4,opt,name=verif_status,json=verifStatus,proto3,enum=types.Verif" json:"verif_status,omitempty"`
+	Role          Role                   `protobuf:"varint,5,opt,name=role,proto3,enum=types.Role" json:"role,omitempty"`
+	Balance       int32                  `protobuf:"varint,6,opt,name=balance,proto3" json:"balance,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -265,6 +266,13 @@ func (*User) Descriptor() ([]byte, []int) {
 func (x *User) GetTgId() int32 {
 	if x != nil {
 		return x.TgId
+	}
+	return 0
+}
+
+func (x *User) GetChatId() int32 {
+	if x != nil {
+		return x.ChatId
 	}
 	return 0
 }
@@ -469,13 +477,14 @@ var File_Types_proto protoreflect.FileDescriptor
 
 const file_Types_proto_rawDesc = "" +
 	"\n" +
-	"\vTypes.proto\x12\x05types\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa2\x01\n" +
+	"\vTypes.proto\x12\x05types\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbb\x01\n" +
 	"\x04User\x12\x13\n" +
-	"\x05tg_id\x18\x01 \x01(\x05R\x04tgId\x12\x19\n" +
-	"\bowner_id\x18\x02 \x01(\x05R\aownerId\x12/\n" +
-	"\fverif_status\x18\x03 \x01(\x0e2\f.types.VerifR\vverifStatus\x12\x1f\n" +
-	"\x04role\x18\x04 \x01(\x0e2\v.types.RoleR\x04role\x12\x18\n" +
-	"\abalance\x18\x05 \x01(\x05R\abalance\"u\n" +
+	"\x05tg_id\x18\x01 \x01(\x05R\x04tgId\x12\x17\n" +
+	"\achat_id\x18\x02 \x01(\x05R\x06chatId\x12\x19\n" +
+	"\bowner_id\x18\x03 \x01(\x05R\aownerId\x12/\n" +
+	"\fverif_status\x18\x04 \x01(\x0e2\f.types.VerifR\vverifStatus\x12\x1f\n" +
+	"\x04role\x18\x05 \x01(\x0e2\v.types.RoleR\x04role\x12\x18\n" +
+	"\abalance\x18\x06 \x01(\x05R\abalance\"u\n" +
 	"\fExchangeData\x123\n" +
 	"\bcurrency\x18\x01 \x01(\x0e2\x17.types.ExchangeCurrencyR\bcurrency\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\x02R\x06amount\x12\x18\n" +
