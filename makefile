@@ -15,6 +15,9 @@ Exchange:
 Sso:
 	$(COM) Sso.proto 
 
+Message:
+	$(COM) Message.proto 
+
 Types: 
 	$(COM) Types.proto 
 
@@ -23,5 +26,5 @@ Req:
 
 Utils: Req Types
 
-Service: Exchange Database Sso
+Service: Exchange Database Sso Message
 
