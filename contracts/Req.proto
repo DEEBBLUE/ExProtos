@@ -10,6 +10,7 @@ message DefaultRes{
   string status = 1;
 }
 message EmptyReq{}
+
 //User
 message CreateUserReq{
   int32 tg_id = 1;
@@ -92,4 +93,11 @@ message RefreshRes{
 message RoleReq{
   types.Role role = 1;
   int32 TgId = 2;
+}
+
+//Messages
+message SendMsgReq{
+  int32 publisher_id = 1;
+  int32 consumer_id = 2;
+  string msg = 3;
 }
