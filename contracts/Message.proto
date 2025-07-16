@@ -1,0 +1,11 @@
+syntax="proto3";
+
+package msg;
+import "Req.proto";
+
+option go_package="github.com/DEEBBLUE/ExProtos/api/Message";
+
+service Msg{
+  rpc SendMsg(req.SendMsgReq)
+    returns (req.DefaultRes);
+}
