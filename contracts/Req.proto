@@ -15,6 +15,7 @@ message EmptyReq{}
 message CreateUserReq{
   int32 tg_id = 1;
   int32 owner = 2;
+  int32 chat_id = 3;
 }
 message RepeatUserReq{
   int32 tg_id = 1;
