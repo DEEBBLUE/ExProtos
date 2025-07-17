@@ -56,17 +56,13 @@ message RepeatExchangeRes{
   types.Exchange exchange = 2;
 }
 
-message InitOperExchangeReq{
-  int32 exchange_id = 1;
-  int32 oper_id = 2;
-}
 message InitBankDetailExchangeReq{
   int32 exchange_id = 1;
   string bank_detail = 2;
 }
-message ChangeStatusExchangeReq{
+
+message ConfirmReq{
   int32 exchange_id = 1;
-  types.ExchangeStatus new_status = 2;
 }
 //User History
 message RepeatUserListReq{
@@ -102,3 +98,5 @@ message SendMsgReq{
   int32 consumer_id = 2;
   string msg = 3;
 }
+
+
