@@ -13,18 +13,8 @@ service Exchange{
     returns (req.RepeatListExRes);
   rpc GiveDetails(req.InitBankDetailExchangeReq)
     returns (req.DefaultRes);
-  rpc ClientConfirm(ClientConfirmReq)
-    returns (req.DefaultRes);
-  rpc OperConfirm(OperConfirmReq)
+  rpc Confirm(req.ConfirmReq)
     returns (req.DefaultRes);
 }
 
-message ClientConfirmReq{
-  int32 exchange_id = 1;
-}
-
-message OperConfirmReq{
-  int32 exchange_id = 1;
-  int32 oper_id = 2;
-}
 
