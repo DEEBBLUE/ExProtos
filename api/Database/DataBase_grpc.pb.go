@@ -27,9 +27,7 @@ const (
 	Database_ChangeBalanceUser_FullMethodName      = "/database.Database/ChangeBalanceUser"
 	Database_CreateExchange_FullMethodName         = "/database.Database/CreateExchange"
 	Database_RepeatExchange_FullMethodName         = "/database.Database/RepeatExchange"
-	Database_InitOperExchange_FullMethodName       = "/database.Database/InitOperExchange"
 	Database_InitBankDetailExchange_FullMethodName = "/database.Database/InitBankDetailExchange"
-	Database_ChangeStatusExchange_FullMethodName   = "/database.Database/ChangeStatusExchange"
 	Database_RepeatUserHistory_FullMethodName      = "/database.Database/RepeatUserHistory"
 )
 
@@ -46,9 +44,7 @@ type DatabaseClient interface {
 	// Change
 	CreateExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.CreateExchangeRes, error)
 	RepeatExchange(ctx context.Context, in *Req.RepeatExchangeReq, opts ...grpc.CallOption) (*Req.RepeatExchangeRes, error)
-	InitOperExchange(ctx context.Context, in *Req.InitOperExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	InitBankDetailExchange(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
-	ChangeStatusExchange(ctx context.Context, in *Req.ChangeStatusExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	// Searching
 	RepeatUserHistory(ctx context.Context, in *Req.RepeatUserListReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error)
 }
@@ -131,30 +127,10 @@ func (c *databaseClient) RepeatExchange(ctx context.Context, in *Req.RepeatExcha
 	return out, nil
 }
 
-func (c *databaseClient) InitOperExchange(ctx context.Context, in *Req.InitOperExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Req.DefaultRes)
-	err := c.cc.Invoke(ctx, Database_InitOperExchange_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *databaseClient) InitBankDetailExchange(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Req.DefaultRes)
 	err := c.cc.Invoke(ctx, Database_InitBankDetailExchange_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *databaseClient) ChangeStatusExchange(ctx context.Context, in *Req.ChangeStatusExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Req.DefaultRes)
-	err := c.cc.Invoke(ctx, Database_ChangeStatusExchange_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -184,9 +160,7 @@ type DatabaseServer interface {
 	// Change
 	CreateExchange(context.Context, *Req.CreateExchangeReq) (*Req.CreateExchangeRes, error)
 	RepeatExchange(context.Context, *Req.RepeatExchangeReq) (*Req.RepeatExchangeRes, error)
-	InitOperExchange(context.Context, *Req.InitOperExchangeReq) (*Req.DefaultRes, error)
 	InitBankDetailExchange(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error)
-	ChangeStatusExchange(context.Context, *Req.ChangeStatusExchangeReq) (*Req.DefaultRes, error)
 	// Searching
 	RepeatUserHistory(context.Context, *Req.RepeatUserListReq) (*Req.RepeatListExRes, error)
 	mustEmbedUnimplementedDatabaseServer()
@@ -220,14 +194,8 @@ func (UnimplementedDatabaseServer) CreateExchange(context.Context, *Req.CreateEx
 func (UnimplementedDatabaseServer) RepeatExchange(context.Context, *Req.RepeatExchangeReq) (*Req.RepeatExchangeRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RepeatExchange not implemented")
 }
-func (UnimplementedDatabaseServer) InitOperExchange(context.Context, *Req.InitOperExchangeReq) (*Req.DefaultRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method InitOperExchange not implemented")
-}
 func (UnimplementedDatabaseServer) InitBankDetailExchange(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitBankDetailExchange not implemented")
-}
-func (UnimplementedDatabaseServer) ChangeStatusExchange(context.Context, *Req.ChangeStatusExchangeReq) (*Req.DefaultRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ChangeStatusExchange not implemented")
 }
 func (UnimplementedDatabaseServer) RepeatUserHistory(context.Context, *Req.RepeatUserListReq) (*Req.RepeatListExRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RepeatUserHistory not implemented")
@@ -379,24 +347,6 @@ func _Database_RepeatExchange_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Database_InitOperExchange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Req.InitOperExchangeReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DatabaseServer).InitOperExchange(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Database_InitOperExchange_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DatabaseServer).InitOperExchange(ctx, req.(*Req.InitOperExchangeReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Database_InitBankDetailExchange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Req.InitBankDetailExchangeReq)
 	if err := dec(in); err != nil {
@@ -411,24 +361,6 @@ func _Database_InitBankDetailExchange_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DatabaseServer).InitBankDetailExchange(ctx, req.(*Req.InitBankDetailExchangeReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Database_ChangeStatusExchange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Req.ChangeStatusExchangeReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DatabaseServer).ChangeStatusExchange(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Database_ChangeStatusExchange_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DatabaseServer).ChangeStatusExchange(ctx, req.(*Req.ChangeStatusExchangeReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -487,16 +419,8 @@ var Database_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Database_RepeatExchange_Handler,
 		},
 		{
-			MethodName: "InitOperExchange",
-			Handler:    _Database_InitOperExchange_Handler,
-		},
-		{
 			MethodName: "InitBankDetailExchange",
 			Handler:    _Database_InitBankDetailExchange_Handler,
-		},
-		{
-			MethodName: "ChangeStatusExchange",
-			Handler:    _Database_ChangeStatusExchange_Handler,
 		},
 		{
 			MethodName: "RepeatUserHistory",

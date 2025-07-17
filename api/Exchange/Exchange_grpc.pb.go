@@ -23,8 +23,7 @@ const (
 	Exchange_CreateNewExchange_FullMethodName  = "/exchange.Exchange/CreateNewExchange"
 	Exchange_TakeNewExhangeList_FullMethodName = "/exchange.Exchange/TakeNewExhangeList"
 	Exchange_GiveDetails_FullMethodName        = "/exchange.Exchange/GiveDetails"
-	Exchange_ClientConfirm_FullMethodName      = "/exchange.Exchange/ClientConfirm"
-	Exchange_OperConfirm_FullMethodName        = "/exchange.Exchange/OperConfirm"
+	Exchange_Confirm_FullMethodName            = "/exchange.Exchange/Confirm"
 )
 
 // ExchangeClient is the client API for Exchange service.
@@ -34,8 +33,7 @@ type ExchangeClient interface {
 	CreateNewExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	TakeNewExhangeList(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error)
 	GiveDetails(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
-	ClientConfirm(ctx context.Context, in *ClientConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
-	OperConfirm(ctx context.Context, in *OperConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	Confirm(ctx context.Context, in *Req.ConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 }
 
 type exchangeClient struct {
@@ -76,20 +74,10 @@ func (c *exchangeClient) GiveDetails(ctx context.Context, in *Req.InitBankDetail
 	return out, nil
 }
 
-func (c *exchangeClient) ClientConfirm(ctx context.Context, in *ClientConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+func (c *exchangeClient) Confirm(ctx context.Context, in *Req.ConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Req.DefaultRes)
-	err := c.cc.Invoke(ctx, Exchange_ClientConfirm_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *exchangeClient) OperConfirm(ctx context.Context, in *OperConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Req.DefaultRes)
-	err := c.cc.Invoke(ctx, Exchange_OperConfirm_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Exchange_Confirm_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -103,8 +91,7 @@ type ExchangeServer interface {
 	CreateNewExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error)
 	TakeNewExhangeList(context.Context, *Req.EmptyReq) (*Req.RepeatListExRes, error)
 	GiveDetails(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error)
-	ClientConfirm(context.Context, *ClientConfirmReq) (*Req.DefaultRes, error)
-	OperConfirm(context.Context, *OperConfirmReq) (*Req.DefaultRes, error)
+	Confirm(context.Context, *Req.ConfirmReq) (*Req.DefaultRes, error)
 	mustEmbedUnimplementedExchangeServer()
 }
 
@@ -124,11 +111,8 @@ func (UnimplementedExchangeServer) TakeNewExhangeList(context.Context, *Req.Empt
 func (UnimplementedExchangeServer) GiveDetails(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GiveDetails not implemented")
 }
-func (UnimplementedExchangeServer) ClientConfirm(context.Context, *ClientConfirmReq) (*Req.DefaultRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ClientConfirm not implemented")
-}
-func (UnimplementedExchangeServer) OperConfirm(context.Context, *OperConfirmReq) (*Req.DefaultRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method OperConfirm not implemented")
+func (UnimplementedExchangeServer) Confirm(context.Context, *Req.ConfirmReq) (*Req.DefaultRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Confirm not implemented")
 }
 func (UnimplementedExchangeServer) mustEmbedUnimplementedExchangeServer() {}
 func (UnimplementedExchangeServer) testEmbeddedByValue()                  {}
@@ -205,38 +189,20 @@ func _Exchange_GiveDetails_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Exchange_ClientConfirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ClientConfirmReq)
+func _Exchange_Confirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Req.ConfirmReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ExchangeServer).ClientConfirm(ctx, in)
+		return srv.(ExchangeServer).Confirm(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Exchange_ClientConfirm_FullMethodName,
+		FullMethod: Exchange_Confirm_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ExchangeServer).ClientConfirm(ctx, req.(*ClientConfirmReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Exchange_OperConfirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OperConfirmReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ExchangeServer).OperConfirm(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Exchange_OperConfirm_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ExchangeServer).OperConfirm(ctx, req.(*OperConfirmReq))
+		return srv.(ExchangeServer).Confirm(ctx, req.(*Req.ConfirmReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -261,12 +227,8 @@ var Exchange_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Exchange_GiveDetails_Handler,
 		},
 		{
-			MethodName: "ClientConfirm",
-			Handler:    _Exchange_ClientConfirm_Handler,
-		},
-		{
-			MethodName: "OperConfirm",
-			Handler:    _Exchange_OperConfirm_Handler,
+			MethodName: "Confirm",
+			Handler:    _Exchange_Confirm_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

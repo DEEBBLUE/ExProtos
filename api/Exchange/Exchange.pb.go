@@ -11,7 +11,6 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
-	sync "sync"
 	unsafe "unsafe"
 )
 
@@ -22,156 +21,36 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ClientConfirmReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ExchangeId    int32                  `protobuf:"varint,1,opt,name=exchange_id,json=exchangeId,proto3" json:"exchange_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ClientConfirmReq) Reset() {
-	*x = ClientConfirmReq{}
-	mi := &file_Exchange_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ClientConfirmReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ClientConfirmReq) ProtoMessage() {}
-
-func (x *ClientConfirmReq) ProtoReflect() protoreflect.Message {
-	mi := &file_Exchange_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ClientConfirmReq.ProtoReflect.Descriptor instead.
-func (*ClientConfirmReq) Descriptor() ([]byte, []int) {
-	return file_Exchange_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *ClientConfirmReq) GetExchangeId() int32 {
-	if x != nil {
-		return x.ExchangeId
-	}
-	return 0
-}
-
-type OperConfirmReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ExchangeId    int32                  `protobuf:"varint,1,opt,name=exchange_id,json=exchangeId,proto3" json:"exchange_id,omitempty"`
-	OperId        int32                  `protobuf:"varint,2,opt,name=oper_id,json=operId,proto3" json:"oper_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *OperConfirmReq) Reset() {
-	*x = OperConfirmReq{}
-	mi := &file_Exchange_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *OperConfirmReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*OperConfirmReq) ProtoMessage() {}
-
-func (x *OperConfirmReq) ProtoReflect() protoreflect.Message {
-	mi := &file_Exchange_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use OperConfirmReq.ProtoReflect.Descriptor instead.
-func (*OperConfirmReq) Descriptor() ([]byte, []int) {
-	return file_Exchange_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *OperConfirmReq) GetExchangeId() int32 {
-	if x != nil {
-		return x.ExchangeId
-	}
-	return 0
-}
-
-func (x *OperConfirmReq) GetOperId() int32 {
-	if x != nil {
-		return x.OperId
-	}
-	return 0
-}
-
 var File_Exchange_proto protoreflect.FileDescriptor
 
 const file_Exchange_proto_rawDesc = "" +
 	"\n" +
-	"\x0eExchange.proto\x12\bexchange\x1a\tReq.proto\"3\n" +
-	"\x10ClientConfirmReq\x12\x1f\n" +
-	"\vexchange_id\x18\x01 \x01(\x05R\n" +
-	"exchangeId\"J\n" +
-	"\x0eOperConfirmReq\x12\x1f\n" +
-	"\vexchange_id\x18\x01 \x01(\x05R\n" +
-	"exchangeId\x12\x17\n" +
-	"\aoper_id\x18\x02 \x01(\x05R\x06operId2\xbb\x02\n" +
+	"\x0eExchange.proto\x12\bexchange\x1a\tReq.proto2\xf0\x01\n" +
 	"\bExchange\x12<\n" +
 	"\x11CreateNewExchange\x12\x16.req.CreateExchangeReq\x1a\x0f.req.DefaultRes\x129\n" +
 	"\x12TakeNewExhangeList\x12\r.req.EmptyReq\x1a\x14.req.RepeatListExRes\x12>\n" +
-	"\vGiveDetails\x12\x1e.req.InitBankDetailExchangeReq\x1a\x0f.req.DefaultRes\x12<\n" +
-	"\rClientConfirm\x12\x1a.exchange.ClientConfirmReq\x1a\x0f.req.DefaultRes\x128\n" +
-	"\vOperConfirm\x12\x18.exchange.OperConfirmReq\x1a\x0f.req.DefaultResB+Z)github.com/DEEBBLUE/ExProtos/api/Exchangeb\x06proto3"
+	"\vGiveDetails\x12\x1e.req.InitBankDetailExchangeReq\x1a\x0f.req.DefaultRes\x12+\n" +
+	"\aConfirm\x12\x0f.req.ConfirmReq\x1a\x0f.req.DefaultResB+Z)github.com/DEEBBLUE/ExProtos/api/Exchangeb\x06proto3"
 
-var (
-	file_Exchange_proto_rawDescOnce sync.Once
-	file_Exchange_proto_rawDescData []byte
-)
-
-func file_Exchange_proto_rawDescGZIP() []byte {
-	file_Exchange_proto_rawDescOnce.Do(func() {
-		file_Exchange_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_Exchange_proto_rawDesc), len(file_Exchange_proto_rawDesc)))
-	})
-	return file_Exchange_proto_rawDescData
-}
-
-var file_Exchange_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_Exchange_proto_goTypes = []any{
-	(*ClientConfirmReq)(nil),              // 0: exchange.ClientConfirmReq
-	(*OperConfirmReq)(nil),                // 1: exchange.OperConfirmReq
-	(*Req.CreateExchangeReq)(nil),         // 2: req.CreateExchangeReq
-	(*Req.EmptyReq)(nil),                  // 3: req.EmptyReq
-	(*Req.InitBankDetailExchangeReq)(nil), // 4: req.InitBankDetailExchangeReq
-	(*Req.DefaultRes)(nil),                // 5: req.DefaultRes
-	(*Req.RepeatListExRes)(nil),           // 6: req.RepeatListExRes
+	(*Req.CreateExchangeReq)(nil),         // 0: req.CreateExchangeReq
+	(*Req.EmptyReq)(nil),                  // 1: req.EmptyReq
+	(*Req.InitBankDetailExchangeReq)(nil), // 2: req.InitBankDetailExchangeReq
+	(*Req.ConfirmReq)(nil),                // 3: req.ConfirmReq
+	(*Req.DefaultRes)(nil),                // 4: req.DefaultRes
+	(*Req.RepeatListExRes)(nil),           // 5: req.RepeatListExRes
 }
 var file_Exchange_proto_depIdxs = []int32{
-	2, // 0: exchange.Exchange.CreateNewExchange:input_type -> req.CreateExchangeReq
-	3, // 1: exchange.Exchange.TakeNewExhangeList:input_type -> req.EmptyReq
-	4, // 2: exchange.Exchange.GiveDetails:input_type -> req.InitBankDetailExchangeReq
-	0, // 3: exchange.Exchange.ClientConfirm:input_type -> exchange.ClientConfirmReq
-	1, // 4: exchange.Exchange.OperConfirm:input_type -> exchange.OperConfirmReq
-	5, // 5: exchange.Exchange.CreateNewExchange:output_type -> req.DefaultRes
-	6, // 6: exchange.Exchange.TakeNewExhangeList:output_type -> req.RepeatListExRes
-	5, // 7: exchange.Exchange.GiveDetails:output_type -> req.DefaultRes
-	5, // 8: exchange.Exchange.ClientConfirm:output_type -> req.DefaultRes
-	5, // 9: exchange.Exchange.OperConfirm:output_type -> req.DefaultRes
-	5, // [5:10] is the sub-list for method output_type
-	0, // [0:5] is the sub-list for method input_type
+	0, // 0: exchange.Exchange.CreateNewExchange:input_type -> req.CreateExchangeReq
+	1, // 1: exchange.Exchange.TakeNewExhangeList:input_type -> req.EmptyReq
+	2, // 2: exchange.Exchange.GiveDetails:input_type -> req.InitBankDetailExchangeReq
+	3, // 3: exchange.Exchange.Confirm:input_type -> req.ConfirmReq
+	4, // 4: exchange.Exchange.CreateNewExchange:output_type -> req.DefaultRes
+	5, // 5: exchange.Exchange.TakeNewExhangeList:output_type -> req.RepeatListExRes
+	4, // 6: exchange.Exchange.GiveDetails:output_type -> req.DefaultRes
+	4, // 7: exchange.Exchange.Confirm:output_type -> req.DefaultRes
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -188,13 +67,12 @@ func file_Exchange_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_Exchange_proto_rawDesc), len(file_Exchange_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_Exchange_proto_goTypes,
 		DependencyIndexes: file_Exchange_proto_depIdxs,
-		MessageInfos:      file_Exchange_proto_msgTypes,
 	}.Build()
 	File_Exchange_proto = out.File
 	file_Exchange_proto_goTypes = nil
