@@ -28,6 +28,7 @@ const (
 	Database_CreateExchange_FullMethodName         = "/database.Database/CreateExchange"
 	Database_RepeatExchange_FullMethodName         = "/database.Database/RepeatExchange"
 	Database_InitBankDetailExchange_FullMethodName = "/database.Database/InitBankDetailExchange"
+	Database_Confirm_FullMethodName                = "/database.Database/Confirm"
 	Database_RepeatUserHistory_FullMethodName      = "/database.Database/RepeatUserHistory"
 )
 
@@ -45,6 +46,7 @@ type DatabaseClient interface {
 	CreateExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.CreateExchangeRes, error)
 	RepeatExchange(ctx context.Context, in *Req.RepeatExchangeReq, opts ...grpc.CallOption) (*Req.RepeatExchangeRes, error)
 	InitBankDetailExchange(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	Confirm(ctx context.Context, in *Req.ConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	// Searching
 	RepeatUserHistory(ctx context.Context, in *Req.RepeatUserListReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error)
 }
@@ -137,6 +139,16 @@ func (c *databaseClient) InitBankDetailExchange(ctx context.Context, in *Req.Ini
 	return out, nil
 }
 
+func (c *databaseClient) Confirm(ctx context.Context, in *Req.ConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Req.DefaultRes)
+	err := c.cc.Invoke(ctx, Database_Confirm_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *databaseClient) RepeatUserHistory(ctx context.Context, in *Req.RepeatUserListReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Req.RepeatListExRes)
@@ -161,6 +173,7 @@ type DatabaseServer interface {
 	CreateExchange(context.Context, *Req.CreateExchangeReq) (*Req.CreateExchangeRes, error)
 	RepeatExchange(context.Context, *Req.RepeatExchangeReq) (*Req.RepeatExchangeRes, error)
 	InitBankDetailExchange(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error)
+	Confirm(context.Context, *Req.ConfirmReq) (*Req.DefaultRes, error)
 	// Searching
 	RepeatUserHistory(context.Context, *Req.RepeatUserListReq) (*Req.RepeatListExRes, error)
 	mustEmbedUnimplementedDatabaseServer()
@@ -196,6 +209,9 @@ func (UnimplementedDatabaseServer) RepeatExchange(context.Context, *Req.RepeatEx
 }
 func (UnimplementedDatabaseServer) InitBankDetailExchange(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method InitBankDetailExchange not implemented")
+}
+func (UnimplementedDatabaseServer) Confirm(context.Context, *Req.ConfirmReq) (*Req.DefaultRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Confirm not implemented")
 }
 func (UnimplementedDatabaseServer) RepeatUserHistory(context.Context, *Req.RepeatUserListReq) (*Req.RepeatListExRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RepeatUserHistory not implemented")
@@ -365,6 +381,24 @@ func _Database_InitBankDetailExchange_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Database_Confirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Req.ConfirmReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DatabaseServer).Confirm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Database_Confirm_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DatabaseServer).Confirm(ctx, req.(*Req.ConfirmReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Database_RepeatUserHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Req.RepeatUserListReq)
 	if err := dec(in); err != nil {
@@ -421,6 +455,10 @@ var Database_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "InitBankDetailExchange",
 			Handler:    _Database_InitBankDetailExchange_Handler,
+		},
+		{
+			MethodName: "Confirm",
+			Handler:    _Database_Confirm_Handler,
 		},
 		{
 			MethodName: "RepeatUserHistory",
