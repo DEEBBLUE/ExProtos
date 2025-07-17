@@ -7,6 +7,7 @@ import "Req.proto";
 option go_package = "github.com/DEEBBLUE/ExProtos/api/Database";
 
 service Database{
+
 //User
   rpc CreateUser(req.CreateUserReq)
     returns (req.DefaultRes);
@@ -24,11 +25,7 @@ service Database{
     returns (req.CreateExchangeRes);
   rpc RepeatExchange(req.RepeatExchangeReq)
     returns (req.RepeatExchangeRes);
-  rpc InitOperExchange(req.InitOperExchangeReq)
-    returns (req.DefaultRes);
   rpc InitBankDetailExchange(req.InitBankDetailExchangeReq)
-    returns (req.DefaultRes);
-  rpc ChangeStatusExchange(req.ChangeStatusExchangeReq)
     returns (req.DefaultRes);
 
 //Searching 
