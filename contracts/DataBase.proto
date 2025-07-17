@@ -27,6 +27,8 @@ service Database{
     returns (req.RepeatExchangeRes);
   rpc InitBankDetailExchange(req.InitBankDetailExchangeReq)
     returns (req.DefaultRes);
+  rpc Confirm(req.ConfirmReq)
+    returns (req.DefaultRes);
 
 //Searching 
   rpc RepeatUserHistory(req.RepeatUserListReq)
