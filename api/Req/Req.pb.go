@@ -833,7 +833,8 @@ func (x *AccessReq) GetAccessToken() string {
 type RefreshReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TgId          int32                  `protobuf:"varint,1,opt,name=TgId,proto3" json:"TgId,omitempty"`
-	Token         string                 `protobuf:"bytes,2,opt,name=Token,proto3" json:"Token,omitempty"`
+	ChatId        int32                  `protobuf:"varint,2,opt,name=ChatId,proto3" json:"ChatId,omitempty"`
+	Token         string                 `protobuf:"bytes,3,opt,name=Token,proto3" json:"Token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -871,6 +872,13 @@ func (*RefreshReq) Descriptor() ([]byte, []int) {
 func (x *RefreshReq) GetTgId() int32 {
 	if x != nil {
 		return x.TgId
+	}
+	return 0
+}
+
+func (x *RefreshReq) GetChatId() int32 {
+	if x != nil {
+		return x.ChatId
 	}
 	return 0
 }
@@ -1092,11 +1100,12 @@ const file_Req_proto_rawDesc = "" +
 	"\fhistory_list\x18\x01 \x03(\v2\x0f.types.ExchangeR\vhistoryList\"A\n" +
 	"\tAccessReq\x12\x12\n" +
 	"\x04TgId\x18\x01 \x01(\x05R\x04TgId\x12 \n" +
-	"\vAccessToken\x18\x02 \x01(\tR\vAccessToken\"6\n" +
+	"\vAccessToken\x18\x02 \x01(\tR\vAccessToken\"N\n" +
 	"\n" +
 	"RefreshReq\x12\x12\n" +
-	"\x04TgId\x18\x01 \x01(\x05R\x04TgId\x12\x14\n" +
-	"\x05Token\x18\x02 \x01(\tR\x05Token\".\n" +
+	"\x04TgId\x18\x01 \x01(\x05R\x04TgId\x12\x16\n" +
+	"\x06ChatId\x18\x02 \x01(\x05R\x06ChatId\x12\x14\n" +
+	"\x05Token\x18\x03 \x01(\tR\x05Token\".\n" +
 	"\n" +
 	"RefreshRes\x12 \n" +
 	"\vAccessToken\x18\x01 \x01(\tR\vAccessToken\">\n" +
