@@ -85,12 +85,14 @@ message RefreshReq{
   int32 ChatId = 2;
   string Token = 3;
 }
+
 message RefreshRes{
   string AccessToken = 1;
 }
+
 message RoleReq{
   types.Role role = 1;
-  int32 TgId = 2;
+  string AccessToken = 2;
 }
 
 //Messages
