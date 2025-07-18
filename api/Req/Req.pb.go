@@ -937,7 +937,7 @@ func (x *RefreshRes) GetAccessToken() string {
 type RoleReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Role          Types.Role             `protobuf:"varint,1,opt,name=role,proto3,enum=types.Role" json:"role,omitempty"`
-	TgId          int32                  `protobuf:"varint,2,opt,name=TgId,proto3" json:"TgId,omitempty"`
+	AccessToken   string                 `protobuf:"bytes,2,opt,name=AccessToken,proto3" json:"AccessToken,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -979,11 +979,11 @@ func (x *RoleReq) GetRole() Types.Role {
 	return Types.Role(0)
 }
 
-func (x *RoleReq) GetTgId() int32 {
+func (x *RoleReq) GetAccessToken() string {
 	if x != nil {
-		return x.TgId
+		return x.AccessToken
 	}
-	return 0
+	return ""
 }
 
 // Messages
@@ -1108,10 +1108,10 @@ const file_Req_proto_rawDesc = "" +
 	"\x05Token\x18\x03 \x01(\tR\x05Token\".\n" +
 	"\n" +
 	"RefreshRes\x12 \n" +
-	"\vAccessToken\x18\x01 \x01(\tR\vAccessToken\">\n" +
+	"\vAccessToken\x18\x01 \x01(\tR\vAccessToken\"L\n" +
 	"\aRoleReq\x12\x1f\n" +
-	"\x04role\x18\x01 \x01(\x0e2\v.types.RoleR\x04role\x12\x12\n" +
-	"\x04TgId\x18\x02 \x01(\x05R\x04TgId\"b\n" +
+	"\x04role\x18\x01 \x01(\x0e2\v.types.RoleR\x04role\x12 \n" +
+	"\vAccessToken\x18\x02 \x01(\tR\vAccessToken\"b\n" +
 	"\n" +
 	"SendMsgReq\x12!\n" +
 	"\fpublisher_id\x18\x01 \x01(\x05R\vpublisherId\x12\x1f\n" +
