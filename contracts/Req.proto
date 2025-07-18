@@ -82,7 +82,8 @@ message AccessReq{
 
 message RefreshReq{
   int32 TgId = 1;
-  string Token = 2;
+  int32 ChatId = 2;
+  string Token = 3;
 }
 message RefreshRes{
   string AccessToken = 1;
