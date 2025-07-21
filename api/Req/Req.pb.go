@@ -780,7 +780,6 @@ func (x *RepeatListExRes) GetHistoryList() []*Types.Exchange {
 // SSO
 type AccessReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	TgId          int32                  `protobuf:"varint,1,opt,name=TgId,proto3" json:"TgId,omitempty"`
 	AccessToken   string                 `protobuf:"bytes,2,opt,name=AccessToken,proto3" json:"AccessToken,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -814,13 +813,6 @@ func (x *AccessReq) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AccessReq.ProtoReflect.Descriptor instead.
 func (*AccessReq) Descriptor() ([]byte, []int) {
 	return file_Req_proto_rawDescGZIP(), []int{16}
-}
-
-func (x *AccessReq) GetTgId() int32 {
-	if x != nil {
-		return x.TgId
-	}
-	return 0
 }
 
 func (x *AccessReq) GetAccessToken() string {
@@ -1097,9 +1089,8 @@ const file_Req_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\x05R\x06userId\x12\x12\n" +
 	"\x04page\x18\x02 \x01(\x05R\x04page\"E\n" +
 	"\x0fRepeatListExRes\x122\n" +
-	"\fhistory_list\x18\x01 \x03(\v2\x0f.types.ExchangeR\vhistoryList\"A\n" +
-	"\tAccessReq\x12\x12\n" +
-	"\x04TgId\x18\x01 \x01(\x05R\x04TgId\x12 \n" +
+	"\fhistory_list\x18\x01 \x03(\v2\x0f.types.ExchangeR\vhistoryList\"-\n" +
+	"\tAccessReq\x12 \n" +
 	"\vAccessToken\x18\x02 \x01(\tR\vAccessToken\"N\n" +
 	"\n" +
 	"RefreshReq\x12\x12\n" +
