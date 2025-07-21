@@ -76,7 +76,6 @@ message RepeatListExRes{
 
 //SSO
 message AccessReq{
-  int32 TgId = 1;
   string AccessToken = 2;
 }
 
