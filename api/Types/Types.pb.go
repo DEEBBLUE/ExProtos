@@ -177,22 +177,37 @@ func (ExchangeStatus) EnumDescriptor() ([]byte, []int) {
 type ExchangeCurrency int32
 
 const (
-	ExchangeCurrency_FIAT ExchangeCurrency = 0
-	ExchangeCurrency_USDT ExchangeCurrency = 1
-	ExchangeCurrency_BTC  ExchangeCurrency = 2
+	ExchangeCurrency_SBER ExchangeCurrency = 0
+	ExchangeCurrency_TINK ExchangeCurrency = 1
+	ExchangeCurrency_ALFA ExchangeCurrency = 2
+	ExchangeCurrency_GAZ  ExchangeCurrency = 3
+	ExchangeCurrency_SBP  ExchangeCurrency = 4
+	ExchangeCurrency_USDT ExchangeCurrency = 5
+	ExchangeCurrency_BTC  ExchangeCurrency = 6
+	ExchangeCurrency_ETH  ExchangeCurrency = 7
 )
 
 // Enum value maps for ExchangeCurrency.
 var (
 	ExchangeCurrency_name = map[int32]string{
-		0: "FIAT",
-		1: "USDT",
-		2: "BTC",
+		0: "SBER",
+		1: "TINK",
+		2: "ALFA",
+		3: "GAZ",
+		4: "SBP",
+		5: "USDT",
+		6: "BTC",
+		7: "ETH",
 	}
 	ExchangeCurrency_value = map[string]int32{
-		"FIAT": 0,
-		"USDT": 1,
-		"BTC":  2,
+		"SBER": 0,
+		"TINK": 1,
+		"ALFA": 2,
+		"GAZ":  3,
+		"SBP":  4,
+		"USDT": 5,
+		"BTC":  6,
+		"ETH":  7,
 	}
 )
 
@@ -350,7 +365,7 @@ func (x *ExchangeData) GetCurrency() ExchangeCurrency {
 	if x != nil {
 		return x.Currency
 	}
-	return ExchangeCurrency_FIAT
+	return ExchangeCurrency_SBER
 }
 
 func (x *ExchangeData) GetAmount() float32 {
@@ -521,14 +536,14 @@ func (x *Order) GetCurrencyIn() ExchangeCurrency {
 	if x != nil {
 		return x.CurrencyIn
 	}
-	return ExchangeCurrency_FIAT
+	return ExchangeCurrency_SBER
 }
 
 func (x *Order) GetCurrencyOut() ExchangeCurrency {
 	if x != nil {
 		return x.CurrencyOut
 	}
-	return ExchangeCurrency_FIAT
+	return ExchangeCurrency_SBER
 }
 
 func (x *Order) GetRate() float32 {
@@ -603,11 +618,16 @@ const file_Types_proto_rawDesc = "" +
 	"\rEXINPROCESSED\x10\x01\x12\x0e\n" +
 	"\n" +
 	"COMPELETED\x10\x02\x12\f\n" +
-	"\bCANCELED\x10\x03*/\n" +
+	"\bCANCELED\x10\x03*^\n" +
 	"\x10ExchangeCurrency\x12\b\n" +
-	"\x04FIAT\x10\x00\x12\b\n" +
-	"\x04USDT\x10\x01\x12\a\n" +
-	"\x03BTC\x10\x02B(Z&github.com/DEEBBLUE/ExProtos/api/Typesb\x06proto3"
+	"\x04SBER\x10\x00\x12\b\n" +
+	"\x04TINK\x10\x01\x12\b\n" +
+	"\x04ALFA\x10\x02\x12\a\n" +
+	"\x03GAZ\x10\x03\x12\a\n" +
+	"\x03SBP\x10\x04\x12\b\n" +
+	"\x04USDT\x10\x05\x12\a\n" +
+	"\x03BTC\x10\x06\x12\a\n" +
+	"\x03ETH\x10\aB(Z&github.com/DEEBBLUE/ExProtos/api/Typesb\x06proto3"
 
 var (
 	file_Types_proto_rawDescOnce sync.Once
