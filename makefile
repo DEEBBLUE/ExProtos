@@ -4,7 +4,7 @@ CONF = --proto_path=./contracts --go_out=$(PREF)$@ --go_opt=paths=source_relativ
 
 COM = $(CC) $(CONF)
 
-all: Utils Service 
+all: Utils Service Adapters
 
 Database:
 	$(COM) DataBase.proto 
@@ -21,6 +21,9 @@ Message:
 Rate:
 	$(COM) Rate.proto 
 
+Stock:
+	$(COM) Stock.proto 
+
 Types: 
 	$(COM) Types.proto 
 
@@ -29,5 +32,6 @@ Req:
 
 Utils: Req Types
 
-Service: Exchange Database Sso Message Rate
+Service: Exchange Database Sso Message Rate 
 
+Adapters: Stock
