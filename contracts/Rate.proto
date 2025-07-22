@@ -1,0 +1,11 @@
+syntax="proto3";
+
+package rate;
+
+import "Req.proto";
+option go_package = "github.com/DEEBBLUE/ExProtos/api/Rate";
+
+service Rate{
+  rpc GetRate(req.GetRateReq)
+    returns (req.GetRateRes);
+}

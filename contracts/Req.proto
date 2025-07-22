@@ -101,4 +101,11 @@ message SendMsgReq{
   string msg = 3;
 }
 
-
+//Rate
+message GetRateReq{
+  types.ExchangeCurrency currency_in = 1;
+  types.ExchangeCurrency currency_out = 2;
+}
+message GetRateRes{
+  float rate = 1; 
+}
