@@ -33,9 +33,14 @@ enum ExchangeStatus{
   CANCELED = 3;
 }
 enum ExchangeCurrency{
-  FIAT = 0;
-  USDT = 1;
-  BTC = 2;
+  SBER = 0;
+  TINK = 1;
+  ALFA = 2;
+  GAZ = 3;
+  SBP = 4;
+  USDT = 5;
+  BTC = 6;
+  ETH = 7;
 }
 message ExchangeData{
   ExchangeCurrency currency = 1;
