@@ -1039,6 +1039,103 @@ func (x *SendMsgReq) GetMsg() string {
 	return ""
 }
 
+// Rate
+type GetRateReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CurrencyIn    Types.ExchangeCurrency `protobuf:"varint,1,opt,name=currency_in,json=currencyIn,proto3,enum=types.ExchangeCurrency" json:"currency_in,omitempty"`
+	CurrencyOut   Types.ExchangeCurrency `protobuf:"varint,2,opt,name=currency_out,json=currencyOut,proto3,enum=types.ExchangeCurrency" json:"currency_out,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetRateReq) Reset() {
+	*x = GetRateReq{}
+	mi := &file_Req_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetRateReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRateReq) ProtoMessage() {}
+
+func (x *GetRateReq) ProtoReflect() protoreflect.Message {
+	mi := &file_Req_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRateReq.ProtoReflect.Descriptor instead.
+func (*GetRateReq) Descriptor() ([]byte, []int) {
+	return file_Req_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *GetRateReq) GetCurrencyIn() Types.ExchangeCurrency {
+	if x != nil {
+		return x.CurrencyIn
+	}
+	return Types.ExchangeCurrency(0)
+}
+
+func (x *GetRateReq) GetCurrencyOut() Types.ExchangeCurrency {
+	if x != nil {
+		return x.CurrencyOut
+	}
+	return Types.ExchangeCurrency(0)
+}
+
+type GetRateRes struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Rate          float32                `protobuf:"fixed32,1,opt,name=rate,proto3" json:"rate,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetRateRes) Reset() {
+	*x = GetRateRes{}
+	mi := &file_Req_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetRateRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetRateRes) ProtoMessage() {}
+
+func (x *GetRateRes) ProtoReflect() protoreflect.Message {
+	mi := &file_Req_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetRateRes.ProtoReflect.Descriptor instead.
+func (*GetRateRes) Descriptor() ([]byte, []int) {
+	return file_Req_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *GetRateRes) GetRate() float32 {
+	if x != nil {
+		return x.Rate
+	}
+	return 0
+}
+
 var File_Req_proto protoreflect.FileDescriptor
 
 const file_Req_proto_rawDesc = "" +
@@ -1108,7 +1205,15 @@ const file_Req_proto_rawDesc = "" +
 	"\fpublisher_id\x18\x01 \x01(\x05R\vpublisherId\x12\x1f\n" +
 	"\vconsumer_id\x18\x02 \x01(\x05R\n" +
 	"consumerId\x12\x10\n" +
-	"\x03msg\x18\x03 \x01(\tR\x03msgB&Z$github.com/DEEBBLUE/ExProtos/api/Reqb\x06proto3"
+	"\x03msg\x18\x03 \x01(\tR\x03msg\"\x82\x01\n" +
+	"\n" +
+	"GetRateReq\x128\n" +
+	"\vcurrency_in\x18\x01 \x01(\x0e2\x17.types.ExchangeCurrencyR\n" +
+	"currencyIn\x12:\n" +
+	"\fcurrency_out\x18\x02 \x01(\x0e2\x17.types.ExchangeCurrencyR\vcurrencyOut\" \n" +
+	"\n" +
+	"GetRateRes\x12\x12\n" +
+	"\x04rate\x18\x01 \x01(\x02R\x04rateB&Z$github.com/DEEBBLUE/ExProtos/api/Reqb\x06proto3"
 
 var (
 	file_Req_proto_rawDescOnce sync.Once
@@ -1122,7 +1227,7 @@ func file_Req_proto_rawDescGZIP() []byte {
 	return file_Req_proto_rawDescData
 }
 
-var file_Req_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_Req_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_Req_proto_goTypes = []any{
 	(*DefaultRes)(nil),                // 0: req.DefaultRes
 	(*EmptyReq)(nil),                  // 1: req.EmptyReq
@@ -1145,24 +1250,29 @@ var file_Req_proto_goTypes = []any{
 	(*RefreshRes)(nil),                // 18: req.RefreshRes
 	(*RoleReq)(nil),                   // 19: req.RoleReq
 	(*SendMsgReq)(nil),                // 20: req.SendMsgReq
-	(*Types.User)(nil),                // 21: types.User
-	(Types.Role)(0),                   // 22: types.Role
-	(Types.Verif)(0),                  // 23: types.Verif
-	(*Types.Exchange)(nil),            // 24: types.Exchange
+	(*GetRateReq)(nil),                // 21: req.GetRateReq
+	(*GetRateRes)(nil),                // 22: req.GetRateRes
+	(*Types.User)(nil),                // 23: types.User
+	(Types.Role)(0),                   // 24: types.Role
+	(Types.Verif)(0),                  // 25: types.Verif
+	(*Types.Exchange)(nil),            // 26: types.Exchange
+	(Types.ExchangeCurrency)(0),       // 27: types.ExchangeCurrency
 }
 var file_Req_proto_depIdxs = []int32{
-	21, // 0: req.RepeatUserRes.user:type_name -> types.User
-	22, // 1: req.ChangeRoleUserReq.new_role:type_name -> types.Role
-	23, // 2: req.ChangeVerifeStatusUserReq.new_verif:type_name -> types.Verif
-	24, // 3: req.CreateExchangeReq.exchange:type_name -> types.Exchange
-	24, // 4: req.RepeatExchangeRes.exchange:type_name -> types.Exchange
-	24, // 5: req.RepeatListExRes.history_list:type_name -> types.Exchange
-	22, // 6: req.RoleReq.role:type_name -> types.Role
-	7,  // [7:7] is the sub-list for method output_type
-	7,  // [7:7] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	23, // 0: req.RepeatUserRes.user:type_name -> types.User
+	24, // 1: req.ChangeRoleUserReq.new_role:type_name -> types.Role
+	25, // 2: req.ChangeVerifeStatusUserReq.new_verif:type_name -> types.Verif
+	26, // 3: req.CreateExchangeReq.exchange:type_name -> types.Exchange
+	26, // 4: req.RepeatExchangeRes.exchange:type_name -> types.Exchange
+	26, // 5: req.RepeatListExRes.history_list:type_name -> types.Exchange
+	24, // 6: req.RoleReq.role:type_name -> types.Role
+	27, // 7: req.GetRateReq.currency_in:type_name -> types.ExchangeCurrency
+	27, // 8: req.GetRateReq.currency_out:type_name -> types.ExchangeCurrency
+	9,  // [9:9] is the sub-list for method output_type
+	9,  // [9:9] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_Req_proto_init() }
@@ -1176,7 +1286,7 @@ func file_Req_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_Req_proto_rawDesc), len(file_Req_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
