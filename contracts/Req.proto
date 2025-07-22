@@ -109,3 +109,12 @@ message GetRateReq{
 message GetRateRes{
   float rate = 1; 
 }
+
+//Stock
+message GetAllOrdersReq{
+  types.ExchangeCurrency currency_in = 1;
+  types.ExchangeCurrency currency_out = 2;
+}
+message GetAllOrdersRes{
+  repeated types.Order orders = 1;
+}

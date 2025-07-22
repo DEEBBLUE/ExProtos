@@ -5,18 +5,17 @@ import "google/protobuf/timestamp.proto";
 
 option go_package="github.com/DEEBBLUE/ExProtos/api/Types";
 
+//User
 enum Role{
   ROLE_CLIENT = 0;
   ROLE_OPER = 1;
   ROLE_ADMIN = 2;
 }
-
 enum Verif{
   UNVERIFED = 0;
   INPROCESED = 1;
   VERIFED = 2;
 }
-
 message User{
   int32 tg_id = 1;
   int32 chat_id = 2;
@@ -26,6 +25,7 @@ message User{
   int32 balance = 6;
 }
 
+//Exchange
 enum ExchangeStatus{
   CREATED = 0;
   EXINPROCESSED = 1;
@@ -58,3 +58,11 @@ message Exchange{
   float rate = 9;
 }
 
+//Orders
+message Order{
+  ExchangeCurrency currency_in = 1;
+  ExchangeCurrency currency_out = 2;
+  float rate = 3;
+  float limit_start = 4;
+  float limit_end = 5;
+}

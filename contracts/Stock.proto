@@ -1,0 +1,12 @@
+syntax="proto3";
+
+package stock;
+
+import "Req.proto";
+
+option go_package = "github.com/DEEBBLUE/ExProtos/api/Stock";
+
+service Stock{
+  rpc GetAllOrders(req.GetAllOrdersReq)
+    returns (req.GetAllOrdersRes);
+}
