@@ -18,6 +18,9 @@ Sso:
 Message:
 	$(COM) Message.proto 
 
+Rate:
+	$(COM) Rate.proto 
+
 Types: 
 	$(COM) Types.proto 
 
@@ -26,5 +29,5 @@ Req:
 
 Utils: Req Types
 
-Service: Exchange Database Sso Message
+Service: Exchange Database Sso Message Rate
 
