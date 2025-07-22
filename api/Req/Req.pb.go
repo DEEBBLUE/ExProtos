@@ -1136,6 +1136,103 @@ func (x *GetRateRes) GetRate() float32 {
 	return 0
 }
 
+// Stock
+type GetAllOrdersReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CurrencyIn    Types.ExchangeCurrency `protobuf:"varint,1,opt,name=currency_in,json=currencyIn,proto3,enum=types.ExchangeCurrency" json:"currency_in,omitempty"`
+	CurrencyOut   Types.ExchangeCurrency `protobuf:"varint,2,opt,name=currency_out,json=currencyOut,proto3,enum=types.ExchangeCurrency" json:"currency_out,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAllOrdersReq) Reset() {
+	*x = GetAllOrdersReq{}
+	mi := &file_Req_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAllOrdersReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllOrdersReq) ProtoMessage() {}
+
+func (x *GetAllOrdersReq) ProtoReflect() protoreflect.Message {
+	mi := &file_Req_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllOrdersReq.ProtoReflect.Descriptor instead.
+func (*GetAllOrdersReq) Descriptor() ([]byte, []int) {
+	return file_Req_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *GetAllOrdersReq) GetCurrencyIn() Types.ExchangeCurrency {
+	if x != nil {
+		return x.CurrencyIn
+	}
+	return Types.ExchangeCurrency(0)
+}
+
+func (x *GetAllOrdersReq) GetCurrencyOut() Types.ExchangeCurrency {
+	if x != nil {
+		return x.CurrencyOut
+	}
+	return Types.ExchangeCurrency(0)
+}
+
+type GetAllOrdersRes struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Orders        []*Types.Order         `protobuf:"bytes,1,rep,name=orders,proto3" json:"orders,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetAllOrdersRes) Reset() {
+	*x = GetAllOrdersRes{}
+	mi := &file_Req_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetAllOrdersRes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetAllOrdersRes) ProtoMessage() {}
+
+func (x *GetAllOrdersRes) ProtoReflect() protoreflect.Message {
+	mi := &file_Req_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetAllOrdersRes.ProtoReflect.Descriptor instead.
+func (*GetAllOrdersRes) Descriptor() ([]byte, []int) {
+	return file_Req_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *GetAllOrdersRes) GetOrders() []*Types.Order {
+	if x != nil {
+		return x.Orders
+	}
+	return nil
+}
+
 var File_Req_proto protoreflect.FileDescriptor
 
 const file_Req_proto_rawDesc = "" +
@@ -1213,7 +1310,13 @@ const file_Req_proto_rawDesc = "" +
 	"\fcurrency_out\x18\x02 \x01(\x0e2\x17.types.ExchangeCurrencyR\vcurrencyOut\" \n" +
 	"\n" +
 	"GetRateRes\x12\x12\n" +
-	"\x04rate\x18\x01 \x01(\x02R\x04rateB&Z$github.com/DEEBBLUE/ExProtos/api/Reqb\x06proto3"
+	"\x04rate\x18\x01 \x01(\x02R\x04rate\"\x87\x01\n" +
+	"\x0fGetAllOrdersReq\x128\n" +
+	"\vcurrency_in\x18\x01 \x01(\x0e2\x17.types.ExchangeCurrencyR\n" +
+	"currencyIn\x12:\n" +
+	"\fcurrency_out\x18\x02 \x01(\x0e2\x17.types.ExchangeCurrencyR\vcurrencyOut\"7\n" +
+	"\x0fGetAllOrdersRes\x12$\n" +
+	"\x06orders\x18\x01 \x03(\v2\f.types.OrderR\x06ordersB&Z$github.com/DEEBBLUE/ExProtos/api/Reqb\x06proto3"
 
 var (
 	file_Req_proto_rawDescOnce sync.Once
@@ -1227,7 +1330,7 @@ func file_Req_proto_rawDescGZIP() []byte {
 	return file_Req_proto_rawDescData
 }
 
-var file_Req_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
+var file_Req_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_Req_proto_goTypes = []any{
 	(*DefaultRes)(nil),                // 0: req.DefaultRes
 	(*EmptyReq)(nil),                  // 1: req.EmptyReq
@@ -1252,27 +1355,33 @@ var file_Req_proto_goTypes = []any{
 	(*SendMsgReq)(nil),                // 20: req.SendMsgReq
 	(*GetRateReq)(nil),                // 21: req.GetRateReq
 	(*GetRateRes)(nil),                // 22: req.GetRateRes
-	(*Types.User)(nil),                // 23: types.User
-	(Types.Role)(0),                   // 24: types.Role
-	(Types.Verif)(0),                  // 25: types.Verif
-	(*Types.Exchange)(nil),            // 26: types.Exchange
-	(Types.ExchangeCurrency)(0),       // 27: types.ExchangeCurrency
+	(*GetAllOrdersReq)(nil),           // 23: req.GetAllOrdersReq
+	(*GetAllOrdersRes)(nil),           // 24: req.GetAllOrdersRes
+	(*Types.User)(nil),                // 25: types.User
+	(Types.Role)(0),                   // 26: types.Role
+	(Types.Verif)(0),                  // 27: types.Verif
+	(*Types.Exchange)(nil),            // 28: types.Exchange
+	(Types.ExchangeCurrency)(0),       // 29: types.ExchangeCurrency
+	(*Types.Order)(nil),               // 30: types.Order
 }
 var file_Req_proto_depIdxs = []int32{
-	23, // 0: req.RepeatUserRes.user:type_name -> types.User
-	24, // 1: req.ChangeRoleUserReq.new_role:type_name -> types.Role
-	25, // 2: req.ChangeVerifeStatusUserReq.new_verif:type_name -> types.Verif
-	26, // 3: req.CreateExchangeReq.exchange:type_name -> types.Exchange
-	26, // 4: req.RepeatExchangeRes.exchange:type_name -> types.Exchange
-	26, // 5: req.RepeatListExRes.history_list:type_name -> types.Exchange
-	24, // 6: req.RoleReq.role:type_name -> types.Role
-	27, // 7: req.GetRateReq.currency_in:type_name -> types.ExchangeCurrency
-	27, // 8: req.GetRateReq.currency_out:type_name -> types.ExchangeCurrency
-	9,  // [9:9] is the sub-list for method output_type
-	9,  // [9:9] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	25, // 0: req.RepeatUserRes.user:type_name -> types.User
+	26, // 1: req.ChangeRoleUserReq.new_role:type_name -> types.Role
+	27, // 2: req.ChangeVerifeStatusUserReq.new_verif:type_name -> types.Verif
+	28, // 3: req.CreateExchangeReq.exchange:type_name -> types.Exchange
+	28, // 4: req.RepeatExchangeRes.exchange:type_name -> types.Exchange
+	28, // 5: req.RepeatListExRes.history_list:type_name -> types.Exchange
+	26, // 6: req.RoleReq.role:type_name -> types.Role
+	29, // 7: req.GetRateReq.currency_in:type_name -> types.ExchangeCurrency
+	29, // 8: req.GetRateReq.currency_out:type_name -> types.ExchangeCurrency
+	29, // 9: req.GetAllOrdersReq.currency_in:type_name -> types.ExchangeCurrency
+	29, // 10: req.GetAllOrdersReq.currency_out:type_name -> types.ExchangeCurrency
+	30, // 11: req.GetAllOrdersRes.orders:type_name -> types.Order
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_Req_proto_init() }
@@ -1286,7 +1395,7 @@ func file_Req_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_Req_proto_rawDesc), len(file_Req_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   23,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

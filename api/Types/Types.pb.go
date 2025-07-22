@@ -22,6 +22,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// User
 type Role int32
 
 const (
@@ -120,6 +121,7 @@ func (Verif) EnumDescriptor() ([]byte, []int) {
 	return file_Types_proto_rawDescGZIP(), []int{1}
 }
 
+// Exchange
 type ExchangeStatus int32
 
 const (
@@ -473,6 +475,83 @@ func (x *Exchange) GetRate() float32 {
 	return 0
 }
 
+// Orders
+type Order struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CurrencyIn    ExchangeCurrency       `protobuf:"varint,1,opt,name=currency_in,json=currencyIn,proto3,enum=types.ExchangeCurrency" json:"currency_in,omitempty"`
+	CurrencyOut   ExchangeCurrency       `protobuf:"varint,2,opt,name=currency_out,json=currencyOut,proto3,enum=types.ExchangeCurrency" json:"currency_out,omitempty"`
+	Rate          float32                `protobuf:"fixed32,3,opt,name=rate,proto3" json:"rate,omitempty"`
+	LimitStart    float32                `protobuf:"fixed32,4,opt,name=limit_start,json=limitStart,proto3" json:"limit_start,omitempty"`
+	LimitEnd      float32                `protobuf:"fixed32,5,opt,name=limit_end,json=limitEnd,proto3" json:"limit_end,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Order) Reset() {
+	*x = Order{}
+	mi := &file_Types_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Order) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Order) ProtoMessage() {}
+
+func (x *Order) ProtoReflect() protoreflect.Message {
+	mi := &file_Types_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Order.ProtoReflect.Descriptor instead.
+func (*Order) Descriptor() ([]byte, []int) {
+	return file_Types_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *Order) GetCurrencyIn() ExchangeCurrency {
+	if x != nil {
+		return x.CurrencyIn
+	}
+	return ExchangeCurrency_FIAT
+}
+
+func (x *Order) GetCurrencyOut() ExchangeCurrency {
+	if x != nil {
+		return x.CurrencyOut
+	}
+	return ExchangeCurrency_FIAT
+}
+
+func (x *Order) GetRate() float32 {
+	if x != nil {
+		return x.Rate
+	}
+	return 0
+}
+
+func (x *Order) GetLimitStart() float32 {
+	if x != nil {
+		return x.LimitStart
+	}
+	return 0
+}
+
+func (x *Order) GetLimitEnd() float32 {
+	if x != nil {
+		return x.LimitEnd
+	}
+	return 0
+}
+
 var File_Types_proto protoreflect.FileDescriptor
 
 const file_Types_proto_rawDesc = "" +
@@ -500,7 +579,15 @@ const file_Types_proto_rawDesc = "" +
 	"\n" +
 	"time_start\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\ttimeStart\x125\n" +
 	"\btime_end\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\atimeEnd\x12\x12\n" +
-	"\x04rate\x18\t \x01(\x02R\x04rate*6\n" +
+	"\x04rate\x18\t \x01(\x02R\x04rate\"\xcf\x01\n" +
+	"\x05Order\x128\n" +
+	"\vcurrency_in\x18\x01 \x01(\x0e2\x17.types.ExchangeCurrencyR\n" +
+	"currencyIn\x12:\n" +
+	"\fcurrency_out\x18\x02 \x01(\x0e2\x17.types.ExchangeCurrencyR\vcurrencyOut\x12\x12\n" +
+	"\x04rate\x18\x03 \x01(\x02R\x04rate\x12\x1f\n" +
+	"\vlimit_start\x18\x04 \x01(\x02R\n" +
+	"limitStart\x12\x1b\n" +
+	"\tlimit_end\x18\x05 \x01(\x02R\blimitEnd*6\n" +
 	"\x04Role\x12\x0f\n" +
 	"\vROLE_CLIENT\x10\x00\x12\r\n" +
 	"\tROLE_OPER\x10\x01\x12\x0e\n" +
@@ -535,7 +622,7 @@ func file_Types_proto_rawDescGZIP() []byte {
 }
 
 var file_Types_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_Types_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_Types_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_Types_proto_goTypes = []any{
 	(Role)(0),                     // 0: types.Role
 	(Verif)(0),                    // 1: types.Verif
@@ -544,22 +631,25 @@ var file_Types_proto_goTypes = []any{
 	(*User)(nil),                  // 4: types.User
 	(*ExchangeData)(nil),          // 5: types.ExchangeData
 	(*Exchange)(nil),              // 6: types.Exchange
-	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
+	(*Order)(nil),                 // 7: types.Order
+	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
 }
 var file_Types_proto_depIdxs = []int32{
-	1, // 0: types.User.verif_status:type_name -> types.Verif
-	0, // 1: types.User.role:type_name -> types.Role
-	3, // 2: types.ExchangeData.currency:type_name -> types.ExchangeCurrency
-	5, // 3: types.Exchange.data_in:type_name -> types.ExchangeData
-	5, // 4: types.Exchange.data_out:type_name -> types.ExchangeData
-	2, // 5: types.Exchange.status:type_name -> types.ExchangeStatus
-	7, // 6: types.Exchange.time_start:type_name -> google.protobuf.Timestamp
-	7, // 7: types.Exchange.time_end:type_name -> google.protobuf.Timestamp
-	8, // [8:8] is the sub-list for method output_type
-	8, // [8:8] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	1,  // 0: types.User.verif_status:type_name -> types.Verif
+	0,  // 1: types.User.role:type_name -> types.Role
+	3,  // 2: types.ExchangeData.currency:type_name -> types.ExchangeCurrency
+	5,  // 3: types.Exchange.data_in:type_name -> types.ExchangeData
+	5,  // 4: types.Exchange.data_out:type_name -> types.ExchangeData
+	2,  // 5: types.Exchange.status:type_name -> types.ExchangeStatus
+	8,  // 6: types.Exchange.time_start:type_name -> google.protobuf.Timestamp
+	8,  // 7: types.Exchange.time_end:type_name -> google.protobuf.Timestamp
+	3,  // 8: types.Order.currency_in:type_name -> types.ExchangeCurrency
+	3,  // 9: types.Order.currency_out:type_name -> types.ExchangeCurrency
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	10, // [10:10] is the sub-list for extension extendee
+	0,  // [0:10] is the sub-list for field type_name
 }
 
 func init() { file_Types_proto_init() }
@@ -573,7 +663,7 @@ func file_Types_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_Types_proto_rawDesc), len(file_Types_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
