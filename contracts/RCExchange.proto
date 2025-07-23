@@ -1,0 +1,18 @@
+syntax="proto3";
+
+package exchange;
+
+import "Req.proto";
+
+option go_package="github.com/DEEBBLUE/ExProtos/api/Exchange";
+
+service CRExchange{
+  rpc CreateRCExchange(req.CreateExchangeReq) 
+    returns (req.DefaultRes);
+  rpc TakeRCExhangeList(req.EmptyReq)
+    returns (req.RepeatListExRes);
+  rpc GiveDetails(req.InitBankDetailExchangeReq)
+    returns (req.DefaultRes);
+  rpc Confirm(req.ConfirmReq)
+    returns (req.DefaultRes);
+}
