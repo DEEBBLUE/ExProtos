@@ -27,7 +27,7 @@ const file_RCExchange_proto_rawDesc = "" +
 	"\n" +
 	"\x10RCExchange.proto\x12\bexchange\x1a\tReq.proto2\xf0\x01\n" +
 	"\n" +
-	"CRExchange\x12;\n" +
+	"RCExchange\x12;\n" +
 	"\x10CreateRCExchange\x12\x16.req.CreateExchangeReq\x1a\x0f.req.DefaultRes\x128\n" +
 	"\x11TakeRCExhangeList\x12\r.req.EmptyReq\x1a\x14.req.RepeatListExRes\x12>\n" +
 	"\vGiveDetails\x12\x1e.req.InitBankDetailExchangeReq\x1a\x0f.req.DefaultRes\x12+\n" +
@@ -42,14 +42,14 @@ var file_RCExchange_proto_goTypes = []any{
 	(*Req.RepeatListExRes)(nil),           // 5: req.RepeatListExRes
 }
 var file_RCExchange_proto_depIdxs = []int32{
-	0, // 0: exchange.CRExchange.CreateRCExchange:input_type -> req.CreateExchangeReq
-	1, // 1: exchange.CRExchange.TakeRCExhangeList:input_type -> req.EmptyReq
-	2, // 2: exchange.CRExchange.GiveDetails:input_type -> req.InitBankDetailExchangeReq
-	3, // 3: exchange.CRExchange.Confirm:input_type -> req.ConfirmReq
-	4, // 4: exchange.CRExchange.CreateRCExchange:output_type -> req.DefaultRes
-	5, // 5: exchange.CRExchange.TakeRCExhangeList:output_type -> req.RepeatListExRes
-	4, // 6: exchange.CRExchange.GiveDetails:output_type -> req.DefaultRes
-	4, // 7: exchange.CRExchange.Confirm:output_type -> req.DefaultRes
+	0, // 0: exchange.RCExchange.CreateRCExchange:input_type -> req.CreateExchangeReq
+	1, // 1: exchange.RCExchange.TakeRCExhangeList:input_type -> req.EmptyReq
+	2, // 2: exchange.RCExchange.GiveDetails:input_type -> req.InitBankDetailExchangeReq
+	3, // 3: exchange.RCExchange.Confirm:input_type -> req.ConfirmReq
+	4, // 4: exchange.RCExchange.CreateRCExchange:output_type -> req.DefaultRes
+	5, // 5: exchange.RCExchange.TakeRCExhangeList:output_type -> req.RepeatListExRes
+	4, // 6: exchange.RCExchange.GiveDetails:output_type -> req.DefaultRes
+	4, // 7: exchange.RCExchange.Confirm:output_type -> req.DefaultRes
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
