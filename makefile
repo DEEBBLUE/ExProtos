@@ -10,7 +10,9 @@ Database:
 	$(COM) DataBase.proto 
 
 Exchange:
-	$(COM) Exchange.proto 
+	$(COM) ExchangeProxy.proto 
+	$(COM) CRExchange.proto 
+	$(COM) RCExchange.proto 
 
 Sso:
 	$(COM) Sso.proto 
