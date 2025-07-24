@@ -11,8 +11,9 @@ Database:
 
 Exchange:
 	$(COM) ExchangeProxy.proto 
-	$(COM) CRExchange.proto 
-	$(COM) RCExchange.proto 
+
+SpecialExchange:
+	$(COM) SpecialExchange.proto 
 
 Sso:
 	$(COM) Sso.proto 
@@ -34,6 +35,6 @@ Req:
 
 Utils: Req Types
 
-Service: Exchange Database Sso Message Rate 
+Service: Exchange SpecialExchange Database Sso Message Rate 
 
 Adapters: Stock
