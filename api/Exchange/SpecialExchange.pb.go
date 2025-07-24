@@ -25,9 +25,8 @@ var File_SpecialExchange_proto protoreflect.FileDescriptor
 
 const file_SpecialExchange_proto_rawDesc = "" +
 	"\n" +
-	"\x15SpecialExchange.proto\x12\bexchange\x1a\tReq.proto2\x89\x02\n" +
-	"\n" +
-	"RCExchange\x12B\n" +
+	"\x15SpecialExchange.proto\x12\bexchange\x1a\tReq.proto2\x8e\x02\n" +
+	"\x0fSpecialExchange\x12B\n" +
 	"\x15CreateSpecialExchange\x12\x16.req.CreateExchangeReq\x1a\x0f.req.DefaultRes0\x01\x12<\n" +
 	"\x15TakeSpecialxhangeList\x12\r.req.EmptyReq\x1a\x14.req.RepeatListExRes\x12E\n" +
 	"\x12GiveSpecialDetails\x12\x1e.req.InitBankDetailExchangeReq\x1a\x0f.req.DefaultRes\x122\n" +
@@ -42,14 +41,14 @@ var file_SpecialExchange_proto_goTypes = []any{
 	(*Req.RepeatListExRes)(nil),           // 5: req.RepeatListExRes
 }
 var file_SpecialExchange_proto_depIdxs = []int32{
-	0, // 0: exchange.RCExchange.CreateSpecialExchange:input_type -> req.CreateExchangeReq
-	1, // 1: exchange.RCExchange.TakeSpecialxhangeList:input_type -> req.EmptyReq
-	2, // 2: exchange.RCExchange.GiveSpecialDetails:input_type -> req.InitBankDetailExchangeReq
-	3, // 3: exchange.RCExchange.ConfirmSpecial:input_type -> req.ConfirmReq
-	4, // 4: exchange.RCExchange.CreateSpecialExchange:output_type -> req.DefaultRes
-	5, // 5: exchange.RCExchange.TakeSpecialxhangeList:output_type -> req.RepeatListExRes
-	4, // 6: exchange.RCExchange.GiveSpecialDetails:output_type -> req.DefaultRes
-	4, // 7: exchange.RCExchange.ConfirmSpecial:output_type -> req.DefaultRes
+	0, // 0: exchange.SpecialExchange.CreateSpecialExchange:input_type -> req.CreateExchangeReq
+	1, // 1: exchange.SpecialExchange.TakeSpecialxhangeList:input_type -> req.EmptyReq
+	2, // 2: exchange.SpecialExchange.GiveSpecialDetails:input_type -> req.InitBankDetailExchangeReq
+	3, // 3: exchange.SpecialExchange.ConfirmSpecial:input_type -> req.ConfirmReq
+	4, // 4: exchange.SpecialExchange.CreateSpecialExchange:output_type -> req.DefaultRes
+	5, // 5: exchange.SpecialExchange.TakeSpecialxhangeList:output_type -> req.RepeatListExRes
+	4, // 6: exchange.SpecialExchange.GiveSpecialDetails:output_type -> req.DefaultRes
+	4, // 7: exchange.SpecialExchange.ConfirmSpecial:output_type -> req.DefaultRes
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
