@@ -6,7 +6,7 @@ import "Req.proto";
 
 option go_package="github.com/DEEBBLUE/ExProtos/api/Exchange";
 
-service RCExchange{
+service SpecialExchange{
   rpc CreateSpecialExchange(req.CreateExchangeReq) 
     returns (stream req.DefaultRes);
   rpc TakeSpecialxhangeList(req.EmptyReq)
