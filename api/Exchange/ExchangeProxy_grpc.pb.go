@@ -30,7 +30,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ExchangeClient interface {
-	CreateNewExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	CreateNewExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Req.DefaultRes], error)
 	TakeNewExhangeList(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error)
 	GiveDetails(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	Confirm(ctx context.Context, in *Req.ConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
@@ -44,15 +44,24 @@ func NewExchangeClient(cc grpc.ClientConnInterface) ExchangeClient {
 	return &exchangeClient{cc}
 }
 
-func (c *exchangeClient) CreateNewExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+func (c *exchangeClient) CreateNewExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Req.DefaultRes], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Req.DefaultRes)
-	err := c.cc.Invoke(ctx, Exchange_CreateNewExchange_FullMethodName, in, out, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &Exchange_ServiceDesc.Streams[0], Exchange_CreateNewExchange_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &grpc.GenericClientStream[Req.CreateExchangeReq, Req.DefaultRes]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Exchange_CreateNewExchangeClient = grpc.ServerStreamingClient[Req.DefaultRes]
 
 func (c *exchangeClient) TakeNewExhangeList(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -88,7 +97,7 @@ func (c *exchangeClient) Confirm(ctx context.Context, in *Req.ConfirmReq, opts .
 // All implementations must embed UnimplementedExchangeServer
 // for forward compatibility.
 type ExchangeServer interface {
-	CreateNewExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error)
+	CreateNewExchange(*Req.CreateExchangeReq, grpc.ServerStreamingServer[Req.DefaultRes]) error
 	TakeNewExhangeList(context.Context, *Req.EmptyReq) (*Req.RepeatListExRes, error)
 	GiveDetails(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error)
 	Confirm(context.Context, *Req.ConfirmReq) (*Req.DefaultRes, error)
@@ -102,8 +111,8 @@ type ExchangeServer interface {
 // pointer dereference when methods are called.
 type UnimplementedExchangeServer struct{}
 
-func (UnimplementedExchangeServer) CreateNewExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateNewExchange not implemented")
+func (UnimplementedExchangeServer) CreateNewExchange(*Req.CreateExchangeReq, grpc.ServerStreamingServer[Req.DefaultRes]) error {
+	return status.Errorf(codes.Unimplemented, "method CreateNewExchange not implemented")
 }
 func (UnimplementedExchangeServer) TakeNewExhangeList(context.Context, *Req.EmptyReq) (*Req.RepeatListExRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TakeNewExhangeList not implemented")
@@ -135,23 +144,16 @@ func RegisterExchangeServer(s grpc.ServiceRegistrar, srv ExchangeServer) {
 	s.RegisterService(&Exchange_ServiceDesc, srv)
 }
 
-func _Exchange_CreateNewExchange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Req.CreateExchangeReq)
-	if err := dec(in); err != nil {
-		return nil, err
+func _Exchange_CreateNewExchange_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Req.CreateExchangeReq)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(ExchangeServer).CreateNewExchange(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Exchange_CreateNewExchange_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ExchangeServer).CreateNewExchange(ctx, req.(*Req.CreateExchangeReq))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(ExchangeServer).CreateNewExchange(m, &grpc.GenericServerStream[Req.CreateExchangeReq, Req.DefaultRes]{ServerStream: stream})
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Exchange_CreateNewExchangeServer = grpc.ServerStreamingServer[Req.DefaultRes]
 
 func _Exchange_TakeNewExhangeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Req.EmptyReq)
@@ -215,10 +217,6 @@ var Exchange_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ExchangeServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateNewExchange",
-			Handler:    _Exchange_CreateNewExchange_Handler,
-		},
-		{
 			MethodName: "TakeNewExhangeList",
 			Handler:    _Exchange_TakeNewExhangeList_Handler,
 		},
@@ -231,6 +229,12 @@ var Exchange_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Exchange_Confirm_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "CreateNewExchange",
+			Handler:       _Exchange_CreateNewExchange_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "ExchangeProxy.proto",
 }

@@ -25,10 +25,10 @@ var File_CRExchange_proto protoreflect.FileDescriptor
 
 const file_CRExchange_proto_rawDesc = "" +
 	"\n" +
-	"\x10CRExchange.proto\x12\bexchange\x1a\tReq.proto2\xf0\x01\n" +
+	"\x10CRExchange.proto\x12\bexchange\x1a\tReq.proto2\xf2\x01\n" +
 	"\n" +
-	"CRExchange\x12;\n" +
-	"\x10CreateCRExchange\x12\x16.req.CreateExchangeReq\x1a\x0f.req.DefaultRes\x128\n" +
+	"CRExchange\x12=\n" +
+	"\x10CreateCRExchange\x12\x16.req.CreateExchangeReq\x1a\x0f.req.DefaultRes0\x01\x128\n" +
 	"\x11TakeCRExhangeList\x12\r.req.EmptyReq\x1a\x14.req.RepeatListExRes\x12>\n" +
 	"\vGiveDetails\x12\x1e.req.InitBankDetailExchangeReq\x1a\x0f.req.DefaultRes\x12+\n" +
 	"\aConfirm\x12\x0f.req.ConfirmReq\x1a\x0f.req.DefaultResB+Z)github.com/DEEBBLUE/ExProtos/api/Exchangeb\x06proto3"

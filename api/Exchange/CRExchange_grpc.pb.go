@@ -30,7 +30,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CRExchangeClient interface {
-	CreateCRExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	CreateCRExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Req.DefaultRes], error)
 	TakeCRExhangeList(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error)
 	GiveDetails(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 	Confirm(ctx context.Context, in *Req.ConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
@@ -44,15 +44,24 @@ func NewCRExchangeClient(cc grpc.ClientConnInterface) CRExchangeClient {
 	return &cRExchangeClient{cc}
 }
 
-func (c *cRExchangeClient) CreateCRExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+func (c *cRExchangeClient) CreateCRExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Req.DefaultRes], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Req.DefaultRes)
-	err := c.cc.Invoke(ctx, CRExchange_CreateCRExchange_FullMethodName, in, out, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &CRExchange_ServiceDesc.Streams[0], CRExchange_CreateCRExchange_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &grpc.GenericClientStream[Req.CreateExchangeReq, Req.DefaultRes]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type CRExchange_CreateCRExchangeClient = grpc.ServerStreamingClient[Req.DefaultRes]
 
 func (c *cRExchangeClient) TakeCRExhangeList(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -88,7 +97,7 @@ func (c *cRExchangeClient) Confirm(ctx context.Context, in *Req.ConfirmReq, opts
 // All implementations must embed UnimplementedCRExchangeServer
 // for forward compatibility.
 type CRExchangeServer interface {
-	CreateCRExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error)
+	CreateCRExchange(*Req.CreateExchangeReq, grpc.ServerStreamingServer[Req.DefaultRes]) error
 	TakeCRExhangeList(context.Context, *Req.EmptyReq) (*Req.RepeatListExRes, error)
 	GiveDetails(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error)
 	Confirm(context.Context, *Req.ConfirmReq) (*Req.DefaultRes, error)
@@ -102,8 +111,8 @@ type CRExchangeServer interface {
 // pointer dereference when methods are called.
 type UnimplementedCRExchangeServer struct{}
 
-func (UnimplementedCRExchangeServer) CreateCRExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateCRExchange not implemented")
+func (UnimplementedCRExchangeServer) CreateCRExchange(*Req.CreateExchangeReq, grpc.ServerStreamingServer[Req.DefaultRes]) error {
+	return status.Errorf(codes.Unimplemented, "method CreateCRExchange not implemented")
 }
 func (UnimplementedCRExchangeServer) TakeCRExhangeList(context.Context, *Req.EmptyReq) (*Req.RepeatListExRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TakeCRExhangeList not implemented")
@@ -135,23 +144,16 @@ func RegisterCRExchangeServer(s grpc.ServiceRegistrar, srv CRExchangeServer) {
 	s.RegisterService(&CRExchange_ServiceDesc, srv)
 }
 
-func _CRExchange_CreateCRExchange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Req.CreateExchangeReq)
-	if err := dec(in); err != nil {
-		return nil, err
+func _CRExchange_CreateCRExchange_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Req.CreateExchangeReq)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(CRExchangeServer).CreateCRExchange(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CRExchange_CreateCRExchange_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CRExchangeServer).CreateCRExchange(ctx, req.(*Req.CreateExchangeReq))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(CRExchangeServer).CreateCRExchange(m, &grpc.GenericServerStream[Req.CreateExchangeReq, Req.DefaultRes]{ServerStream: stream})
 }
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type CRExchange_CreateCRExchangeServer = grpc.ServerStreamingServer[Req.DefaultRes]
 
 func _CRExchange_TakeCRExhangeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Req.EmptyReq)
@@ -215,10 +217,6 @@ var CRExchange_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CRExchangeServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateCRExchange",
-			Handler:    _CRExchange_CreateCRExchange_Handler,
-		},
-		{
 			MethodName: "TakeCRExhangeList",
 			Handler:    _CRExchange_TakeCRExhangeList_Handler,
 		},
@@ -231,6 +229,12 @@ var CRExchange_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CRExchange_Confirm_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "CreateCRExchange",
+			Handler:       _CRExchange_CreateCRExchange_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "CRExchange.proto",
 }
