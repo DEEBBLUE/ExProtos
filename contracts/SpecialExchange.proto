@@ -1,10 +1,10 @@
 syntax="proto3";
 
-package exchange;
+package special_exchange;
 
 import "Req.proto";
 
-option go_package="github.com/DEEBBLUE/ExProtos/api/Exchange";
+option go_package="github.com/DEEBBLUE/ExProtos/api/SpecialExchange";
 
 service SpecialExchange{
   rpc CreateSpecialExchange(req.CreateExchangeReq) 
