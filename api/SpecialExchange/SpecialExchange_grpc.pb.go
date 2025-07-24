@@ -4,7 +4,7 @@
 // - protoc             v6.31.1
 // source: SpecialExchange.proto
 
-package Exchange
+package SpecialExchange
 
 import (
 	context "context"
@@ -20,10 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SpecialExchange_CreateSpecialExchange_FullMethodName = "/exchange.SpecialExchange/CreateSpecialExchange"
-	SpecialExchange_TakeSpecialxhangeList_FullMethodName = "/exchange.SpecialExchange/TakeSpecialxhangeList"
-	SpecialExchange_GiveSpecialDetails_FullMethodName    = "/exchange.SpecialExchange/GiveSpecialDetails"
-	SpecialExchange_ConfirmSpecial_FullMethodName        = "/exchange.SpecialExchange/ConfirmSpecial"
+	SpecialExchange_CreateSpecialExchange_FullMethodName = "/special_exchange.SpecialExchange/CreateSpecialExchange"
+	SpecialExchange_TakeSpecialxhangeList_FullMethodName = "/special_exchange.SpecialExchange/TakeSpecialxhangeList"
+	SpecialExchange_GiveSpecialDetails_FullMethodName    = "/special_exchange.SpecialExchange/GiveSpecialDetails"
+	SpecialExchange_ConfirmSpecial_FullMethodName        = "/special_exchange.SpecialExchange/ConfirmSpecial"
 )
 
 // SpecialExchangeClient is the client API for SpecialExchange service.
@@ -213,7 +213,7 @@ func _SpecialExchange_ConfirmSpecial_Handler(srv interface{}, ctx context.Contex
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SpecialExchange_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "exchange.SpecialExchange",
+	ServiceName: "special_exchange.SpecialExchange",
 	HandlerType: (*SpecialExchangeServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
