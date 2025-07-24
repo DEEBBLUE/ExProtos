@@ -25,13 +25,13 @@ var File_SpecialExchange_proto protoreflect.FileDescriptor
 
 const file_SpecialExchange_proto_rawDesc = "" +
 	"\n" +
-	"\x15SpecialExchange.proto\x12\bexchange\x1a\tReq.proto2\xf2\x01\n" +
+	"\x15SpecialExchange.proto\x12\bexchange\x1a\tReq.proto2\x89\x02\n" +
 	"\n" +
-	"RCExchange\x12=\n" +
-	"\x10CreateRCExchange\x12\x16.req.CreateExchangeReq\x1a\x0f.req.DefaultRes0\x01\x128\n" +
-	"\x11TakeRCExhangeList\x12\r.req.EmptyReq\x1a\x14.req.RepeatListExRes\x12>\n" +
-	"\vGiveDetails\x12\x1e.req.InitBankDetailExchangeReq\x1a\x0f.req.DefaultRes\x12+\n" +
-	"\aConfirm\x12\x0f.req.ConfirmReq\x1a\x0f.req.DefaultResB+Z)github.com/DEEBBLUE/ExProtos/api/Exchangeb\x06proto3"
+	"RCExchange\x12B\n" +
+	"\x15CreateSpecialExchange\x12\x16.req.CreateExchangeReq\x1a\x0f.req.DefaultRes0\x01\x12<\n" +
+	"\x15TakeSpecialxhangeList\x12\r.req.EmptyReq\x1a\x14.req.RepeatListExRes\x12E\n" +
+	"\x12GiveSpecialDetails\x12\x1e.req.InitBankDetailExchangeReq\x1a\x0f.req.DefaultRes\x122\n" +
+	"\x0eConfirmSpecial\x12\x0f.req.ConfirmReq\x1a\x0f.req.DefaultResB+Z)github.com/DEEBBLUE/ExProtos/api/Exchangeb\x06proto3"
 
 var file_SpecialExchange_proto_goTypes = []any{
 	(*Req.CreateExchangeReq)(nil),         // 0: req.CreateExchangeReq
@@ -42,14 +42,14 @@ var file_SpecialExchange_proto_goTypes = []any{
 	(*Req.RepeatListExRes)(nil),           // 5: req.RepeatListExRes
 }
 var file_SpecialExchange_proto_depIdxs = []int32{
-	0, // 0: exchange.RCExchange.CreateRCExchange:input_type -> req.CreateExchangeReq
-	1, // 1: exchange.RCExchange.TakeRCExhangeList:input_type -> req.EmptyReq
-	2, // 2: exchange.RCExchange.GiveDetails:input_type -> req.InitBankDetailExchangeReq
-	3, // 3: exchange.RCExchange.Confirm:input_type -> req.ConfirmReq
-	4, // 4: exchange.RCExchange.CreateRCExchange:output_type -> req.DefaultRes
-	5, // 5: exchange.RCExchange.TakeRCExhangeList:output_type -> req.RepeatListExRes
-	4, // 6: exchange.RCExchange.GiveDetails:output_type -> req.DefaultRes
-	4, // 7: exchange.RCExchange.Confirm:output_type -> req.DefaultRes
+	0, // 0: exchange.RCExchange.CreateSpecialExchange:input_type -> req.CreateExchangeReq
+	1, // 1: exchange.RCExchange.TakeSpecialxhangeList:input_type -> req.EmptyReq
+	2, // 2: exchange.RCExchange.GiveSpecialDetails:input_type -> req.InitBankDetailExchangeReq
+	3, // 3: exchange.RCExchange.ConfirmSpecial:input_type -> req.ConfirmReq
+	4, // 4: exchange.RCExchange.CreateSpecialExchange:output_type -> req.DefaultRes
+	5, // 5: exchange.RCExchange.TakeSpecialxhangeList:output_type -> req.RepeatListExRes
+	4, // 6: exchange.RCExchange.GiveSpecialDetails:output_type -> req.DefaultRes
+	4, // 7: exchange.RCExchange.ConfirmSpecial:output_type -> req.DefaultRes
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

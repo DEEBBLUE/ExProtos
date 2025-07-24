@@ -20,20 +20,20 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	RCExchange_CreateRCExchange_FullMethodName  = "/exchange.RCExchange/CreateRCExchange"
-	RCExchange_TakeRCExhangeList_FullMethodName = "/exchange.RCExchange/TakeRCExhangeList"
-	RCExchange_GiveDetails_FullMethodName       = "/exchange.RCExchange/GiveDetails"
-	RCExchange_Confirm_FullMethodName           = "/exchange.RCExchange/Confirm"
+	RCExchange_CreateSpecialExchange_FullMethodName = "/exchange.RCExchange/CreateSpecialExchange"
+	RCExchange_TakeSpecialxhangeList_FullMethodName = "/exchange.RCExchange/TakeSpecialxhangeList"
+	RCExchange_GiveSpecialDetails_FullMethodName    = "/exchange.RCExchange/GiveSpecialDetails"
+	RCExchange_ConfirmSpecial_FullMethodName        = "/exchange.RCExchange/ConfirmSpecial"
 )
 
 // RCExchangeClient is the client API for RCExchange service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RCExchangeClient interface {
-	CreateRCExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Req.DefaultRes], error)
-	TakeRCExhangeList(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error)
-	GiveDetails(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
-	Confirm(ctx context.Context, in *Req.ConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	CreateSpecialExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Req.DefaultRes], error)
+	TakeSpecialxhangeList(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error)
+	GiveSpecialDetails(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	ConfirmSpecial(ctx context.Context, in *Req.ConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 }
 
 type rCExchangeClient struct {
@@ -44,9 +44,9 @@ func NewRCExchangeClient(cc grpc.ClientConnInterface) RCExchangeClient {
 	return &rCExchangeClient{cc}
 }
 
-func (c *rCExchangeClient) CreateRCExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Req.DefaultRes], error) {
+func (c *rCExchangeClient) CreateSpecialExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Req.DefaultRes], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &RCExchange_ServiceDesc.Streams[0], RCExchange_CreateRCExchange_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &RCExchange_ServiceDesc.Streams[0], RCExchange_CreateSpecialExchange_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -61,32 +61,32 @@ func (c *rCExchangeClient) CreateRCExchange(ctx context.Context, in *Req.CreateE
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RCExchange_CreateRCExchangeClient = grpc.ServerStreamingClient[Req.DefaultRes]
+type RCExchange_CreateSpecialExchangeClient = grpc.ServerStreamingClient[Req.DefaultRes]
 
-func (c *rCExchangeClient) TakeRCExhangeList(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error) {
+func (c *rCExchangeClient) TakeSpecialxhangeList(ctx context.Context, in *Req.EmptyReq, opts ...grpc.CallOption) (*Req.RepeatListExRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Req.RepeatListExRes)
-	err := c.cc.Invoke(ctx, RCExchange_TakeRCExhangeList_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, RCExchange_TakeSpecialxhangeList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *rCExchangeClient) GiveDetails(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+func (c *rCExchangeClient) GiveSpecialDetails(ctx context.Context, in *Req.InitBankDetailExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Req.DefaultRes)
-	err := c.cc.Invoke(ctx, RCExchange_GiveDetails_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, RCExchange_GiveSpecialDetails_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *rCExchangeClient) Confirm(ctx context.Context, in *Req.ConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+func (c *rCExchangeClient) ConfirmSpecial(ctx context.Context, in *Req.ConfirmReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Req.DefaultRes)
-	err := c.cc.Invoke(ctx, RCExchange_Confirm_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, RCExchange_ConfirmSpecial_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -97,10 +97,10 @@ func (c *rCExchangeClient) Confirm(ctx context.Context, in *Req.ConfirmReq, opts
 // All implementations must embed UnimplementedRCExchangeServer
 // for forward compatibility.
 type RCExchangeServer interface {
-	CreateRCExchange(*Req.CreateExchangeReq, grpc.ServerStreamingServer[Req.DefaultRes]) error
-	TakeRCExhangeList(context.Context, *Req.EmptyReq) (*Req.RepeatListExRes, error)
-	GiveDetails(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error)
-	Confirm(context.Context, *Req.ConfirmReq) (*Req.DefaultRes, error)
+	CreateSpecialExchange(*Req.CreateExchangeReq, grpc.ServerStreamingServer[Req.DefaultRes]) error
+	TakeSpecialxhangeList(context.Context, *Req.EmptyReq) (*Req.RepeatListExRes, error)
+	GiveSpecialDetails(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error)
+	ConfirmSpecial(context.Context, *Req.ConfirmReq) (*Req.DefaultRes, error)
 	mustEmbedUnimplementedRCExchangeServer()
 }
 
@@ -111,17 +111,17 @@ type RCExchangeServer interface {
 // pointer dereference when methods are called.
 type UnimplementedRCExchangeServer struct{}
 
-func (UnimplementedRCExchangeServer) CreateRCExchange(*Req.CreateExchangeReq, grpc.ServerStreamingServer[Req.DefaultRes]) error {
-	return status.Errorf(codes.Unimplemented, "method CreateRCExchange not implemented")
+func (UnimplementedRCExchangeServer) CreateSpecialExchange(*Req.CreateExchangeReq, grpc.ServerStreamingServer[Req.DefaultRes]) error {
+	return status.Errorf(codes.Unimplemented, "method CreateSpecialExchange not implemented")
 }
-func (UnimplementedRCExchangeServer) TakeRCExhangeList(context.Context, *Req.EmptyReq) (*Req.RepeatListExRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TakeRCExhangeList not implemented")
+func (UnimplementedRCExchangeServer) TakeSpecialxhangeList(context.Context, *Req.EmptyReq) (*Req.RepeatListExRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method TakeSpecialxhangeList not implemented")
 }
-func (UnimplementedRCExchangeServer) GiveDetails(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GiveDetails not implemented")
+func (UnimplementedRCExchangeServer) GiveSpecialDetails(context.Context, *Req.InitBankDetailExchangeReq) (*Req.DefaultRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GiveSpecialDetails not implemented")
 }
-func (UnimplementedRCExchangeServer) Confirm(context.Context, *Req.ConfirmReq) (*Req.DefaultRes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Confirm not implemented")
+func (UnimplementedRCExchangeServer) ConfirmSpecial(context.Context, *Req.ConfirmReq) (*Req.DefaultRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfirmSpecial not implemented")
 }
 func (UnimplementedRCExchangeServer) mustEmbedUnimplementedRCExchangeServer() {}
 func (UnimplementedRCExchangeServer) testEmbeddedByValue()                    {}
@@ -144,67 +144,67 @@ func RegisterRCExchangeServer(s grpc.ServiceRegistrar, srv RCExchangeServer) {
 	s.RegisterService(&RCExchange_ServiceDesc, srv)
 }
 
-func _RCExchange_CreateRCExchange_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _RCExchange_CreateSpecialExchange_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Req.CreateExchangeReq)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(RCExchangeServer).CreateRCExchange(m, &grpc.GenericServerStream[Req.CreateExchangeReq, Req.DefaultRes]{ServerStream: stream})
+	return srv.(RCExchangeServer).CreateSpecialExchange(m, &grpc.GenericServerStream[Req.CreateExchangeReq, Req.DefaultRes]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type RCExchange_CreateRCExchangeServer = grpc.ServerStreamingServer[Req.DefaultRes]
+type RCExchange_CreateSpecialExchangeServer = grpc.ServerStreamingServer[Req.DefaultRes]
 
-func _RCExchange_TakeRCExhangeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RCExchange_TakeSpecialxhangeList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Req.EmptyReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RCExchangeServer).TakeRCExhangeList(ctx, in)
+		return srv.(RCExchangeServer).TakeSpecialxhangeList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RCExchange_TakeRCExhangeList_FullMethodName,
+		FullMethod: RCExchange_TakeSpecialxhangeList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RCExchangeServer).TakeRCExhangeList(ctx, req.(*Req.EmptyReq))
+		return srv.(RCExchangeServer).TakeSpecialxhangeList(ctx, req.(*Req.EmptyReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RCExchange_GiveDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RCExchange_GiveSpecialDetails_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Req.InitBankDetailExchangeReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RCExchangeServer).GiveDetails(ctx, in)
+		return srv.(RCExchangeServer).GiveSpecialDetails(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RCExchange_GiveDetails_FullMethodName,
+		FullMethod: RCExchange_GiveSpecialDetails_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RCExchangeServer).GiveDetails(ctx, req.(*Req.InitBankDetailExchangeReq))
+		return srv.(RCExchangeServer).GiveSpecialDetails(ctx, req.(*Req.InitBankDetailExchangeReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RCExchange_Confirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RCExchange_ConfirmSpecial_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Req.ConfirmReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RCExchangeServer).Confirm(ctx, in)
+		return srv.(RCExchangeServer).ConfirmSpecial(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RCExchange_Confirm_FullMethodName,
+		FullMethod: RCExchange_ConfirmSpecial_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RCExchangeServer).Confirm(ctx, req.(*Req.ConfirmReq))
+		return srv.(RCExchangeServer).ConfirmSpecial(ctx, req.(*Req.ConfirmReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -217,22 +217,22 @@ var RCExchange_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*RCExchangeServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "TakeRCExhangeList",
-			Handler:    _RCExchange_TakeRCExhangeList_Handler,
+			MethodName: "TakeSpecialxhangeList",
+			Handler:    _RCExchange_TakeSpecialxhangeList_Handler,
 		},
 		{
-			MethodName: "GiveDetails",
-			Handler:    _RCExchange_GiveDetails_Handler,
+			MethodName: "GiveSpecialDetails",
+			Handler:    _RCExchange_GiveSpecialDetails_Handler,
 		},
 		{
-			MethodName: "Confirm",
-			Handler:    _RCExchange_Confirm_Handler,
+			MethodName: "ConfirmSpecial",
+			Handler:    _RCExchange_ConfirmSpecial_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "CreateRCExchange",
-			Handler:       _RCExchange_CreateRCExchange_Handler,
+			StreamName:    "CreateSpecialExchange",
+			Handler:       _RCExchange_CreateSpecialExchange_Handler,
 			ServerStreams: true,
 		},
 	},
