@@ -8,7 +8,7 @@ option go_package="github.com/DEEBBLUE/ExProtos/api/Exchange";
 
 service RCExchange{
   rpc CreateRCExchange(req.CreateExchangeReq) 
-    returns (req.DefaultRes);
+    returns (stream req.DefaultRes);
   rpc TakeRCExhangeList(req.EmptyReq)
     returns (req.RepeatListExRes);
   rpc GiveDetails(req.InitBankDetailExchangeReq)

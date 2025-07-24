@@ -8,7 +8,7 @@ option go_package="github.com/DEEBBLUE/ExProtos/api/Exchange";
 
 service CRExchange{
   rpc CreateCRExchange(req.CreateExchangeReq) 
-    returns (req.DefaultRes);
+    returns (stream req.DefaultRes);
   rpc TakeCRExhangeList(req.EmptyReq)
     returns (req.RepeatListExRes);
   rpc GiveDetails(req.InitBankDetailExchangeReq)
