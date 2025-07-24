@@ -7,12 +7,12 @@ import "Req.proto";
 option go_package="github.com/DEEBBLUE/ExProtos/api/Exchange";
 
 service RCExchange{
-  rpc CreateRCExchange(req.CreateExchangeReq) 
+  rpc CreateSpecialExchange(req.CreateExchangeReq) 
     returns (stream req.DefaultRes);
-  rpc TakeRCExhangeList(req.EmptyReq)
+  rpc TakeSpecialxhangeList(req.EmptyReq)
     returns (req.RepeatListExRes);
-  rpc GiveDetails(req.InitBankDetailExchangeReq)
+  rpc GiveSpecialDetails(req.InitBankDetailExchangeReq)
     returns (req.DefaultRes);
-  rpc Confirm(req.ConfirmReq)
+  rpc ConfirmSpecial(req.ConfirmReq)
     returns (req.DefaultRes);
 }
