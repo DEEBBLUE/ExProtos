@@ -122,6 +122,52 @@ func (Verif) EnumDescriptor() ([]byte, []int) {
 }
 
 // Exchange
+type ExchangeType int32
+
+const (
+	ExchangeType_CR ExchangeType = 0
+	ExchangeType_RC ExchangeType = 1
+)
+
+// Enum value maps for ExchangeType.
+var (
+	ExchangeType_name = map[int32]string{
+		0: "CR",
+		1: "RC",
+	}
+	ExchangeType_value = map[string]int32{
+		"CR": 0,
+		"RC": 1,
+	}
+)
+
+func (x ExchangeType) Enum() *ExchangeType {
+	p := new(ExchangeType)
+	*p = x
+	return p
+}
+
+func (x ExchangeType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ExchangeType) Descriptor() protoreflect.EnumDescriptor {
+	return file_Types_proto_enumTypes[2].Descriptor()
+}
+
+func (ExchangeType) Type() protoreflect.EnumType {
+	return &file_Types_proto_enumTypes[2]
+}
+
+func (x ExchangeType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ExchangeType.Descriptor instead.
+func (ExchangeType) EnumDescriptor() ([]byte, []int) {
+	return file_Types_proto_rawDescGZIP(), []int{2}
+}
+
 type ExchangeStatus int32
 
 const (
@@ -158,11 +204,11 @@ func (x ExchangeStatus) String() string {
 }
 
 func (ExchangeStatus) Descriptor() protoreflect.EnumDescriptor {
-	return file_Types_proto_enumTypes[2].Descriptor()
+	return file_Types_proto_enumTypes[3].Descriptor()
 }
 
 func (ExchangeStatus) Type() protoreflect.EnumType {
-	return &file_Types_proto_enumTypes[2]
+	return &file_Types_proto_enumTypes[3]
 }
 
 func (x ExchangeStatus) Number() protoreflect.EnumNumber {
@@ -171,7 +217,7 @@ func (x ExchangeStatus) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExchangeStatus.Descriptor instead.
 func (ExchangeStatus) EnumDescriptor() ([]byte, []int) {
-	return file_Types_proto_rawDescGZIP(), []int{2}
+	return file_Types_proto_rawDescGZIP(), []int{3}
 }
 
 type ExchangeCurrency int32
@@ -222,11 +268,11 @@ func (x ExchangeCurrency) String() string {
 }
 
 func (ExchangeCurrency) Descriptor() protoreflect.EnumDescriptor {
-	return file_Types_proto_enumTypes[3].Descriptor()
+	return file_Types_proto_enumTypes[4].Descriptor()
 }
 
 func (ExchangeCurrency) Type() protoreflect.EnumType {
-	return &file_Types_proto_enumTypes[3]
+	return &file_Types_proto_enumTypes[4]
 }
 
 func (x ExchangeCurrency) Number() protoreflect.EnumNumber {
@@ -235,7 +281,7 @@ func (x ExchangeCurrency) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ExchangeCurrency.Descriptor instead.
 func (ExchangeCurrency) EnumDescriptor() ([]byte, []int) {
-	return file_Types_proto_rawDescGZIP(), []int{3}
+	return file_Types_proto_rawDescGZIP(), []int{4}
 }
 
 type User struct {
@@ -393,6 +439,7 @@ type Exchange struct {
 	TimeStart     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=time_start,json=timeStart,proto3" json:"time_start,omitempty"`
 	TimeEnd       *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=time_end,json=timeEnd,proto3" json:"time_end,omitempty"`
 	Rate          float32                `protobuf:"fixed32,9,opt,name=rate,proto3" json:"rate,omitempty"`
+	Type          ExchangeType           `protobuf:"varint,10,opt,name=type,proto3,enum=types.ExchangeType" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -490,6 +537,13 @@ func (x *Exchange) GetRate() float32 {
 	return 0
 }
 
+func (x *Exchange) GetType() ExchangeType {
+	if x != nil {
+		return x.Type
+	}
+	return ExchangeType_CR
+}
+
 // Orders
 type Order struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -582,7 +636,7 @@ const file_Types_proto_rawDesc = "" +
 	"\fExchangeData\x123\n" +
 	"\bcurrency\x18\x01 \x01(\x0e2\x17.types.ExchangeCurrencyR\bcurrency\x12\x16\n" +
 	"\x06amount\x18\x02 \x01(\x02R\x06amount\x12\x18\n" +
-	"\adetails\x18\x03 \x01(\tR\adetails\"\xf4\x02\n" +
+	"\adetails\x18\x03 \x01(\tR\adetails\"\x9d\x03\n" +
 	"\bExchange\x12\x1f\n" +
 	"\vexchange_id\x18\x01 \x01(\x05R\n" +
 	"exchangeId\x12,\n" +
@@ -594,7 +648,9 @@ const file_Types_proto_rawDesc = "" +
 	"\n" +
 	"time_start\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\ttimeStart\x125\n" +
 	"\btime_end\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\atimeEnd\x12\x12\n" +
-	"\x04rate\x18\t \x01(\x02R\x04rate\"\xcf\x01\n" +
+	"\x04rate\x18\t \x01(\x02R\x04rate\x12'\n" +
+	"\x04type\x18\n" +
+	" \x01(\x0e2\x13.types.ExchangeTypeR\x04type\"\xcf\x01\n" +
 	"\x05Order\x128\n" +
 	"\vcurrency_in\x18\x01 \x01(\x0e2\x17.types.ExchangeCurrencyR\n" +
 	"currencyIn\x12:\n" +
@@ -612,7 +668,10 @@ const file_Types_proto_rawDesc = "" +
 	"\tUNVERIFED\x10\x00\x12\x0e\n" +
 	"\n" +
 	"INPROCESED\x10\x01\x12\v\n" +
-	"\aVERIFED\x10\x02*N\n" +
+	"\aVERIFED\x10\x02*\x1e\n" +
+	"\fExchangeType\x12\x06\n" +
+	"\x02CR\x10\x00\x12\x06\n" +
+	"\x02RC\x10\x01*N\n" +
 	"\x0eExchangeStatus\x12\v\n" +
 	"\aCREATED\x10\x00\x12\x11\n" +
 	"\rEXINPROCESSED\x10\x01\x12\x0e\n" +
@@ -641,35 +700,37 @@ func file_Types_proto_rawDescGZIP() []byte {
 	return file_Types_proto_rawDescData
 }
 
-var file_Types_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
+var file_Types_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
 var file_Types_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_Types_proto_goTypes = []any{
 	(Role)(0),                     // 0: types.Role
 	(Verif)(0),                    // 1: types.Verif
-	(ExchangeStatus)(0),           // 2: types.ExchangeStatus
-	(ExchangeCurrency)(0),         // 3: types.ExchangeCurrency
-	(*User)(nil),                  // 4: types.User
-	(*ExchangeData)(nil),          // 5: types.ExchangeData
-	(*Exchange)(nil),              // 6: types.Exchange
-	(*Order)(nil),                 // 7: types.Order
-	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
+	(ExchangeType)(0),             // 2: types.ExchangeType
+	(ExchangeStatus)(0),           // 3: types.ExchangeStatus
+	(ExchangeCurrency)(0),         // 4: types.ExchangeCurrency
+	(*User)(nil),                  // 5: types.User
+	(*ExchangeData)(nil),          // 6: types.ExchangeData
+	(*Exchange)(nil),              // 7: types.Exchange
+	(*Order)(nil),                 // 8: types.Order
+	(*timestamppb.Timestamp)(nil), // 9: google.protobuf.Timestamp
 }
 var file_Types_proto_depIdxs = []int32{
 	1,  // 0: types.User.verif_status:type_name -> types.Verif
 	0,  // 1: types.User.role:type_name -> types.Role
-	3,  // 2: types.ExchangeData.currency:type_name -> types.ExchangeCurrency
-	5,  // 3: types.Exchange.data_in:type_name -> types.ExchangeData
-	5,  // 4: types.Exchange.data_out:type_name -> types.ExchangeData
-	2,  // 5: types.Exchange.status:type_name -> types.ExchangeStatus
-	8,  // 6: types.Exchange.time_start:type_name -> google.protobuf.Timestamp
-	8,  // 7: types.Exchange.time_end:type_name -> google.protobuf.Timestamp
-	3,  // 8: types.Order.currency_in:type_name -> types.ExchangeCurrency
-	3,  // 9: types.Order.currency_out:type_name -> types.ExchangeCurrency
-	10, // [10:10] is the sub-list for method output_type
-	10, // [10:10] is the sub-list for method input_type
-	10, // [10:10] is the sub-list for extension type_name
-	10, // [10:10] is the sub-list for extension extendee
-	0,  // [0:10] is the sub-list for field type_name
+	4,  // 2: types.ExchangeData.currency:type_name -> types.ExchangeCurrency
+	6,  // 3: types.Exchange.data_in:type_name -> types.ExchangeData
+	6,  // 4: types.Exchange.data_out:type_name -> types.ExchangeData
+	3,  // 5: types.Exchange.status:type_name -> types.ExchangeStatus
+	9,  // 6: types.Exchange.time_start:type_name -> google.protobuf.Timestamp
+	9,  // 7: types.Exchange.time_end:type_name -> google.protobuf.Timestamp
+	2,  // 8: types.Exchange.type:type_name -> types.ExchangeType
+	4,  // 9: types.Order.currency_in:type_name -> types.ExchangeCurrency
+	4,  // 10: types.Order.currency_out:type_name -> types.ExchangeCurrency
+	11, // [11:11] is the sub-list for method output_type
+	11, // [11:11] is the sub-list for method input_type
+	11, // [11:11] is the sub-list for extension type_name
+	11, // [11:11] is the sub-list for extension extendee
+	0,  // [0:11] is the sub-list for field type_name
 }
 
 func init() { file_Types_proto_init() }
@@ -682,7 +743,7 @@ func file_Types_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_Types_proto_rawDesc), len(file_Types_proto_rawDesc)),
-			NumEnums:      4,
+			NumEnums:      5,
 			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
