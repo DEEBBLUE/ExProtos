@@ -26,6 +26,10 @@ message User{
 }
 
 //Exchange
+enum ExchangeType{
+  CR = 0;
+  RC = 1;
+}
 enum ExchangeStatus{
   CREATED = 0;
   EXINPROCESSED = 1;
@@ -50,6 +54,7 @@ message ExchangeData{
 
 message Exchange{
   int32 exchange_id = 1;
+
   ExchangeData data_in = 2;
   ExchangeData data_out = 3;
 
@@ -61,6 +66,8 @@ message Exchange{
   google.protobuf.Timestamp time_end = 8;
 
   float rate = 9;
+
+  ExchangeType type = 10;
 }
 
 //Orders
