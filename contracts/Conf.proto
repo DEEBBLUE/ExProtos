@@ -1,0 +1,12 @@
+syntax="proto3";
+
+package conf;
+
+import "Req.proto";
+
+option go_package = "github.com/DEEBBLUE/ExProtos/api/Conf";
+
+service Conf{
+  rpc AddExchange(req.AddExchangeReq)
+    returns (req.DefaultRes);
+}
