@@ -27,6 +27,9 @@ Rate:
 Stock:
 	$(COM) Stock.proto 
 
+Conf:
+	$(COM) Conf.proto 
+
 Types: 
 	$(COM) Types.proto 
 
@@ -35,6 +38,6 @@ Req:
 
 Utils: Req Types
 
-Service: Exchange SpecialExchange Database Sso Message Rate 
+Service: Exchange Conf SpecialExchange Database Sso Message Rate 
 
 Adapters: Stock
