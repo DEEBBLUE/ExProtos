@@ -7,6 +7,6 @@ import "Req.proto";
 option go_package = "github.com/DEEBBLUE/ExProtos/api/Conf";
 
 service Conf{
-  rpc AddExchange(req.AddExchangeReq)
+  rpc AddExchange(req.CreateExchangeReq)
     returns (req.DefaultRes);
 }
