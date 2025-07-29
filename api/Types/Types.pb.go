@@ -223,37 +223,46 @@ func (ExchangeStatus) EnumDescriptor() ([]byte, []int) {
 type ExchangeCurrency int32
 
 const (
-	ExchangeCurrency_SBER ExchangeCurrency = 0
-	ExchangeCurrency_TINK ExchangeCurrency = 1
-	ExchangeCurrency_ALFA ExchangeCurrency = 2
-	ExchangeCurrency_GAZ  ExchangeCurrency = 3
-	ExchangeCurrency_SBP  ExchangeCurrency = 4
-	ExchangeCurrency_USDT ExchangeCurrency = 5
-	ExchangeCurrency_BTC  ExchangeCurrency = 6
-	ExchangeCurrency_ETH  ExchangeCurrency = 7
+	ExchangeCurrency_SBER      ExchangeCurrency = 0
+	ExchangeCurrency_TINK      ExchangeCurrency = 1
+	ExchangeCurrency_ALFA      ExchangeCurrency = 2
+	ExchangeCurrency_GAZ       ExchangeCurrency = 3
+	ExchangeCurrency_SBP       ExchangeCurrency = 4
+	ExchangeCurrency_USDTTRC20 ExchangeCurrency = 5
+	ExchangeCurrency_USDTERC20 ExchangeCurrency = 6
+	ExchangeCurrency_USDTBEB20 ExchangeCurrency = 7
+	ExchangeCurrency_USDTTON   ExchangeCurrency = 8
+	ExchangeCurrency_BTC       ExchangeCurrency = 9
+	ExchangeCurrency_ETH       ExchangeCurrency = 10
 )
 
 // Enum value maps for ExchangeCurrency.
 var (
 	ExchangeCurrency_name = map[int32]string{
-		0: "SBER",
-		1: "TINK",
-		2: "ALFA",
-		3: "GAZ",
-		4: "SBP",
-		5: "USDT",
-		6: "BTC",
-		7: "ETH",
+		0:  "SBER",
+		1:  "TINK",
+		2:  "ALFA",
+		3:  "GAZ",
+		4:  "SBP",
+		5:  "USDTTRC20",
+		6:  "USDTERC20",
+		7:  "USDTBEB20",
+		8:  "USDTTON",
+		9:  "BTC",
+		10: "ETH",
 	}
 	ExchangeCurrency_value = map[string]int32{
-		"SBER": 0,
-		"TINK": 1,
-		"ALFA": 2,
-		"GAZ":  3,
-		"SBP":  4,
-		"USDT": 5,
-		"BTC":  6,
-		"ETH":  7,
+		"SBER":      0,
+		"TINK":      1,
+		"ALFA":      2,
+		"GAZ":       3,
+		"SBP":       4,
+		"USDTTRC20": 5,
+		"USDTERC20": 6,
+		"USDTBEB20": 7,
+		"USDTTON":   8,
+		"BTC":       9,
+		"ETH":       10,
 	}
 )
 
@@ -677,16 +686,20 @@ const file_Types_proto_rawDesc = "" +
 	"\rEXINPROCESSED\x10\x01\x12\x0e\n" +
 	"\n" +
 	"COMPELETED\x10\x02\x12\f\n" +
-	"\bCANCELED\x10\x03*^\n" +
+	"\bCANCELED\x10\x03*\x8e\x01\n" +
 	"\x10ExchangeCurrency\x12\b\n" +
 	"\x04SBER\x10\x00\x12\b\n" +
 	"\x04TINK\x10\x01\x12\b\n" +
 	"\x04ALFA\x10\x02\x12\a\n" +
 	"\x03GAZ\x10\x03\x12\a\n" +
-	"\x03SBP\x10\x04\x12\b\n" +
-	"\x04USDT\x10\x05\x12\a\n" +
-	"\x03BTC\x10\x06\x12\a\n" +
-	"\x03ETH\x10\aB(Z&github.com/DEEBBLUE/ExProtos/api/Typesb\x06proto3"
+	"\x03SBP\x10\x04\x12\r\n" +
+	"\tUSDTTRC20\x10\x05\x12\r\n" +
+	"\tUSDTERC20\x10\x06\x12\r\n" +
+	"\tUSDTBEB20\x10\a\x12\v\n" +
+	"\aUSDTTON\x10\b\x12\a\n" +
+	"\x03BTC\x10\t\x12\a\n" +
+	"\x03ETH\x10\n" +
+	"B(Z&github.com/DEEBBLUE/ExProtos/api/Typesb\x06proto3"
 
 var (
 	file_Types_proto_rawDescOnce sync.Once
