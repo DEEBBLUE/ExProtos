@@ -27,7 +27,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ConfClient interface {
-	AddExchange(ctx context.Context, in *Req.AddExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
+	AddExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error)
 }
 
 type confClient struct {
@@ -38,7 +38,7 @@ func NewConfClient(cc grpc.ClientConnInterface) ConfClient {
 	return &confClient{cc}
 }
 
-func (c *confClient) AddExchange(ctx context.Context, in *Req.AddExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
+func (c *confClient) AddExchange(ctx context.Context, in *Req.CreateExchangeReq, opts ...grpc.CallOption) (*Req.DefaultRes, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Req.DefaultRes)
 	err := c.cc.Invoke(ctx, Conf_AddExchange_FullMethodName, in, out, cOpts...)
@@ -52,7 +52,7 @@ func (c *confClient) AddExchange(ctx context.Context, in *Req.AddExchangeReq, op
 // All implementations must embed UnimplementedConfServer
 // for forward compatibility.
 type ConfServer interface {
-	AddExchange(context.Context, *Req.AddExchangeReq) (*Req.DefaultRes, error)
+	AddExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error)
 	mustEmbedUnimplementedConfServer()
 }
 
@@ -63,7 +63,7 @@ type ConfServer interface {
 // pointer dereference when methods are called.
 type UnimplementedConfServer struct{}
 
-func (UnimplementedConfServer) AddExchange(context.Context, *Req.AddExchangeReq) (*Req.DefaultRes, error) {
+func (UnimplementedConfServer) AddExchange(context.Context, *Req.CreateExchangeReq) (*Req.DefaultRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddExchange not implemented")
 }
 func (UnimplementedConfServer) mustEmbedUnimplementedConfServer() {}
@@ -88,7 +88,7 @@ func RegisterConfServer(s grpc.ServiceRegistrar, srv ConfServer) {
 }
 
 func _Conf_AddExchange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Req.AddExchangeReq)
+	in := new(Req.CreateExchangeReq)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -100,7 +100,7 @@ func _Conf_AddExchange_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: Conf_AddExchange_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConfServer).AddExchange(ctx, req.(*Req.AddExchangeReq))
+		return srv.(ConfServer).AddExchange(ctx, req.(*Req.CreateExchangeReq))
 	}
 	return interceptor(ctx, in, info, handler)
 }

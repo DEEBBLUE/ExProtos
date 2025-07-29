@@ -10,7 +10,7 @@ import (
 	Types "github.com/DEEBBLUE/ExProtos/api/Types"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	_ "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -1234,75 +1234,6 @@ func (x *GetAllOrdersRes) GetOrders() []*Types.Order {
 	return nil
 }
 
-// Conf
-type AddExchangeReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ExchangeId    int32                  `protobuf:"varint,1,opt,name=exchange_id,json=exchangeId,proto3" json:"exchange_id,omitempty"`
-	Amount        int32                  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	Currency      Types.ExchangeCurrency `protobuf:"varint,3,opt,name=currency,proto3,enum=types.ExchangeCurrency" json:"currency,omitempty"`
-	TimeStart     *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=time_start,json=timeStart,proto3" json:"time_start,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddExchangeReq) Reset() {
-	*x = AddExchangeReq{}
-	mi := &file_Req_proto_msgTypes[25]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddExchangeReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddExchangeReq) ProtoMessage() {}
-
-func (x *AddExchangeReq) ProtoReflect() protoreflect.Message {
-	mi := &file_Req_proto_msgTypes[25]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddExchangeReq.ProtoReflect.Descriptor instead.
-func (*AddExchangeReq) Descriptor() ([]byte, []int) {
-	return file_Req_proto_rawDescGZIP(), []int{25}
-}
-
-func (x *AddExchangeReq) GetExchangeId() int32 {
-	if x != nil {
-		return x.ExchangeId
-	}
-	return 0
-}
-
-func (x *AddExchangeReq) GetAmount() int32 {
-	if x != nil {
-		return x.Amount
-	}
-	return 0
-}
-
-func (x *AddExchangeReq) GetCurrency() Types.ExchangeCurrency {
-	if x != nil {
-		return x.Currency
-	}
-	return Types.ExchangeCurrency(0)
-}
-
-func (x *AddExchangeReq) GetTimeStart() *timestamppb.Timestamp {
-	if x != nil {
-		return x.TimeStart
-	}
-	return nil
-}
-
 var File_Req_proto protoreflect.FileDescriptor
 
 const file_Req_proto_rawDesc = "" +
@@ -1386,14 +1317,7 @@ const file_Req_proto_rawDesc = "" +
 	"currencyIn\x12:\n" +
 	"\fcurrency_out\x18\x02 \x01(\x0e2\x17.types.ExchangeCurrencyR\vcurrencyOut\"7\n" +
 	"\x0fGetAllOrdersRes\x12$\n" +
-	"\x06orders\x18\x01 \x03(\v2\f.types.OrderR\x06orders\"\xb9\x01\n" +
-	"\x0eAddExchangeReq\x12\x1f\n" +
-	"\vexchange_id\x18\x01 \x01(\x05R\n" +
-	"exchangeId\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x05R\x06amount\x123\n" +
-	"\bcurrency\x18\x03 \x01(\x0e2\x17.types.ExchangeCurrencyR\bcurrency\x129\n" +
-	"\n" +
-	"time_start\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\ttimeStartB&Z$github.com/DEEBBLUE/ExProtos/api/Reqb\x06proto3"
+	"\x06orders\x18\x01 \x03(\v2\f.types.OrderR\x06ordersB&Z$github.com/DEEBBLUE/ExProtos/api/Reqb\x06proto3"
 
 var (
 	file_Req_proto_rawDescOnce sync.Once
@@ -1407,7 +1331,7 @@ func file_Req_proto_rawDescGZIP() []byte {
 	return file_Req_proto_rawDescData
 }
 
-var file_Req_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
+var file_Req_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_Req_proto_goTypes = []any{
 	(*DefaultRes)(nil),                // 0: req.DefaultRes
 	(*EmptyReq)(nil),                  // 1: req.EmptyReq
@@ -1434,35 +1358,31 @@ var file_Req_proto_goTypes = []any{
 	(*GetRateRes)(nil),                // 22: req.GetRateRes
 	(*GetAllOrdersReq)(nil),           // 23: req.GetAllOrdersReq
 	(*GetAllOrdersRes)(nil),           // 24: req.GetAllOrdersRes
-	(*AddExchangeReq)(nil),            // 25: req.AddExchangeReq
-	(*Types.User)(nil),                // 26: types.User
-	(Types.Role)(0),                   // 27: types.Role
-	(Types.Verif)(0),                  // 28: types.Verif
-	(*Types.Exchange)(nil),            // 29: types.Exchange
-	(Types.ExchangeCurrency)(0),       // 30: types.ExchangeCurrency
-	(*Types.Order)(nil),               // 31: types.Order
-	(*timestamppb.Timestamp)(nil),     // 32: google.protobuf.Timestamp
+	(*Types.User)(nil),                // 25: types.User
+	(Types.Role)(0),                   // 26: types.Role
+	(Types.Verif)(0),                  // 27: types.Verif
+	(*Types.Exchange)(nil),            // 28: types.Exchange
+	(Types.ExchangeCurrency)(0),       // 29: types.ExchangeCurrency
+	(*Types.Order)(nil),               // 30: types.Order
 }
 var file_Req_proto_depIdxs = []int32{
-	26, // 0: req.RepeatUserRes.user:type_name -> types.User
-	27, // 1: req.ChangeRoleUserReq.new_role:type_name -> types.Role
-	28, // 2: req.ChangeVerifeStatusUserReq.new_verif:type_name -> types.Verif
-	29, // 3: req.CreateExchangeReq.exchange:type_name -> types.Exchange
-	29, // 4: req.RepeatExchangeRes.exchange:type_name -> types.Exchange
-	29, // 5: req.RepeatListExRes.history_list:type_name -> types.Exchange
-	27, // 6: req.RoleReq.role:type_name -> types.Role
-	30, // 7: req.GetRateReq.currency_in:type_name -> types.ExchangeCurrency
-	30, // 8: req.GetRateReq.currency_out:type_name -> types.ExchangeCurrency
-	30, // 9: req.GetAllOrdersReq.currency_in:type_name -> types.ExchangeCurrency
-	30, // 10: req.GetAllOrdersReq.currency_out:type_name -> types.ExchangeCurrency
-	31, // 11: req.GetAllOrdersRes.orders:type_name -> types.Order
-	30, // 12: req.AddExchangeReq.currency:type_name -> types.ExchangeCurrency
-	32, // 13: req.AddExchangeReq.time_start:type_name -> google.protobuf.Timestamp
-	14, // [14:14] is the sub-list for method output_type
-	14, // [14:14] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	25, // 0: req.RepeatUserRes.user:type_name -> types.User
+	26, // 1: req.ChangeRoleUserReq.new_role:type_name -> types.Role
+	27, // 2: req.ChangeVerifeStatusUserReq.new_verif:type_name -> types.Verif
+	28, // 3: req.CreateExchangeReq.exchange:type_name -> types.Exchange
+	28, // 4: req.RepeatExchangeRes.exchange:type_name -> types.Exchange
+	28, // 5: req.RepeatListExRes.history_list:type_name -> types.Exchange
+	26, // 6: req.RoleReq.role:type_name -> types.Role
+	29, // 7: req.GetRateReq.currency_in:type_name -> types.ExchangeCurrency
+	29, // 8: req.GetRateReq.currency_out:type_name -> types.ExchangeCurrency
+	29, // 9: req.GetAllOrdersReq.currency_in:type_name -> types.ExchangeCurrency
+	29, // 10: req.GetAllOrdersReq.currency_out:type_name -> types.ExchangeCurrency
+	30, // 11: req.GetAllOrdersRes.orders:type_name -> types.Order
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_Req_proto_init() }
@@ -1476,7 +1396,7 @@ func file_Req_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_Req_proto_rawDesc), len(file_Req_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   26,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

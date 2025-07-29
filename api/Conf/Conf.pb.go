@@ -26,16 +26,16 @@ var File_Conf_proto protoreflect.FileDescriptor
 const file_Conf_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"Conf.proto\x12\x04conf\x1a\tReq.proto2;\n" +
-	"\x04Conf\x123\n" +
-	"\vAddExchange\x12\x13.req.AddExchangeReq\x1a\x0f.req.DefaultResB'Z%github.com/DEEBBLUE/ExProtos/api/Confb\x06proto3"
+	"Conf.proto\x12\x04conf\x1a\tReq.proto2>\n" +
+	"\x04Conf\x126\n" +
+	"\vAddExchange\x12\x16.req.CreateExchangeReq\x1a\x0f.req.DefaultResB'Z%github.com/DEEBBLUE/ExProtos/api/Confb\x06proto3"
 
 var file_Conf_proto_goTypes = []any{
-	(*Req.AddExchangeReq)(nil), // 0: req.AddExchangeReq
-	(*Req.DefaultRes)(nil),     // 1: req.DefaultRes
+	(*Req.CreateExchangeReq)(nil), // 0: req.CreateExchangeReq
+	(*Req.DefaultRes)(nil),        // 1: req.DefaultRes
 }
 var file_Conf_proto_depIdxs = []int32{
-	0, // 0: conf.Conf.AddExchange:input_type -> req.AddExchangeReq
+	0, // 0: conf.Conf.AddExchange:input_type -> req.CreateExchangeReq
 	1, // 1: conf.Conf.AddExchange:output_type -> req.DefaultRes
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
