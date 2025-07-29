@@ -119,11 +119,3 @@ message GetAllOrdersReq{
 message GetAllOrdersRes{
   repeated types.Order orders = 1;
 }
-
-//Conf
-message AddExchangeReq{
-  int32 exchange_id = 1;
-  int32 amount = 2;
-  types.ExchangeCurrency currency = 3;
-  google.protobuf.Timestamp time_start = 4;
-}
