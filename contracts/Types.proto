@@ -42,9 +42,12 @@ enum ExchangeCurrency{
   ALFA = 2;
   GAZ = 3;
   SBP = 4;
-  USDT = 5;
-  BTC = 6;
-  ETH = 7;
+  USDTTRC20 = 5;
+  USDTERC20 = 6;
+  USDTBEB20 = 7;
+  USDTTON = 8;
+  BTC = 9;
+  ETH = 10;
 }
 message ExchangeData{
   ExchangeCurrency currency = 1;
